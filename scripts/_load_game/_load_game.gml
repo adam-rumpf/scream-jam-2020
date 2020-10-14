@@ -10,7 +10,7 @@ function _load_game()
 		// Get level progress and version number
 		var map = ds_map_secure_load(global.save_file);
 		global.version = real(ds_map_find_value(map, "version"));
-		global.level = int64(ds_map_find_value(map, "level"));
+		global.level = round(real(ds_map_find_value(map, "level")));
 
 		return true;
 	}
