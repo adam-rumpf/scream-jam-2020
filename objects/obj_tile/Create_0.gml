@@ -10,7 +10,7 @@
  * Note that the tile's x and y attributes indicate its coordinates in the grid, and have nothing to do with where it is displayed.
  */
 
-height = 0; // elevation for use in defining the objective function
+elevation = 0; // elevation for use in defining the objective function
 image_index = 0; // image index of tile sprite
 hmirror = false; // whether to horizontally mirror the image
 vmirror = false; // whether to vertically mirror the image

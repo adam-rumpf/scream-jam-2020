@@ -6,7 +6,10 @@ var lst = [];
 for (var i = 0; i < size; i++)
 {
 	var tile = level.tiles[? key];
-	lst[i] = "(" + string(tile.x) + "," + string(tile.y) + ")";
+	var xx = tile.x;
+	var yy = tile.y;
+	//lst[i] = level.wave_noise(xx, yy);
+	lst[i] = tile.elevation;
 	key = ds_map_find_next(level.tiles, key);
 }
 show_message(lst);
