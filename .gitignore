@@ -1,0 +1,22 @@
+# Raw resources
+_resources/
+
+# Build options
+options/
+
+# Sound files (except for .yy)
+sounds/*/**
+!sounds/*/*.yy
+
+# Miscellaneous project file extensions
+*.exe
+*.win
+*.ini
+*.cfg
+*.dat
+*.sav
+*.zip
+*.lnk
+*.mp3
+*.wav
+*.ogg
