@@ -1,0 +1,3 @@
+# Mark GameMaker generated files
+*.yy linguist-vendored
+*.yyp linguist-vendored
