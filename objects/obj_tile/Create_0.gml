@@ -19,6 +19,7 @@ image_index = 0; // image index of tile sprite
 image_xscale = 1; // horizontal mirroring
 image_yscale = 1; // vertical mirroring
 image_angle = 0; // image rotation
+image_alpha = 0; // image opacity (automatically increments to allow new tiles to fade in)
 
 /// @func screen_coordinates([dx[, dy]])
 /// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.

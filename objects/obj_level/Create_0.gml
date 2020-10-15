@@ -117,7 +117,7 @@ get_tile = function(xx, yy)
 		// Otherwise generate a new tile and add it to the map
 		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
 		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation
-		tile.image_index = irandom_range(0, sprite_get_number(spr_tile)-1); // set random image index
+		tile.image_index = _random_weighted_index([10, 10, 10, 1]); // set random image index // ### UPDATE WHEN TILES ARE REDONE
 		tile.image_yscale = choose(1, -1); // randomize horizontal sprite mirroring
 		tile.image_xscale = choose(1, -1); // randomize vertical sprite mirroring
 		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation

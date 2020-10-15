@@ -34,5 +34,8 @@ new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
 
+// Spawn camera object
+camera = instance_create_layer(0, 0, "Instances", obj_camera);
+
 //### Temporarily move directly to the test room.
-room_goto(rm_level_intro);
+room_goto(rm_level);
