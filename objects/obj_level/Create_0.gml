@@ -35,14 +35,28 @@ hmirror = choose(true, false); // whether to horizontally mirror
 vmirror = choose(true, false); // whether to vertically mirror
 rotate = choose(0, 1, 2, 3); // increment of 90 degree rotation
 
+// Initialize most extreme explored coordinates
+max_y = -infinity;
+min_y = infinity;
+max_x = -infinity;
+min_x = infinity;
+
+// Initialize most extreme elevations
+max_explored = -infinity;
+min_explored = infinity;
+max_visible = -infinity;
+min_visible = infinity;
+max_neighborhood = -infinity;
+min_neighborhood = infinity;
+
 // Initialize tile object map
 tiles = ds_map_create();
 
 // Initialize unordered map of visible tiles (for use in the draw event; updated upon player movement)
 visible_tiles = ds_map_create();
+var rad = 2; // initial exploration radius
 visible_vrad = ceil((room_height/global.tile_size)/2) + 1; // number of tiles above/below player to draw
 visible_hrad = ceil((room_width/global.tile_size)/2) + 1; // number of tiles left/right of player to draw
-var rad = 2; // initial exploration radius
 
 // Define level methods
 
@@ -61,7 +75,7 @@ tile_key = function(xx, yy)
 /// @desc Determines whether a given tile has been explored yet (i.e. whether it has an entry in the tile object map).
 /// @param {int} x x-coordinate of tile.
 /// @param {int} y y-coordinate of tile.
-/// @return {bool} True if the tile has been explored, and false otherwise.
+/// @return {bool} True if the tile has been explored, false otherwise.
 
 tile_explored = function(xx, yy)
 {
@@ -69,8 +83,20 @@ tile_explored = function(xx, yy)
 	return ds_map_exists(tiles, tile_key(xx, yy));
 }
 
+/// @func tile_visible(x, y)
+/// @desc Determines whether a given tile is currently visible (i.e. whether it has an entry in the visible tile map).
+/// @param {int} x x-coordinate of tile.
+/// @param {int} y y-coordinate of tile.
+/// @return {bool} True if the tile is visible, false otherwise.
+
+tile_visible = function(xx, yy)
+{
+	// Check whether the tile key exists in the map
+	return ds_map_exists(visible_tiles, tile_key(xx, yy));
+}
+
 /// @func get_tile(x, y)
-/// @desc Retrieves a given tile from the tile object map, generating a new one if it hasn't been explored yet.
+/// @desc Retrieves a given tile from the tile object map, generating a new one (and updating the extreme tile lists) if it hasn't been explored yet.
 /// @param {int} x x-coordinate of tile.
 /// @param {int} y y-coordinate of tile.
 /// @return {obj_tile} Tile object at coordinate (x,y).
@@ -96,7 +122,40 @@ get_tile = function(xx, yy)
 		tile.image_xscale = choose(1, -1); // randomize vertical sprite mirroring
 		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation
 		tiles[? key] = tile; // add tile to map
+		
+		// Update extreme tiles
+		max_y = max(max_y, yy);
+		min_y = min(min_y, yy);
+		max_x = max(max_x, xx);
+		min_x = min(min_x, xx);
+		max_explored = max(max_explored, tile.elevation);
+		min_explored = min(min_explored, tile.elevation);
+		
 		return tile;
+	}
+}
+
+/// @func explore_neighborhood()
+/// @desc Explores all tiles in the player's neighborhood, and updates the neighborhood extremes.
+
+explore_neighborhood = function()
+{
+	// Reset neighborhood extremes
+	max_neighborhood = -infinity;
+	min_neighborhood = infinity;
+	
+	// Generate all tiles up to 1 tiles away from the player
+	for (var i = -1; i <= 1; i++)
+	{
+		for (var j = -1; j <= 1; j++)
+		{
+			// Make or retrieve tile
+			var tile = get_tile(global.player_x + i, global.player_y + j);
+			
+			// Update extremes
+			max_neighborhood = max(max_neighborhood, tile.elevation);
+			min_neighborhood = min(min_neighborhood, tile.elevation);
+		}
 	}
 }
 
@@ -209,17 +268,31 @@ calculate_elevation = function(xx, yy)
 	return floor(base_terrain(xx, yy) + 8*wave_noise(xx, yy) + random_noise(xx, yy));
 }
 
-/// @func update_visible(dx, dy)
-/// @desc Updates the set of visible tiles when the player moves.
-/// @param {int} dx Change in player's x-coordinate (+/- 1).
-/// @param {int} dy Change in player's y-coordinate (+/- 1).
+/// @func update_visible()
+/// @desc Updates the set of visible tiles when the player moves, as well as the extreme visible elevations.
 
-update_visible = function(dx, dy)
+update_visible = function()
 {
-	// Left movement
-	if (dx < 0)
+	// Reset visible extremes
+	max_visible = -infinity;
+	min_visible = infinity;
+	
+	// Remake visible tile list
+	ds_map_clear(visible_tiles);
+	for (var i = global.player_x - visible_hrad; i <= global.player_x + visible_hrad; i++)
 	{
-		// Hide 
+		for (var j = global.player_y - visible_vrad; j <= global.player_y + visible_vrad; j++)
+		{
+			// Skip unexplored tiles
+			if (tile_explored(i, j) == false)
+				continue;
+			
+			// Add the tile to the visible list and upate the extreme visible elevations
+			var tile = get_tile(i, j);
+			visible_tiles[? tile_key(i, j)] = tile;
+			max_visible = max(max_visible, tile.elevation);
+			min_visible = min(min_visible, tile.elevation);
+		}
 	}
 }
 
@@ -231,21 +304,8 @@ update_visible = function(dx, dy)
 // Set player coordinates
 //### setting the value of global.player_x and global.player_y
 
-// Initialize most extreme explored coordinates
-northernmost = global.player_y + rad;
-easternmost = global.player_x + rad;
-southernmost = global.player_y - rad;
-westernmost = global.player_x - rad;
-
-// Initialize most extreme elevations
-max_explored = -infinity;
-min_explored = infinity;
-max_visible = -infinity;
-min_visible = infinity;
-max_neighborhood = -infinity;
-min_neighborhood = infinity;
-
 // Explore tiles around player
+explore_neighborhood();
 for (var i = -rad; i <= rad; i++)
 {
 	for (var j = -rad; j <= rad; j++)
@@ -253,16 +313,5 @@ for (var i = -rad; i <= rad; i++)
 		// Generate tile
 		var tile = get_tile(global.player_x+i, global.player_y+j);
 		ds_map_add(visible_tiles, tile_key(i, j), tile); // all initial tiles are visible
-		
-		// Update extremes
-		max_explored = max(max_explored, tile.elevation);
-		min_explored = min(min_explored, tile.elevation);
-		max_visible = max(max_visible, tile.elevation);
-		min_visible = min(min_visible, tile.elevation);
-		if ((abs(i) <= 1) && (abs(j) <= 1))
-		{
-			max_neighborhood = max(max_neighborhood, tile.elevation);
-			min_neighborhood = min(min_neighborhood, tile.elevation);
-		}
 	}
 }
