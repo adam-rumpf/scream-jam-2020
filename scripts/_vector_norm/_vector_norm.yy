@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "save",
-    "path": "folders/Scripts/save.yy",
+    "name": "linalg",
+    "path": "folders/Scripts/linalg.yy",
   },
   "resourceVersion": "1.0",
-  "name": "_reset_game",
+  "name": "_vector_norm",
   "tags": [],
   "resourceType": "GMScript",
 }

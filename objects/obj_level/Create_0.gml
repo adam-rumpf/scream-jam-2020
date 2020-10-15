@@ -3,7 +3,9 @@
 /*
  * A level object is created when a new level begins and destroyed when it ends (due to completion or death).
  * The object is persistent so that the level can be maintained in memory while in the menu room.
- * This object serves three main purposes: determining the player's start coordinate, defining the terrain function, and storing the tile objects.
+ * It also draws the background tiles (while within game rooms).
+ *
+ * This object serves three main storage purposes: determining the player's start coordinate, defining the terrain function, and storing the tile objects.
  * The game takes place on a potentially infinite grid of tiles, each with its own elevation and other attributes.
  * The elevation function and tile map allow us to generate only the visited tiles to save memory.
  *
@@ -81,9 +83,13 @@ get_tile = function(xx, yy)
 	else
 	{
 		// Otherwise generate a new tile and add it to the map
-		var tile = instance_create_layer(xx, yy, "Instances", obj_tile);//###
+		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
 		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation
-		tiles[? key] = tile;
+		tile.image_index = irandom_range(0, sprite_get_number(spr_tile)-1); // set random image index
+		tile.image_yscale = choose(1, -1); // randomize horizontal sprite mirroring
+		tile.image_xscale = choose(1, -1); // randomize vertical sprite mirroring
+		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation
+		tiles[? key] = tile; // add tile to map
 		return tile;
 	}
 }
@@ -197,6 +203,16 @@ calculate_elevation = function(xx, yy)
 	return floor(base_terrain(xx, yy) + 8*wave_noise(xx, yy) + random_noise(xx, yy));
 }
 
+/// @func update_visible(dx, dy)
+/// @desc Updates the set of visible tiles when the player moves.
+/// @param {int} dx Change in player's x-coordinate.
+/// @param {int} dy Change in player's y-coordinate.
+
+update_visible = function(dx, dy)
+{
+	//### Search all tiles which would be newly added or removed.
+}
+
 //Define level attributes
 
 // Generate parameters for level terrain
@@ -206,6 +222,10 @@ calculate_elevation = function(xx, yy)
 //###
 get_tile(global.player_x, global.player_y);
 
+// Initialize unordered map of visible tiles (for use in the draw event; updated upon player movement)
+visible_tiles = ds_map_create();
+visible_margin = 2; // number of tiles around the screen edge to keep visible at all times
+
 // Explore tiles around player
 var rad = 2; // range of tiles around player to explore
 for (var i = -rad; i <= rad; i++)
@@ -214,7 +234,8 @@ for (var i = -rad; i <= rad; i++)
 	{
 		if ((i == 0) && (j == 0))
 			continue;
-		get_tile(global.player_x+i, global.player_y+j);
+		var tile = get_tile(global.player_x+i, global.player_y+j);
+		ds_map_add(visible_tiles, tile_key(i, j), tile); // all initial tiles are visible
 	}
 }
 

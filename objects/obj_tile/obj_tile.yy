@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_outline",
-    "path": "sprites/spr_outline/spr_outline.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": false,
   "spriteMaskId": null,

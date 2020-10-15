@@ -9,3 +9,4 @@ while (ds_map_size(tiles) > 0)
 }
 
 ds_map_destroy(tiles);
+ds_map_destroy(visible_tiles);
