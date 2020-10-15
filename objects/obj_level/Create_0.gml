@@ -38,6 +38,12 @@ rotate = choose(0, 1, 2, 3); // increment of 90 degree rotation
 // Initialize tile object map
 tiles = ds_map_create();
 
+// Initialize unordered map of visible tiles (for use in the draw event; updated upon player movement)
+visible_tiles = ds_map_create();
+visible_vrad = ceil((room_height/global.tile_size)/2) + 1; // number of tiles above/below player to draw
+visible_hrad = ceil((room_width/global.tile_size)/2) + 1; // number of tiles left/right of player to draw
+var rad = 2; // initial exploration radius
+
 // Define level methods
 
 /// @func tile_key(x, y)
@@ -205,12 +211,16 @@ calculate_elevation = function(xx, yy)
 
 /// @func update_visible(dx, dy)
 /// @desc Updates the set of visible tiles when the player moves.
-/// @param {int} dx Change in player's x-coordinate.
-/// @param {int} dy Change in player's y-coordinate.
+/// @param {int} dx Change in player's x-coordinate (+/- 1).
+/// @param {int} dy Change in player's y-coordinate (+/- 1).
 
 update_visible = function(dx, dy)
 {
-	//### Search all tiles which would be newly added or removed.
+	// Left movement
+	if (dx < 0)
+	{
+		// Hide 
+	}
 }
 
 //Define level attributes
@@ -219,28 +229,40 @@ update_visible = function(dx, dy)
 //### peak centers, sine/cosine coefficients, reflection/rotation, etc.
 
 // Set player coordinates
-//###
-get_tile(global.player_x, global.player_y);
-
-// Initialize unordered map of visible tiles (for use in the draw event; updated upon player movement)
-visible_tiles = ds_map_create();
-visible_margin = 2; // number of tiles around the screen edge to keep visible at all times
-
-// Explore tiles around player
-var rad = 2; // range of tiles around player to explore
-for (var i = -rad; i <= rad; i++)
-{
-	for (var j = -rad; j <= rad; j++)
-	{
-		if ((i == 0) && (j == 0))
-			continue;
-		var tile = get_tile(global.player_x+i, global.player_y+j);
-		ds_map_add(visible_tiles, tile_key(i, j), tile); // all initial tiles are visible
-	}
-}
+//### setting the value of global.player_x and global.player_y
 
 // Initialize most extreme explored coordinates
 northernmost = global.player_y + rad;
 easternmost = global.player_x + rad;
 southernmost = global.player_y - rad;
 westernmost = global.player_x - rad;
+
+// Initialize most extreme elevations
+max_explored = -infinity;
+min_explored = infinity;
+max_visible = -infinity;
+min_visible = infinity;
+max_neighborhood = -infinity;
+min_neighborhood = infinity;
+
+// Explore tiles around player
+for (var i = -rad; i <= rad; i++)
+{
+	for (var j = -rad; j <= rad; j++)
+	{
+		// Generate tile
+		var tile = get_tile(global.player_x+i, global.player_y+j);
+		ds_map_add(visible_tiles, tile_key(i, j), tile); // all initial tiles are visible
+		
+		// Update extremes
+		max_explored = max(max_explored, tile.elevation);
+		min_explored = min(min_explored, tile.elevation);
+		max_visible = max(max_visible, tile.elevation);
+		min_visible = min(min_visible, tile.elevation);
+		if ((abs(i) <= 1) && (abs(j) <= 1))
+		{
+			max_neighborhood = max(max_neighborhood, tile.elevation);
+			min_neighborhood = min(min_neighborhood, tile.elevation);
+		}
+	}
+}

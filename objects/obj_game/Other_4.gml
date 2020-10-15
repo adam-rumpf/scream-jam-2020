@@ -11,7 +11,7 @@ if (is_undefined(level) == false)
 	instance_destroy(level);
 
 // Create a new level object to handle the level generation and storage
-level = instance_create_layer(0, 0, "Middle_Tiles", obj_level);
+level = instance_create_layer(0, 0, "Instances", obj_level);
 
 // Reset new_level flag
 new_level = false;
