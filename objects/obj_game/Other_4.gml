@@ -1,5 +1,9 @@
 /// @desc Continue the current level or start a new one.
 
+// If a level room, spawn a player object
+if (_level_room() == true)
+	player = instance_create_layer(room_width/2, room_height/2, "Player", obj_player);
+
 // Determine whether to generate a new level
 if (new_level == false)
 	exit;

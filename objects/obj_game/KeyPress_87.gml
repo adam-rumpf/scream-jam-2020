@@ -1,3 +1,4 @@
 //### W -- N
-global.player_y--;
+player.move_n();
 level.update_visible(0, -1);
+level.explore_neighborhood();

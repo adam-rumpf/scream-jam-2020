@@ -20,15 +20,25 @@ image_xscale = 1; // horizontal mirroring
 image_yscale = 1; // vertical mirroring
 image_angle = 0; // image rotation
 
-/// @func screen_coordinates()
-/// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates.
+/// @func screen_coordinates([dx[, dy]])
+/// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.
+/// @param {int} [dx=0] x-direction offset (to compensate for intermediate movement).
+/// @param {int} [dy=0] y-direction offset (to compensate for intermediate movement).
 /// @return {int[]} Ordered pair of (x,y) screen coordinates for the tile.
 
 screen_coordinates = function()
 {
-	// Find screen position relative to player (index difference times tile size), then add to player's screen position, then offset by half tile width
-	var xx = (x - global.player_x)*global.tile_size + room_width/2 + global.tile_size/2;
-	var yy = (y - global.player_y)*global.tile_size + room_height/2 + global.tile_size/2;
+	// Get optional offset arguments
+	var dx = (argument_count > 0 ? argument[0] : 0);
+	var dy = (argument_count > 1 ? argument[1] : 0);
 	
-	return [xx, yy];
+	// Find screen position relative to player (index difference times tile size)
+	var xx = (x - global.player_x)*global.tile_size;
+	var yy = (y - global.player_y)*global.tile_size;
+	
+	// Add to player's screen position, offset by half tile width and manual offsets
+	xx += (room_width/2) + (global.tile_size/2) + dx;
+	yy += (room_height/2) + (global.tile_size/2) + dy;
+	
+	return [round(xx), round(yy)];
 }

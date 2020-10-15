@@ -1,4 +1,4 @@
 //### Q -- NW
-global.player_x--;
-global.player_y--;
+player.move_nw();
 level.update_visible(-1, -1);
+level.explore_neighborhood();

@@ -157,6 +157,9 @@ explore_neighborhood = function()
 			min_neighborhood = min(min_neighborhood, tile.elevation);
 		}
 	}
+	
+	// Update visibility
+	update_visible();
 }
 
 /// @func tile_seed(x, y)

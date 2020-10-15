@@ -21,6 +21,8 @@ _save_game(); // overwrite save file
 // Player attributes
 global.player_x = 0; // player's grid coordinates (the player object, itself, is fixed in the center of the room)
 global.player_y = 0;
+global.player_dx = 0.0; // player's position relative to their starting position during intermediate movement (between -1 and 1)
+global.player_dy = 0.0;
 
 //### Use level progress to decide how to begin the game
 
@@ -30,6 +32,7 @@ health = 100.0; // player's current health
 locked = true; // whether the player's movements are locked
 new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
+player = undefined; // player object which handles some player-specific actions
 
 //### Temporarily move directly to the test room.
 room_goto(rm_level_intro);
