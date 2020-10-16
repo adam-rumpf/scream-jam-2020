@@ -43,15 +43,18 @@ for (var i = 0; i < num_visible; i++)
 		rel = 0.5;
 	var col = make_color_hsv(0, 0, rel*c_visible_max + (1-rel)*c_visible_min);
 	
+	// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
+	var alpha = tile.image_alpha*edge_fade(coords[0] - global.tile_size/2, coords[1] - global.tile_size/2);
+	
 	// Draw a background texture, shaded to indicate elevation
 	//###
-	draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, col, tile.image_alpha);
+	draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, col, alpha);
 	
 	// Draw the tile's sprite
-	draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, c_white, tile.image_alpha);
+	draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, c_white, alpha);
 	
 	// Draw tile outline
-	draw_sprite_ext(spr_outline, 0, coords[0], coords[1], 1, 1, 0, c_white, tile.image_alpha);
+	draw_sprite_ext(spr_outline, 0, coords[0], coords[1], 1, 1, 0, c_white, alpha);
 	
 	// Go to next tile
 	key = ds_map_find_next(visible_tiles, key);

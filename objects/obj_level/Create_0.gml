@@ -330,6 +330,27 @@ _explore_area = function(xrad, yrad)
 	update_visible();
 }
 
+/// @func edge_fade(x, y)
+/// @desc Determines how much to fade out elements as a function of their position on the screen.
+/// @param {int} x x-coordinate within room.
+/// @param {int} y y-coordinate within room.
+/// @return {real} Opacity value between 0.0 and 1.0.
+
+edge_fade = function(xx, yy)
+{
+	// Find limiting dimension
+	var dim = min(room_width, room_height);
+	
+	// Find distance from center
+	var dist = _vector_distance([room_width/2, room_height/2], [xx, yy]);
+	
+	// The middle quarter of the screen is full opacity, and outside of that the opacity scales linearly down to 0.25 at the closer edge
+	if (dist <= dim/8)
+		return 1.0;
+	else
+		return max(1.25 - (2*dist)/dim, 0.0);
+}
+
 //Define level attributes
 
 // Generate parameters for level terrain
