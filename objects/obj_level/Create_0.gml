@@ -27,6 +27,12 @@
 
 // Perform initial level setup
 
+// Define colors used to indicate various elevations (all as a color value for HSV)
+c_visible_max = 80; // most extreme colors among all visible tiles (higher is colred darker)
+c_visible_min = 5;
+c_neighborhood_max = 240; // most extreme colors among all neighboring tiles (higher is colred darker)
+c_neighborhood_min = 180;
+
 // Set random seed for level
 global.seed = randomize();
 
