@@ -5,7 +5,7 @@ if (_level_room() == true)
 	player = instance_create_layer(room_width/2, room_height/2, "Player", obj_player);
 
 // Determine whether to generate a new level
-if (new_level == false)
+if (global.new_level == false)
 	exit;
 
 // Generate a level depending on the current room
@@ -18,4 +18,4 @@ if (is_undefined(level) == false)
 level = instance_create_layer(0, 0, "Instances", obj_level);
 
 // Reset new_level flag
-new_level = false;
+global.new_level = false;

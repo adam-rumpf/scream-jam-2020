@@ -10,6 +10,15 @@
  * While the player moves from one tile to the next, a global player_move variable increments from 0.0 to 1.0 to indicate the fraction of the way to the next tile.
  */
 
+// Initialize image attributes
+image_xscale = global.tile_scale;
+image_yscale = global.tile_scale;
+image_speed = 0.25; //###
+if (global.new_level == true)
+	sprite_index = spr_player_wake;
+else
+	sprite_index = spr_player_idle_01;
+
 // Define player attributes
 ascend_speed = 0.02; // tile-to-tile movement speed for ascending (fraction of tile per step)
 level_speed = 0.04; // tile-to-tile movement speed for remaining level (fraction of tile per step)
@@ -338,6 +347,3 @@ move_nw = function()
 	dir_x = -1;
 	dir_y = -1;
 }
-
-//###
-image_speed = 0.25;

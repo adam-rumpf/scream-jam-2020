@@ -16,8 +16,8 @@
 elevation = 0; // elevation for use in defining the objective function
 image_speed = 0;
 image_index = 0; // image index of tile sprite
-image_xscale = 1; // horizontal mirroring
-image_yscale = 1; // vertical mirroring
+image_xscale = global.tile_scale; // scaling and horizontal mirroring
+image_yscale = global.tile_scale; // scaling and vertical mirroring
 image_angle = 0; // image rotation
 image_alpha = 0; // image opacity (automatically increments to allow new tiles to fade in)
 
@@ -34,12 +34,12 @@ screen_coordinates = function()
 	var dy = (argument_count > 1 ? argument[1] : 0);
 	
 	// Find screen position relative to player (index difference times tile size)
-	var xx = (x - global.player_x)*global.tile_size;
-	var yy = (y - global.player_y)*global.tile_size;
+	var xx = (x - global.player_x)*global.tile_size*global.tile_scale;
+	var yy = (y - global.player_y)*global.tile_size*global.tile_scale;
 	
 	// Add to player's screen position, offset by half tile width and manual offsets
-	xx += (room_width/2) + (global.tile_size/2) + dx;
-	yy += (room_height/2) + (global.tile_size/2) + dy;
+	xx += (room_width/2) + ((global.tile_size*global.tile_scale)/2) + dx;
+	yy += (room_height/2) + ((global.tile_size*global.tile_scale)/2) + dy;
 	
 	return [round(xx), round(yy)];
 }

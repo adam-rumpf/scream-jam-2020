@@ -13,8 +13,8 @@ var dx = 0;
 var dy = 0;
 if ((global.player_dx != 0.0) || (global.player_dy != 0.0))
 {
-	dx = global.tile_size*(-global.player_dx) + global.tile_size*sign(global.player_dx);
-	dy = global.tile_size*(-global.player_dy) + global.tile_size*sign(global.player_dy);
+	dx = global.tile_size*global.tile_scale*(-global.player_dx) + global.tile_size*global.tile_scale*sign(global.player_dx);
+	dy = global.tile_size*global.tile_scale*(-global.player_dy) + global.tile_size*global.tile_scale*sign(global.player_dy);
 }
 
 // Determine spreads of visible and neighborhood tile elevations
@@ -44,17 +44,17 @@ for (var i = 0; i < num_visible; i++)
 	var col = make_color_hsv(0, 0, rel*c_visible_max + (1-rel)*c_visible_min);
 	
 	// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
-	var alpha = tile.image_alpha*edge_fade(coords[0] - global.tile_size/2, coords[1] - global.tile_size/2);
+	var alpha = tile.image_alpha*edge_fade(coords[0] - (global.tile_size*global.tile_scale)/2, coords[1] - (global.tile_size*global.tile_scale)/2);
 	
 	// Draw a background texture, shaded to indicate elevation
 	//###
-	draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, col, alpha);
+	draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, col, alpha);
 	
 	// Draw the tile's sprite
-	draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], 1, 1, tile.image_angle, c_white, alpha);
+	draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, c_white, alpha);
 	
 	// Draw tile outline
-	draw_sprite_ext(spr_outline, 0, coords[0], coords[1], 1, 1, 0, c_white, alpha);
+	draw_sprite_ext(spr_outline, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
 	
 	// Go to next tile
 	key = ds_map_find_next(visible_tiles, key);

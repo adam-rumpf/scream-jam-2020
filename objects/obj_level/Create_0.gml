@@ -27,7 +27,7 @@
 
 // Perform initial level setup
 
-// Define colors used to indicate various elevations (all as a color value for HSV)
+// Define colors used to indicate various elevations (as a color value for HSV)
 c_visible_max = 80; // most extreme colors among all visible tiles (higher is colred darker)
 c_visible_min = 5;
 c_neighborhood_max = 240; // most extreme colors among all neighboring tiles (higher is colred darker)
@@ -61,8 +61,8 @@ tiles = ds_map_create();
 // Initialize unordered map of visible tiles (for use in the draw event; updated upon player movement)
 visible_tiles = ds_map_create();
 var rad = 2; // initial exploration radius
-visible_vrad = ceil((room_height/global.tile_size)/2) + 1; // number of tiles above/below player to draw
-visible_hrad = ceil((room_width/global.tile_size)/2) + 1; // number of tiles left/right of player to draw
+visible_vrad = ceil((room_height/(global.tile_size*global.tile_scale))/2) + 1; // number of tiles above/below player to draw
+visible_hrad = ceil((room_width/(global.tile_size*global.tile_scale))/2) + 1; // number of tiles left/right of player to draw
 
 // Define level methods
 
@@ -124,8 +124,8 @@ get_tile = function(xx, yy)
 		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
 		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation
 		tile.image_index = _random_weighted_index([10, 10, 10, 1]); // set random image index // ### UPDATE WHEN TILES ARE REDONE
-		tile.image_yscale = choose(1, -1); // randomize horizontal sprite mirroring
-		tile.image_xscale = choose(1, -1); // randomize vertical sprite mirroring
+		tile.image_yscale *= choose(1, -1); // randomize horizontal sprite mirroring
+		tile.image_xscale *= choose(1, -1); // randomize vertical sprite mirroring
 		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation
 		tiles[? key] = tile; // add tile to map
 		

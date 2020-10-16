@@ -6,6 +6,7 @@ global.version = 0.1; // game version number (encoded in save files)
 global.save_file = "save.dat"; // save file name
 global.settings_file = "settings.ini"; // settings file name
 global.tile_size = 32; // tile dimension (px)
+global.tile_scale = 2; // tile scaling
 
 // Load settings
 global.sound = 0.5; // sound volume (0.0 to 1.0)
@@ -30,7 +31,7 @@ global.player_dy = 0.0;
 intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
 health = 100.0; // player's current health
 locked = true; // whether the player's movements are locked
-new_level = true; // whether to generate a new level on entering the room
+global.new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
 
