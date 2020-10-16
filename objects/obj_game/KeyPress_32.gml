@@ -1,5 +1,7 @@
 //### TEST CODE
 
+level._explore_area(20, 15);
+
 /*var rad = 30;
 var lst = array_create(2*rad+1, array_create(2*rad+1));
 for (var i = -rad; i <= rad; i++)
@@ -11,7 +13,7 @@ for (var i = -rad; i <= rad; i++)
 }
 show_message(lst);*/
 
-var size = ds_map_size(level.tiles);
+/*var size = ds_map_size(level.tiles);
 var key = ds_map_find_first(level.tiles);
 var lst = [];
 for (var i = 0; i < size; i++)
@@ -23,7 +25,7 @@ for (var i = 0; i < size; i++)
 	lst[i] = tile.elevation;
 	key = ds_map_find_next(level.tiles, key);
 }
-show_message(lst);
+show_message(lst);*/
 
 
 

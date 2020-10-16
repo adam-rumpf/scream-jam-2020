@@ -261,8 +261,9 @@ random_noise = function(xx, yy)
 	
 	// Choose a random integer between -2 and 2, with more extreme values being less frequent
 	var val = [-2, -1, 0, 1, 2]; // possible noise values
-	var wt = [1, 3, 5, 3, 1]; // probabilistic weight of each value
-	return val[_random_weighted_index(wt)];
+	var wt = [1, 3, 7, 3, 1]; // probabilistic weight of each value
+	//###return val[_random_weighted_index(wt)];
+	return 0;
 }
 
 /// @func calculate_elevation(x, y)
@@ -305,6 +306,30 @@ update_visible = function()
 	}
 }
 
+/// @func _explore_area(xrad, yrad)
+/// @desc Explores a given area around the player (for testing purposes only).
+/// @param {int} xrad Exploration radius in x-direction.
+/// @param {int} yrad Exploration radius in y-direction.
+
+_explore_area = function(xrad, yrad)
+{
+	for (var i = -xrad; i <= xrad; i++)
+	{
+		for (var j = -yrad; j <= yrad; j++)
+		{
+			// Make or retrieve tile
+			var tile = get_tile(global.player_x + i, global.player_y + j);
+			
+			// Update extremes
+			max_neighborhood = max(max_neighborhood, tile.elevation);
+			min_neighborhood = min(min_neighborhood, tile.elevation);
+		}
+	}
+	
+	// Update visibility
+	update_visible();
+}
+
 //Define level attributes
 
 // Generate parameters for level terrain
@@ -324,3 +349,4 @@ for (var i = -rad; i <= rad; i++)
 		ds_map_add(visible_tiles, tile_key(i, j), tile); // all initial tiles are visible
 	}
 }
+update_visible();
