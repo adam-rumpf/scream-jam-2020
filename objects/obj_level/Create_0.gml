@@ -30,8 +30,8 @@
 // Define colors used to indicate various elevations (as a color value for HSV)
 c_visible_max = 80; // most extreme colors among all visible tiles (higher is colred darker)
 c_visible_min = 5;
-c_neighborhood_max = 240; // most extreme colors among all neighboring tiles (higher is colred darker)
-c_neighborhood_min = 180;
+c_neighborhood_max = 220; // most extreme colors among all neighboring tiles (higher is colred darker)
+c_neighborhood_min = 100;
 
 // Set random seed for level
 global.seed = randomize();
@@ -215,7 +215,7 @@ base_terrain = function(_x, _y)
 	
 	// Define base elevation of coordinate depending on room
 	//###
-	return 10.0;
+	return 0;//40*_peak(xx, yy, 0, 0, 0.01, 0.01);
 }
 
 /// @func wave_noise(x, y)
@@ -237,7 +237,7 @@ wave_noise = function(xx, yy)
 	{
 		freq[i] = 0.01 * random_range(0.095, 0.105) * power(2, 0.5*(i % n));
 		offset[i] = random_range(-8, 8);
-	}
+	}//### THIS SHOULD BE GENERATED ONCE AND STORED IN A LEVEL-SPECIFIC ARRAY
 	
 	// Add sinusoidal functions
 	var total = 0.0;
@@ -306,6 +306,35 @@ update_visible = function()
 	}
 }
 
+/// @func is_neighbor(x, y[, center])
+/// @desc Determines whether a given coordinate is a neighbor of the player's current tile.
+/// @param {int} x x-coordiante of tile.
+/// @param {int} y y-coordiante of tile.
+/// @param {bool} [center=false] Whether or not to include the player's tile.
+/// @return {bool} True if the specified tile is a neighbor of the player, and false otherwise.
+
+is_neighbor = function(xx, yy)
+{
+	// Get optional center argument
+	var center = (argument_count > 2 ? argument[2] : false);
+	
+	// Procedure depends on whether center is included
+	if (center == true)
+	{
+		// If including center, verify that all coordinate differences are at most 1
+		if ((abs(xx-global.player_x) <= 1) && (abs(yy-global.player_y) <= 1))
+			return true;
+	}
+	else
+	{
+		// If not including center, verify that one coordinate difference is exactly 1 while the other is at most 1
+		if (((abs(xx-global.player_x) == 1) && (abs(yy-global.player_y) <= 1)) || ((abs(xx-global.player_x) <= 1) && (abs(yy-global.player_y) == 1)))
+			return true;
+	}
+	
+	return false;
+}
+
 /// @func _explore_area(xrad, yrad)
 /// @desc Explores a given area around the player (for testing purposes only).
 /// @param {int} xrad Exploration radius in x-direction.
@@ -349,6 +378,36 @@ edge_fade = function(xx, yy)
 		return 1.0;
 	else
 		return max(1.25 - (2*dist)/dim, 0.0);
+}
+
+/// @func map_array()
+/// @desc Creates a rectangular array of all explored map elevations (with unexplored tiles as undefined).
+/// @return {int[][]} 2D array of elevation values and undefined values.
+
+map_array = function()
+{
+	// Initialize undefined array using most extreme known dimensions
+	var w, h, arr;
+	w = max_x - min_x + 1;
+	h = max_y - min_y + 1;
+	arr = array_create(h, array_create(w, undefined));
+	
+	// Add known elevations to the array
+	for (var j = min_y; j <= max_y; j++)
+	{
+		for (var i = min_x; i <= max_x; i++)
+		{
+			// Skip unexplored tiles
+			if (tile_explored(i, j) == false)
+				continue;
+			
+			// Get elevations of explored tiles
+			var tile = get_tile(i, j);
+			arr[j-min_y][i-min_x] = tile.elevation;
+		}
+	}
+	
+	return arr;
 }
 
 //Define level attributes

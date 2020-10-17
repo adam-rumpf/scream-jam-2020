@@ -30,6 +30,9 @@ movement_speed = 0.0; // rate of incrementing movement parameter
 convex = 0.0; // convex parameter for position between previous and next tile
 dir_x = 0; // sign of x-direction movement (-1, 0, or 1)
 dir_y = 0; // sign of y-direction movement (-1, 0, or 1)
+locked = false; // whether to lock controls
+if (global.new_level == false)
+	locked = false;
 
 // Set timer for switching idle animation
 alarm[0] = irandom_range(room_speed*8, room_speed*16);

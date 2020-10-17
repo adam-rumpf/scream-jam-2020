@@ -30,7 +30,6 @@ global.player_dy = 0.0;
 // Level-dependent variables
 intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
 health = 100.0; // player's current health
-locked = true; // whether the player's movements are locked
 global.new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
