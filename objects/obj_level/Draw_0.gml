@@ -44,7 +44,7 @@ if (_level_room() == true)
 				rel = _center_pull((tile.elevation - min_neighborhood)/neighborhood_range, 0.125); // pull away from center for contrast
 			else
 				rel = 0.5;
-			var col = make_color_hsv(0, 0, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+			var col = make_color_hsv(47, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
 			
 			// Override in case this is the goal tile
 			if (finish == true)
@@ -54,7 +54,7 @@ if (_level_room() == true)
 		{
 			// Determine shade based on placement among all visible tiles
 			if (visible_range > 0)
-				rel = _center_pull((tile.elevation - min_visible)/visible_range, 0.5);
+				rel = _center_pull((tile.elevation - min_visible)/visible_range, 0.75);
 			else
 				rel = 0.5;
 			var col = make_color_hsv(0, 0, (1-rel)*c_visible_max + rel*c_visible_min);

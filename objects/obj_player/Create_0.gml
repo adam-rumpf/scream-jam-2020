@@ -23,8 +23,8 @@ else
 	sprite_index = spr_player_idle_01;
 
 // Define player attributes
-ascend_speed = 0.02; // tile-to-tile movement speed for ascending (fraction of tile per step)
-level_speed = 0.04; // tile-to-tile movement speed for remaining level (fraction of tile per step)
+ascend_speed = 0.03; // tile-to-tile movement speed for ascending (fraction of tile per step)
+level_speed = 0.05; // tile-to-tile movement speed for remaining level (fraction of tile per step)
 descend_speed = 0.06; // tile-to-tile movement speed for descending (fraction of tile per step)
 level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
 
