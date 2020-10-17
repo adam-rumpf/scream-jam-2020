@@ -7,6 +7,7 @@
     {"id":{"name":"spr_outline","path":"sprites/spr_outline/spr_outline.yy",},"order":1,},
     {"id":{"name":"spr_mist_01","path":"sprites/spr_mist_01/spr_mist_01.yy",},"order":0,},
     {"id":{"name":"spr_mist_02","path":"sprites/spr_mist_02/spr_mist_02.yy",},"order":1,},
+    {"id":{"name":"_wave_parameters","path":"scripts/_wave_parameters/_wave_parameters.yy",},"order":1,},
     {"id":{"name":"obj_tile","path":"objects/obj_tile/obj_tile.yy",},"order":2,},
     {"id":{"name":"spr_player_level_s","path":"sprites/spr_player_level_s/spr_player_level_s.yy",},"order":2,},
     {"id":{"name":"spr_tile","path":"sprites/spr_tile/spr_tile.yy",},"order":0,},

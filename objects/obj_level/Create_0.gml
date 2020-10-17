@@ -16,8 +16,11 @@
  * The elevation function is a sum of various coordinate-dependent noise functions as well as seed-dependent random noise.
  * Tile elevation should be deterministic for a given coordinate and seed.
  * Most levels have a predefined elevation function, subject to some random noise.
- * The function is defined by a set of parameters stored by this object.
- * ###Randoized levels are defined according to a small number of random parameters.
+ * The elevation of each tile is a weighted sum of three functions: peaks, wave noise, and random noise.
+ * The peak component is a sum of Gaussian distributions centered at various points.
+ * The wave function is a sum of sinusoidal functions with different frequencies.
+ * The random noise is not coordinate-dependent and is drawn from a weighted distribution.
+ * The peak and wave functions both depend on several arrays of parameters which are generated and stored by this object for the given random seed.
  *
  * Tile objects:
  * Tile-specific information is stored in tile objects.
@@ -63,6 +66,13 @@ visible_tiles = ds_map_create();
 var rad = 2; // initial exploration radius
 visible_vrad = ceil((room_height/(global.tile_size*global.tile_scale))/2) + 1; // number of tiles above/below player to draw
 visible_hrad = ceil((room_width/(global.tile_size*global.tile_scale))/2) + 1; // number of tiles left/right of player to draw
+
+// Generate wave noise parameters
+wave_terms = 8; // number of sine functions to add (more means higher frequencies)
+wave_weight = 10; // multiplier for wave noise size
+var param = _wave_parameters(global.seed, wave_terms);
+freq = param[0]; // random sinusoidal function frequencies
+offset = param[1]; // random sinusoidal function offsets
 
 // Define level methods
 
@@ -219,25 +229,15 @@ base_terrain = function(_x, _y)
 }
 
 /// @func wave_noise(x, y)
-/// @desc Defines a wave-like part of the terrain's random noise (which is a sum of sinusoidal functions), normalized to be between 0 and 1.
+/// @desc Defines a wave-like part of the terrain's random noise as a sum of sinusoidal functions defined by this object's frequency and offset arrays.
 /// @param {int} x x-coordinate of tile.
 /// @param {int} y y-coordinate of tile.
-/// @return {real} Change in elevation of the tile at (x,y) caused by the wave component of the noise.
+/// @return {real} Change in elevation of the tile at (x,y) caused by the wave component of the noise, normalized to be between -1.0 and 1.0.
 
 wave_noise = function(xx, yy)
 {
-	// Seed RNG for current tile
-	random_set_seed(tile_seed(xx, yy));
-	
-	// Generate an array of slightly randomized frequencies and offsets
-	var n = 8; // half the number of terms
-	var freq = array_create(2*n);
-	var offset = array_create(2*n);
-	for (var i = 0; i < 2*n; i++)
-	{
-		freq[i] = 0.01 * random_range(0.095, 0.105) * power(2, 0.5*(i % n));
-		offset[i] = random_range(-8, 8);
-	}//### THIS SHOULD BE GENERATED ONCE AND STORED IN A LEVEL-SPECIFIC ARRAY
+	// Get half of array lengths
+	var n = array_length(freq)/2;
 	
 	// Add sinusoidal functions
 	var total = 0.0;
@@ -262,8 +262,12 @@ random_noise = function(xx, yy)
 	// Choose a random integer between -2 and 2, with more extreme values being less frequent
 	var val = [-2, -1, 0, 1, 2]; // possible noise values
 	var wt = [1, 3, 7, 3, 1]; // probabilistic weight of each value
-	//###return val[_random_weighted_index(wt)];
-	return 0;
+	var noise = val[_random_weighted_index(wt)];
+	
+	// Reset seed
+	random_set_seed(global.seed);
+	
+	return noise;
 }
 
 /// @func calculate_elevation(x, y)
@@ -275,7 +279,7 @@ random_noise = function(xx, yy)
 calculate_elevation = function(xx, yy)
 {
 	// Evaluate and then round a weightd sum of the deterministic part and the random parts
-	return floor(base_terrain(xx, yy) + 8*wave_noise(xx, yy) + random_noise(xx, yy));
+	return floor(wave_weight*wave_noise(xx,yy));//###floor(base_terrain(xx, yy) + 8*wave_noise(xx, yy) + random_noise(xx, yy));
 }
 
 /// @func update_visible()
