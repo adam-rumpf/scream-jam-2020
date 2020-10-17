@@ -8,6 +8,9 @@ global.settings_file = "settings.ini"; // settings file name
 global.tile_size = 32; // tile dimension (px)
 global.tile_scale = 2; // tile scaling
 
+// Initialize cursor tacker
+instance_create_layer(mouse_x, mouse_y, "Instances", obj_cursor);
+
 // Load settings
 global.sound = 0.5; // sound volume (0.0 to 1.0)
 global.music = 0.5; // music volume (0.0 to 1.0)
@@ -33,9 +36,7 @@ health = 100.0; // player's current health
 global.new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
-
-// Spawn camera object
-camera = instance_create_layer(0, 0, "Instances", obj_camera);
+global.player_elevation = 0; // elevation of player's current tile
 
 //### Temporarily move directly to the test room.
 room_goto(rm_level);

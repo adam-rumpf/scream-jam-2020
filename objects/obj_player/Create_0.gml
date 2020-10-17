@@ -13,9 +13,12 @@
 // Initialize image attributes
 image_xscale = global.tile_scale;
 image_yscale = global.tile_scale;
-image_speed = 0.25; //###
+image_speed = 0.1; //###
 if (global.new_level == true)
+{
 	sprite_index = spr_player_wake;
+	alarm[1] = image_number/image_speed; // set timer to switch to idle animation
+}
 else
 	sprite_index = spr_player_idle_01;
 
@@ -71,6 +74,7 @@ move_n = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = 0;
 	dir_y = -1;
@@ -108,6 +112,7 @@ move_e = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = 1;
 	dir_y = 0;
@@ -145,6 +150,7 @@ move_s = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = 0;
 	dir_y = 1;
@@ -182,6 +188,7 @@ move_w = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = -1;
 	dir_y = 0;
@@ -223,6 +230,7 @@ move_ne = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = 1;
 	dir_y = -1;
@@ -264,6 +272,7 @@ move_se = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = 1;
 	dir_y = 1;
@@ -305,6 +314,7 @@ move_sw = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = -1;
 	dir_y = 1;
@@ -346,6 +356,7 @@ move_nw = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
+	locked = true;
 	convex = 0.0;
 	dir_x = -1;
 	dir_y = -1;

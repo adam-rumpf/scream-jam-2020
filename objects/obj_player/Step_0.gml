@@ -15,6 +15,7 @@ global.player_dy = convex*dir_y;
 // If the movement is complete, set the speed and movement signs to zero
 if (convex >= 1.0)
 {
+	locked = false;
 	sprite_index = spr_player_idle_01;
 	convex = 1.0;
 	movement_speed = 0.0;

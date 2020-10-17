@@ -33,8 +33,8 @@
 // Define colors used to indicate various elevations (as a color value for HSV)
 c_visible_max = 80; // most extreme colors among all visible tiles (higher is colred darker)
 c_visible_min = 5;
-c_neighborhood_max = 220; // most extreme colors among all neighboring tiles (higher is colred darker)
-c_neighborhood_min = 100;
+c_neighborhood_max = 230; // most extreme colors among all neighboring tiles (higher is colred darker)
+c_neighborhood_min = 90;
 
 // Set random seed for level
 global.seed = randomize();
@@ -140,8 +140,10 @@ get_tile = function(xx, yy)
 	else
 	{
 		// Otherwise generate a new tile and add it to the map
+		
+		// Create tile
 		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
-		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation
+		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation (also automatically seeds RNG for this tile)
 		tile.image_index = _random_weighted_index([10, 10, 10, 1]); // set random image index // ### UPDATE WHEN TILES ARE REDONE
 		tile.image_yscale *= choose(1, -1); // randomize horizontal sprite mirroring
 		tile.image_xscale *= choose(1, -1); // randomize vertical sprite mirroring
@@ -264,7 +266,7 @@ wave_noise = function(xx, yy)
 }
 
 /// @func random_noise(x, y)
-/// @desc Defines the completely random part of the terrain's random noise (which may be positive or negative).
+/// @desc Defines the completely random part of the terrain's random noise (also re-seeds RNG for this tile).
 /// @param {int} x x-coordinate of tile.
 /// @param {int} y y-coordinate of tile.
 /// @return {real} Change in elevation of the tile at (x,y) caused by the completely random component of the noise.
@@ -279,9 +281,6 @@ random_noise = function(xx, yy)
 	var wt = [1, 3, 7, 3, 1]; // probabilistic weight of each value
 	var noise = val[_random_weighted_index(wt)];
 	
-	// Reset seed
-	random_set_seed(global.seed);
-	
 	return noise;
 }
 
@@ -294,7 +293,7 @@ random_noise = function(xx, yy)
 calculate_elevation = function(xx, yy)
 {
 	// Evaluate and then round a weightd sum of the deterministic part and the random parts
-	return floor(peak_weight*base_terrain(xx, yy));//###floor(peak_weight*base_terrain(xx, yy) + wave_weight*wave_noise(xx,yy) + random_noise(xx, yy));
+	return floor(peak_weight*base_terrain(xx, yy) + wave_weight*wave_noise(xx,yy) + random_noise(xx, yy));
 }
 
 /// @func update_visible()
@@ -429,12 +428,22 @@ map_array = function()
 	return arr;
 }
 
+/// @func update_player_elevation()
+/// @desc Updates the global player elevation based on the player's current coordinates.
+
+update_player_elevation = function()
+{
+	// Look up elevation of player's current tile
+	global.player_elevation = get_tile(global.player_x, global.player_y).elevation;
+}
+
 //Define level attributes
 
-// Set player coordinates
+// Set player coordinates and get initial elevation
 var coords = _player_start(global.seed, hmirror, vmirror, rotate);
 global.player_x = coords[0];
 global.player_y = coords[1];
+update_player_elevation();
 
 // Explore tiles around player
 explore_neighborhood();
@@ -448,3 +457,5 @@ for (var i = -rad; i <= rad; i++)
 	}
 }
 update_visible();
+
+//### Determine the global optimum
