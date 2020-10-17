@@ -5,10 +5,6 @@ if (_level_room() == true)
 {
 	// Draw tiles around player in a level room
 
-	// Otherwise determine which tiles to draw (depending on which have been revealed and the player's current position)
-	//### The list should be recalculated only when the player moves, since it's a potentially expensive operation.
-	//### We should also be able to tell upon movement exactly which tiles will be entering or leaving the visible set.
-
 	// Determine offset based on player's intermediate movement
 	var dx = 0;
 	var dy = 0;
@@ -30,6 +26,11 @@ if (_level_room() == true)
 	{
 		// Get current tile
 		var tile = visible_tiles[? key];
+		
+		// Determine whether the tile is the goal
+		var finish = false; // whether the current tile is the level's goal
+		if ((tile.x == goal[0]) && (tile.y == goal[1]))
+			finish = true;
 	
 		// Get screen coordinates from tile
 		var coords = tile.screen_coordinates(dx, dy);
@@ -44,6 +45,10 @@ if (_level_room() == true)
 			else
 				rel = 0.5;
 			var col = make_color_hsv(0, 0, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+			
+			// Override in case this is the goal tile
+			if (finish == true)
+				col = c_black;
 		}
 		else
 		{
@@ -53,13 +58,16 @@ if (_level_room() == true)
 			else
 				rel = 0.5;
 			var col = make_color_hsv(0, 0, (1-rel)*c_visible_max + rel*c_visible_min);
+			
+			// Override in case this is the goal tile
+			if (finish == true)
+				col = c_black;
 		}
 	
 		// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
 		var alpha = tile.image_alpha*edge_fade(coords[0] - (global.tile_size*global.tile_scale)/2, coords[1] - (global.tile_size*global.tile_scale)/2);
 	
 		// Draw a background texture, shaded to indicate elevation
-		//###
 		draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, col, alpha);
 	
 		// Draw the tile's sprite
@@ -67,6 +75,10 @@ if (_level_room() == true)
 	
 		// Draw tile outline
 		draw_sprite_ext(spr_outline, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
+		
+		// In case of goal, draw goal sprite
+		if (finish == true)
+			draw_sprite_ext(spr_goal, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
 	
 		// Go to next tile
 		key = ds_map_find_next(visible_tiles, key);
@@ -123,7 +135,7 @@ else if (room == rm_menu)
 			// Get cell color
 			var col;
 			if ((i == player_i) && (j == player_j))
-				col = c_red;
+				col = c_red; // player's cell is red
 			else if (max_explored - min_explored == 0)
 				col = make_color_hsv(0, 0, 127);
 			else

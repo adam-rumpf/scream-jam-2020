@@ -39,10 +39,9 @@ c_neighborhood_min = 80;
 // Set random seed for level
 global.seed = randomize();
 
-// Determine whether to mirror or rotate the level (to add variety to presets)
+// Determine whether to mirror the level (to add variety to presets)
 hmirror = choose(true, false); // whether to horizontally mirror
 vmirror = choose(true, false); // whether to vertically mirror
-rotate = choose(0, 1, 2, 3); // increment of 90 degree rotation
 
 // Initialize most extreme explored coordinates
 max_y = -infinity;
@@ -82,8 +81,31 @@ peak_xc = param[1]; // x-coordinates of peak centers
 peak_yc = param[2]; // y-coordinates of peak centers
 peak_xscale = param[3]; // x-direction scaling of peak functions (smaller is wider)
 peak_yscale = param[4]; // y-direction scaling of peak functions (smaller is wider)
+goal = param[5]; // goal tile (should be global maximum)
 
 // Define level methods
+
+/// @func transform_coords(x, y)
+/// @desc Transforms a tile coordinate according to the level's reflections.
+/// @param {int} x x-coordinate of tile.
+/// @param {int} y y-coordinate of tile.
+/// @return {int[]} New coordinate of tile.
+
+transform_coords = function(_x, _y)
+{
+	// Get coordinates
+	var xx = _x;
+	var yy = _y;
+	
+	// Remap coordinates according to transformations
+	if (vmirror == true)
+		xx = -xx;
+	if (hmirror == true)
+		yy = -yy;
+	
+	// Return new coordinates
+	return [xx, yy];
+}
 
 /// @func tile_key(x, y)
 /// @desc Returns the tile map key for a given coordinate.
@@ -207,39 +229,15 @@ tile_seed = function(xx, yy)
 /// @param {int} y-coordinate of tile.
 /// @return {real} Base elevation of the tile at (x,y).
 
-base_terrain = function(_x, _y)
+base_terrain = function(xx, yy)
 {
-	// Get coordinates
-	var xx = _x;
-	var yy = _y;
-	
-	// Remap coordinates according to transformations
-	if (vmirror == true)
-		xx = -xx;
-	if (hmirror == true)
-		yy = -yy;
-	switch rotate
-	{
-		case 1:
-			var temp = xx;
-			xx = -yy;
-			yy = temp;
-			break;
-		case 2:
-			xx = -xx;
-			yy = -yy;
-			break;
-		case 3:
-			var temp = xx;
-			xx = yy;
-			yy = -temp;
-			break;
-	}
+	// Get transformed coordinates
+	var coords = transform_coords(xx, yy);
 	
 	// Add peak functions
 	var total = 0.0;
 	for (var i = 0; i < array_length(peak_magnitude); i++)
-		total += peak_magnitude[i]*_peak(xx, yy, peak_xc[i], peak_yc[i], peak_xscale[i], peak_yscale[i]);
+		total += peak_magnitude[i]*_peak(coords[0], coords[1], peak_xc[i], peak_yc[i], peak_xscale[i], peak_yscale[i]);
 	
 	// Return sum
 	return total;
@@ -437,10 +435,13 @@ update_player_elevation = function()
 	global.player_elevation = get_tile(global.player_x, global.player_y).elevation;
 }
 
-//Define level attributes
+// Define level attributes
+
+// Remap goal to match level transformations
+goal = transform_coords(goal[0], goal[1]);
 
 // Set player coordinates and get initial elevation
-var coords = _player_start(global.seed, hmirror, vmirror, rotate);
+var coords = _player_start(global.seed, hmirror, vmirror);
 global.player_x = coords[0];
 global.player_y = coords[1];
 update_player_elevation();
