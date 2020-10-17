@@ -33,13 +33,9 @@ screen_coordinates = function()
 	var dx = (argument_count > 0 ? argument[0] : 0);
 	var dy = (argument_count > 1 ? argument[1] : 0);
 	
-	// Find screen position relative to player (index difference times tile size)
-	var xx = (x - global.player_x)*global.tile_size*global.tile_scale;
-	var yy = (y - global.player_y)*global.tile_size*global.tile_scale;
-	
-	// Add to player's screen position, offset by half tile width and manual offsets
-	xx += (room_width/2) + ((global.tile_size*global.tile_scale)/2) + dx;
-	yy += (room_height/2) + ((global.tile_size*global.tile_scale)/2) + dy;
+	// Find screen position relative to player
+	var xx = (x - global.player_x)*global.tile_size*global.tile_scale + (room_width/2) + dx;
+	var yy = (y - global.player_y)*global.tile_size*global.tile_scale + (room_height/2) + dy;
 	
 	return [round(xx), round(yy)];
 }

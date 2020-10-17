@@ -79,6 +79,30 @@ if (_level_room() == true)
 		// In case of goal, draw goal sprite
 		if (finish == true)
 			draw_sprite_ext(spr_goal, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
+		
+		// Handle SA enemy (if intensity is positive and tile is worse)
+		if ((global.intensity > 0) && (tile.elevation < global.player_elevation) && (finish == false))
+		{
+			// Find elevation difference and draw fog sprite
+			var diff, spr, frames;
+			diff = abs(tile.elevation - global.player_elevation);
+			switch global.intensity
+			{
+				case 1:
+					spr = spr_mist_01;
+					break;
+				case 2:
+					spr = spr_mist_02;
+					break;
+				case 3:
+					spr = spr_mist_03;
+					break;
+			}
+			frames = sprite_get_number(spr);
+			
+			// Draw fog
+			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, alpha);
+		}
 	
 		// Go to next tile
 		key = ds_map_find_next(visible_tiles, key);
