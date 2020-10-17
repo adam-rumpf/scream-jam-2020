@@ -22,8 +22,8 @@ function _peak_parameters(seed)
 		default:
 			//### Temporary generation (replace with a random process).
 			mag = [1.0];
-			xc = [0];
-			yc = [0];
+			xc = [6];
+			yc = [6];
 			xscale = [0.05];
 			yscale = [0.05];
 			break;

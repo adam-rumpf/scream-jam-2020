@@ -40,16 +40,16 @@ if (_level_room() == true)
 		{
 			// Determine shade based on placement among all neighboring tiles
 			if (neighborhood_range > 0)
-				rel = _center_pull((tile.elevation - min_neighborhood)/neighborhood_range, 0.25); // pull away from center for contrast
+				rel = _center_pull((tile.elevation - min_neighborhood)/neighborhood_range, 0.125); // pull away from center for contrast
 			else
 				rel = 0.5;
-			var col = make_color_hsv(0/*###47*/, 0/*###127*/, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+			var col = make_color_hsv(0, 0, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
 		}
 		else
 		{
 			// Determine shade based on placement among all visible tiles
 			if (visible_range > 0)
-				rel = (tile.elevation - min_visible)/visible_range;
+				rel = _center_pull((tile.elevation - min_visible)/visible_range, 0.5);
 			else
 				rel = 0.5;
 			var col = make_color_hsv(0, 0, (1-rel)*c_visible_max + rel*c_visible_min);
@@ -82,6 +82,11 @@ else if (room == rm_menu)
 	h = array_length(map);
 	w = array_length(map[0]);
 	
+	// Find player's location on map
+	var player_i, player_j;
+	player_i = global.player_x - min_x;
+	player_j = global.player_y - min_y;
+	
 	//### Draw map in middle of screen
 	for (var j = 0; j < h; j++)
 	{
@@ -96,7 +101,9 @@ else if (room == rm_menu)
 			x2 = x1 + s;
 			y1 = room_height/2 + s*(h/2 - j);
 			y2 = y1 + s;
-			if (max_explored - min_explored == 0)
+			if ((i == player_i) && (j == player_j))
+				col = c_red;
+			else if (max_explored - min_explored == 0)
 				col = make_color_hsv(0, 0, 127);
 			else
 				col = make_color_hsv(0, 0, 255*(1 - (map[j][i] - min_explored)/(max_explored - min_explored)));

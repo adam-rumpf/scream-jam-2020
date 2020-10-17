@@ -38,7 +38,8 @@ if (global.new_level == false)
 	locked = false;
 
 // Set timer for switching idle animation
-alarm[0] = irandom_range(room_speed*8, room_speed*16);
+randomize();
+alarm[0] = irandom_range(room_speed*6, room_speed*18);
 
 // Movement methods
 

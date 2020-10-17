@@ -1,10 +1,11 @@
 /// @desc Switch idle animation.
 
 // Reset timer
-/*alarm[0] = irandom_range(room_speed*8, room_speed*16);
+randomize();
+alarm[0] = irandom_range(room_speed*6, room_speed*18);
 
 // Toggle animation state
-if (sprite_index != spr_player_idle_01)
+if (sprite_index == spr_player_idle_01)
 {
 	// If currently default, choose a random animation
 	sprite_index = choose(spr_player_idle_02);
@@ -14,4 +15,4 @@ if (sprite_index != spr_player_idle_01)
 }
 else
 	// If non-default, go to default
-	sprite_index = spr_player_idle_01;*/
+	sprite_index = spr_player_idle_01;

@@ -31,15 +31,15 @@
 // Perform initial level setup
 
 // Define colors used to indicate various elevations (as a color value for HSV)
-c_visible_max = 80; // most extreme colors among all visible tiles (higher is colred darker)
+c_visible_max = 60; // most extreme colors among all visible tiles (higher is colred darker)
 c_visible_min = 5;
 c_neighborhood_max = 230; // most extreme colors among all neighboring tiles (higher is colred darker)
-c_neighborhood_min = 90;
+c_neighborhood_min = 80;
 
 // Set random seed for level
 global.seed = randomize();
 
-// Determine whether to mirror or rotate the level
+// Determine whether to mirror or rotate the level (to add variety to presets)
 hmirror = choose(true, false); // whether to horizontally mirror
 vmirror = choose(true, false); // whether to vertically mirror
 rotate = choose(0, 1, 2, 3); // increment of 90 degree rotation
