@@ -36,6 +36,7 @@ global.player_dy = 0.0;
 // Level-dependent variables
 global.intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
 health = 100.0; // player's current health
+global.dead = false; // whether the player is dead (restart level if true)
 global.new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions

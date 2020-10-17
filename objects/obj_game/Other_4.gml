@@ -31,3 +31,4 @@ global.new_level = false;
 global.victory = false;
 global.intensity = 0;
 health = 100.0;
+global.dead = false;

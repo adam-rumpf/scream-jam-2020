@@ -36,6 +36,8 @@ dir_y = 0; // sign of y-direction movement (-1, 0, or 1)
 locked = false; // whether to lock controls
 if (global.new_level == false)
 	locked = false;
+dying = false; // whether the player's death animation is playing
+exiting = false; // whetehr the player's level exit animation is playing
 
 // Set timer for switching idle animation
 randomize();
@@ -50,7 +52,7 @@ alarm[0] = irandom_range(room_speed*6, room_speed*18);
 move_n = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -92,7 +94,7 @@ move_n = function()
 move_e = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -134,7 +136,7 @@ move_e = function()
 move_s = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -176,7 +178,7 @@ move_s = function()
 move_w = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -218,7 +220,7 @@ move_w = function()
 move_ne = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -264,7 +266,7 @@ move_ne = function()
 move_se = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -310,7 +312,7 @@ move_se = function()
 move_sw = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -356,7 +358,7 @@ move_sw = function()
 move_nw = function()
 {
 	// Do nothing while locked
-	if (locked == true)
+	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
 	// Get optional elevation change argument
@@ -401,11 +403,28 @@ move_nw = function()
 win = function()
 {
 	// Ignore if already playing animation
-	if (alarm[2] > 0)
+	if (exiting == true)
 		exit;
 	
 	// Change sprite and set a timer to exit the level
 	sprite_index = spr_player_exit;
 	locked = true;
+	exiting = true;
 	alarm[2] = image_number/image_speed;
+}
+
+/// @func die()
+/// @desc Play death animation when health reaches zero.
+
+die = function()
+{
+	// Ignore if already playing animation
+	if (dying == true)
+		exit;
+	
+	// Change sprite and set a timer to restart the level
+	sprite_index = choose(spr_player_death_01, spr_player_death_02);
+	locked = true;
+	dying = true;
+	alarm[3] = image_number/image_speed;
 }
