@@ -49,6 +49,10 @@ alarm[0] = irandom_range(room_speed*6, room_speed*18);
 
 move_n = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -87,6 +91,10 @@ move_n = function()
 
 move_e = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -125,6 +133,10 @@ move_e = function()
 
 move_s = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -163,6 +175,10 @@ move_s = function()
 
 move_w = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -201,6 +217,10 @@ move_w = function()
 
 move_ne = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -243,6 +263,10 @@ move_ne = function()
 
 move_se = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -285,6 +309,10 @@ move_se = function()
 
 move_sw = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -327,6 +355,10 @@ move_sw = function()
 
 move_nw = function()
 {
+	// Do nothing while locked
+	if (locked == true)
+		exit;
+	
 	// Get optional elevation change argument
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	
@@ -361,4 +393,19 @@ move_nw = function()
 	convex = 0.0;
 	dir_x = -1;
 	dir_y = -1;
+}
+
+/// @func win()
+/// @desc Play exit animation on reaching the global optimum.
+
+win = function()
+{
+	// Ignore if already playing animation
+	if (alarm[2] > 0)
+		exit;
+	
+	// Change sprite and set a timer to exit the level
+	sprite_index = spr_player_exit;
+	locked = true;
+	alarm[2] = image_number/image_speed;
 }

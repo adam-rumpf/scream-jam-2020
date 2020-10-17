@@ -35,6 +35,7 @@
     {"id":{"name":"spr_player_idle_01","path":"sprites/spr_player_idle_01/spr_player_idle_01.yy",},"order":0,},
     {"id":{"name":"obj_level","path":"objects/obj_level/obj_level.yy",},"order":1,},
     {"id":{"name":"obj_button_parent","path":"objects/obj_button_parent/obj_button_parent.yy",},"order":1,},
+    {"id":{"name":"spr_player_exit","path":"sprites/spr_player_exit/spr_player_exit.yy",},"order":3,},
     {"id":{"name":"spr_player_uphill_e","path":"sprites/spr_player_uphill_e/spr_player_uphill_e.yy",},"order":1,},
     {"id":{"name":"spr_player_idle_02","path":"sprites/spr_player_idle_02/spr_player_idle_02.yy",},"order":1,},
     {"id":{"name":"spr_player_downhill_n","path":"sprites/spr_player_downhill_n/spr_player_downhill_n.yy",},"order":0,},
