@@ -43,11 +43,33 @@ exiting = false; // whetehr the player's level exit animation is playing
 randomize();
 alarm[0] = irandom_range(room_speed*6, room_speed*18);
 
-// Movement methods
+// Player methods
+
+/// @func move_actions([delta])
+/// @desc Standard actions that are part of every move.
+/// @param {int} [delta=0] Elevation change.
+
+move_actions = function()
+{
+	// Get optional elevation change argument
+	var delta = (argument_count > 0 ? argument[0] : 0);
+	
+	// If the move is uphill and this is an SA room, take damage
+	if ((delta > 0) && (_sa_room() == true))
+		_sa_damage(delta);
+	
+	// Increment move count and update intensity schedule
+	global.moves++;
+	_intensity_schedule();
+	
+	// Set movement parameters and begin moving
+	locked = true;
+	convex = 0.0;
+}
 
 /// @func move_n([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player north.
+/// @param {int} [delta=0] Elevation change.
 
 move_n = function()
 {
@@ -81,15 +103,14 @@ move_n = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = 0;
 	dir_y = -1;
+	move_actions(delta);
 }
 
 /// @func move_e([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player east.
+/// @param {int} [delta=0] Elevation change.
 
 move_e = function()
 {
@@ -123,15 +144,14 @@ move_e = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = 1;
 	dir_y = 0;
+	move_actions(delta);
 }
 
 /// @func move_s([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player south.
+/// @param {int} [delta=0] Elevation change.
 
 move_s = function()
 {
@@ -165,15 +185,14 @@ move_s = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = 0;
 	dir_y = 1;
+	move_actions(delta);
 }
 
 /// @func move_w([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player west.
+/// @param {int} [delta=0] Elevation change.
 
 move_w = function()
 {
@@ -207,15 +226,14 @@ move_w = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = -1;
 	dir_y = 0;
+	move_actions(delta);
 }
 
 /// @func move_ne([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player northeast.
+/// @param {int} [delta=0] Elevation change.
 
 move_ne = function()
 {
@@ -253,15 +271,14 @@ move_ne = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = 1;
 	dir_y = -1;
+	move_actions(delta);
 }
 
 /// @func move_se([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player southeast.
+/// @param {int} [delta=0] Elevation change.
 
 move_se = function()
 {
@@ -299,15 +316,14 @@ move_se = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = 1;
 	dir_y = 1;
+	move_actions(delta);
 }
 
 /// @func move_sw([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player southwest.
+/// @param {int} [delta=0] Elevation change.
 
 move_sw = function()
 {
@@ -345,15 +361,14 @@ move_sw = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = -1;
 	dir_y = 1;
+	move_actions(delta);
 }
 
 /// @func move_nw([delta])
-/// @param {int} [delta=0] Elevation change.
 /// @desc Moves the player northwest.
+/// @param {int} [delta=0] Elevation change.
 
 move_nw = function()
 {
@@ -391,10 +406,9 @@ move_nw = function()
 	global.player_dy = 0.0;
 	
 	// Set movement parameters and begin moving
-	locked = true;
-	convex = 0.0;
 	dir_x = -1;
 	dir_y = -1;
+	move_actions(delta);
 }
 
 /// @func win()

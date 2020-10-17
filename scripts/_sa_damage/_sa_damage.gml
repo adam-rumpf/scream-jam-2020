@@ -5,19 +5,21 @@
 function _sa_damage(diff)
 {
 	// Clamp difference
-	var d = clamp(abs(diff), 0, 10);
+	//###var d = clamp(abs(diff), 0, 10);
 	
 	// Determine damage depending on intensity
 	switch global.intensity
 	{
 		case 1:
-			health -= d;
+			health -= 5;//###2*d;
 			break;
 		case 2:
-			health -= 2*d;
+			health -= 10;//###4*d;
 			break;
 		case 3:
-			health -= 4*d;
+			health -= 20;//###8*d;
 			break;
 	}
+	
+	//### Play a sound
 }

@@ -90,12 +90,15 @@ if (_level_room() == true)
 			{
 				case 1:
 					spr = spr_mist_01;
+					alpha = 0.125;
 					break;
 				case 2:
 					spr = spr_mist_02;
+					alpha = 0.125;
 					break;
 				case 3:
 					spr = spr_mist_03;
+					alpha = 0.125;
 					break;
 			}
 			frames = sprite_get_number(spr);

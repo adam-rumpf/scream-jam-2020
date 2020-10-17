@@ -387,7 +387,7 @@ edge_fade = function(xx, yy)
 	var dim = min(room_width, room_height);
 	
 	// Find distance from center
-	var dist = _vector_distance([room_width/2, room_height/2], [xx, yy]);
+	var dist = _vector_distance([room_width/2, room_height/2], [xx+global.tile_size, yy+global.tile_size]);
 	
 	// The middle quarter of the screen is full opacity, and outside of that the opacity scales linearly down to 0.25 at the closer edge
 	if (dist <= dim/8)

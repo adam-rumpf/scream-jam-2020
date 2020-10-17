@@ -42,6 +42,7 @@ level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
 global.player_elevation = 0; // elevation of player's current tile
 global.victory = false; // whether the level has been won
+global.moves = 0; // number of moves made so far
 
 //### Temporarily move directly to the test room.
 room_goto(rm_level);
