@@ -21,6 +21,7 @@
     {"id":{"name":"rm_quit","path":"rooms/rm_quit/rm_quit.yy",},"order":0,},
     {"id":{"name":"spr_goal","path":"sprites/spr_goal/spr_goal.yy",},"order":5,},
     {"id":{"name":"spr_tile","path":"sprites/spr_tile/spr_tile.yy",},"order":0,},
+    {"id":{"name":"_coordinate_remap","path":"scripts/_coordinate_remap/_coordinate_remap.yy",},"order":2,},
     {"id":{"name":"_peak","path":"scripts/_peak/_peak.yy",},"order":0,},
     {"id":{"name":"spr_player_uphill_w","path":"sprites/spr_player_uphill_w/spr_player_uphill_w.yy",},"order":3,},
     {"id":{"name":"spr_fog","path":"sprites/spr_fog/spr_fog.yy",},"order":3,},

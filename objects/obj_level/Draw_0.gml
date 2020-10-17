@@ -87,7 +87,27 @@ else if (room == rm_menu)
 	player_i = global.player_x - min_x;
 	player_j = global.player_y - min_y;
 	
-	//### Draw map in middle of screen
+	// Define bounds for the map display box
+	var map_min_x, map_min_y, map_max_x, map_max_y, map_center_x, map_center_y, map_rad;
+	map_center_x = room_width/4;
+	map_center_y = room_height/2 + 16;
+	map_rad = 144;
+	if (w >= h)
+	{
+		map_min_x = map_center_x - map_rad;
+		map_max_x = map_center_x + map_rad;
+		map_min_y = map_center_y - (h/w)*map_rad;
+		map_max_y = map_center_y + (h/w)*map_rad;
+	}
+	else
+	{
+		map_min_y = map_center_y - map_rad;
+		map_max_y = map_center_y + map_rad;
+		map_min_x = map_center_x - (w/h)*map_rad;
+		map_max_x = map_center_x + (w/h)*map_rad;
+	}
+	
+	// Draw map in corner of screen
 	for (var j = 0; j < h; j++)
 	{
 		for (var i = 0; i < w; i++)
@@ -95,22 +115,22 @@ else if (room == rm_menu)
 			if (map[j][i] == undefined)
 				continue;
 			
-			var x1, x2, y1, y2, s, col;
-			s = 4;
-			x1 = room_width/2 + s*(w/2 - i);
-			x2 = x1 + s;
-			y1 = room_height/2 + s*(h/2 - j);
-			y2 = y1 + s;
+			// Remap array coordinates to a map box
+			var xy1, xy2;
+			xy1 = _coordinate_remap(0, 0, w+1, h+1, map_min_x, map_min_y, map_max_x, map_max_y, i, j);
+			xy2 = _coordinate_remap(0, 0, w+1, h+1, map_min_x, map_min_y, map_max_x, map_max_y, i+1, j+1);
+			
+			// Get cell color
+			var col;
 			if ((i == player_i) && (j == player_j))
 				col = c_red;
 			else if (max_explored - min_explored == 0)
 				col = make_color_hsv(0, 0, 127);
 			else
 				col = make_color_hsv(0, 0, 255*(1 - (map[j][i] - min_explored)/(max_explored - min_explored)));
-			draw_rectangle_color(x1, y1, x2, y2, col, col, col, col, false);
+			
+			// Draw square
+			draw_rectangle_color(xy1[0], xy1[1], xy2[0], xy2[1], col, col, col, col, false);
 		}
 	}
-	
-	//###
-	//show_message(map);
 }

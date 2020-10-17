@@ -20,6 +20,10 @@ Gradient Descent
 Copyright (c) 2020 Adam Rumpf  
 [adam-rumpf.github.io](https://adam-rumpf.github.io/)
 
+Made for Scream Jam 2020  
+Hosted by [Caveware Digital](https://caveware.itch.io/)  
+[itch.io/jam/scream-jam-2020](https://itch.io/jam/scream-jam-2020)
+
 Made in GameMaker Studio 2 (Version 2.3.0)  
 2017 YoYo Games Ltd
 
