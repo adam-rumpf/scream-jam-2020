@@ -34,7 +34,7 @@ if (_level_room() == true)
 		// Get screen coordinates from tile
 		var coords = tile.screen_coordinates(dx, dy);
 	
-		// Determine shading depending on whether the tile is a neighbor
+		// Determine shading depending on whether the tile is a neighbor (shade higher elevation as if lower)
 		var rel; // fraction of way between most extreme visible tiles
 		if (is_neighbor(tile.x, tile.y) == true)
 		{
@@ -43,7 +43,7 @@ if (_level_room() == true)
 				rel = (tile.elevation - min_neighborhood)/neighborhood_range;
 			else
 				rel = 0.5;
-			var col = make_color_hsv(47, 127, rel*c_neighborhood_max + (1-rel)*c_neighborhood_min);
+			var col = make_color_hsv(47, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
 		}
 		else
 		{
@@ -52,7 +52,7 @@ if (_level_room() == true)
 				rel = (tile.elevation - min_visible)/visible_range;
 			else
 				rel = 0.5;
-			var col = make_color_hsv(0, 0, rel*c_visible_max + (1-rel)*c_visible_min);
+			var col = make_color_hsv(0, 0, (1-rel)*c_visible_max + rel*c_visible_min);
 		}
 	
 		// Determine opacity of tile (depends on internal alpha value and fading near screen edge)

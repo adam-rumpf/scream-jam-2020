@@ -71,8 +71,17 @@ visible_hrad = ceil((room_width/(global.tile_size*global.tile_scale))/2) + 1; //
 wave_terms = 8; // number of sine functions to add (more means higher frequencies)
 wave_weight = 10; // multiplier for wave noise size
 var param = _wave_parameters(global.seed, wave_terms);
-freq = param[0]; // random sinusoidal function frequencies
-offset = param[1]; // random sinusoidal function offsets
+wave_freq = param[0]; // random sinusoidal function frequencies
+wave_offset = param[1]; // random sinusoidal function offsets
+
+// Generate peak parameters for underlying terrain
+peak_weight = 32; // multiplier for peak function values
+var param = _peak_parameters(global.seed);
+peak_magnitude = param[0]; // magnitude multiplier for each peak
+peak_xc = param[1]; // x-coordinates of peak centers
+peak_yc = param[2]; // y-coordinates of peak centers
+peak_xscale = param[3]; // x-direction scaling of peak functions (smaller is wider)
+peak_yscale = param[4]; // y-direction scaling of peak functions (smaller is wider)
 
 // Define level methods
 
@@ -191,7 +200,7 @@ tile_seed = function(xx, yy)
 }
 
 /// @func base_terrain(x, y)
-/// @desc Defines the underlying (deterministic) terrain elevation for a given coordinate, based on the current level.
+/// @desc Defines the underlying (deterministic) terrain elevation for a given coordinate as a sum of peak functions defined by this object's parameter arrays.
 /// @param {int} x-coordinate of tile.
 /// @param {int} y-coordinate of tile.
 /// @return {real} Base elevation of the tile at (x,y).
@@ -210,22 +219,28 @@ base_terrain = function(_x, _y)
 	switch rotate
 	{
 		case 1:
+			var temp = xx;
 			xx = -yy;
-			yy = xx;
+			yy = temp;
 			break;
 		case 2:
 			xx = -xx;
 			yy = -yy;
 			break;
 		case 3:
+			var temp = xx;
 			xx = yy;
-			yy = -xx;
+			yy = -temp;
 			break;
 	}
 	
-	// Define base elevation of coordinate depending on room
-	//###
-	return 0;//40*_peak(xx, yy, 0, 0, 0.01, 0.01);
+	// Add peak functions
+	var total = 0.0;
+	for (var i = 0; i < array_length(peak_magnitude); i++)
+		total += peak_magnitude[i]*_peak(xx, yy, peak_xc[i], peak_yc[i], peak_xscale[i], peak_yscale[i]);
+	
+	// Return sum
+	return total;
 }
 
 /// @func wave_noise(x, y)
@@ -237,12 +252,12 @@ base_terrain = function(_x, _y)
 wave_noise = function(xx, yy)
 {
 	// Get half of array lengths
-	var n = array_length(freq)/2;
+	var n = array_length(wave_freq)/2;
 	
 	// Add sinusoidal functions
 	var total = 0.0;
 	for (var i = 0; i < n; i++)
-		total += sin(freq[i]*xx + offset[i]) + sin(freq[n+i]*yy + offset[n+i]);
+		total += sin(wave_freq[i]*xx + wave_offset[i]) + sin(wave_freq[n+i]*yy + wave_offset[n+i]);
 	
 	// Return normalized sum
 	return total/(2*n);
@@ -279,7 +294,7 @@ random_noise = function(xx, yy)
 calculate_elevation = function(xx, yy)
 {
 	// Evaluate and then round a weightd sum of the deterministic part and the random parts
-	return floor(wave_weight*wave_noise(xx,yy));//###floor(base_terrain(xx, yy) + 8*wave_noise(xx, yy) + random_noise(xx, yy));
+	return floor(peak_weight*base_terrain(xx, yy));//###floor(peak_weight*base_terrain(xx, yy) + wave_weight*wave_noise(xx,yy) + random_noise(xx, yy));
 }
 
 /// @func update_visible()
@@ -416,11 +431,10 @@ map_array = function()
 
 //Define level attributes
 
-// Generate parameters for level terrain
-//### peak centers, sine/cosine coefficients, reflection/rotation, etc.
-
 // Set player coordinates
-//### setting the value of global.player_x and global.player_y
+var coords = _player_start(global.seed, hmirror, vmirror, rotate);
+global.player_x = coords[0];
+global.player_y = coords[1];
 
 // Explore tiles around player
 explore_neighborhood();
