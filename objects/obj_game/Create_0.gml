@@ -8,6 +8,9 @@ global.settings_file = "settings.ini"; // settings file name
 global.tile_size = 32; // tile dimension (px)
 global.tile_scale = 2; // tile scaling
 
+// Define array of rooms in level sequence
+global.level_rooms = [rm_level]; //###
+
 // Initialize cursor tacker
 instance_create_layer(mouse_x, mouse_y, "Instances", obj_cursor);
 
@@ -31,7 +34,7 @@ global.player_dy = 0.0;
 //### Use level progress to decide how to begin the game
 
 // Level-dependent variables
-intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
+global.intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
 health = 100.0; // player's current health
 global.new_level = true; // whether to generate a new level on entering the room
 level = undefined; // level object which defines the current level's terrain

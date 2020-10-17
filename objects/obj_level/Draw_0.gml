@@ -34,9 +34,9 @@ if (_level_room() == true)
 		// Get screen coordinates from tile
 		var coords = tile.screen_coordinates(dx, dy);
 	
-		// Determine shading depending on whether the tile is a neighbor (shade higher elevation as if lower)
+		// Determine shading depending on whether the tile is a neighbor
 		var rel; // fraction of way between most extreme visible tiles
-		if (is_neighbor(tile.x, tile.y) == true)
+		if ((is_neighbor(tile.x, tile.y) == true) && (global.player_dx == 0.0) && (global.player_dy == 0.0))
 		{
 			// Determine shade based on placement among all neighboring tiles
 			if (neighborhood_range > 0)

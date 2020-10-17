@@ -7,6 +7,12 @@ if (_level_room() == true)
 	instance_create_layer(room_width - 32, 32, "Buttons", obj_menu_button);
 }
 
+// If the menu room, spawn GUI elements
+if (room == rm_menu)
+{
+	instance_create_layer(room_width - 32, 32, "Buttons", obj_back_button);
+}
+
 // Determine whether to generate a new level
 if (global.new_level == false)
 	exit;
@@ -20,5 +26,7 @@ if (is_undefined(level) == false)
 // Create a new level object to handle the level generation and storage
 level = instance_create_layer(0, 0, "Instances", obj_level);
 
-// Reset new_level flag
+// Reset new level variables
 global.new_level = false;
+global.intensity = 0;
+health = 100.0;
