@@ -424,7 +424,7 @@ win = function()
 	sprite_index = spr_player_exit;
 	locked = true;
 	exiting = true;
-	alarm[0] = 0;
+	alarm[0] = 1000;
 	alarm[2] = image_number/image_speed;
 }
 
@@ -441,6 +441,6 @@ die = function()
 	sprite_index = choose(spr_player_death_01, spr_player_death_02);
 	locked = true;
 	dying = true;
-	alarm[0] = 0;
+	alarm[0] = 1000;
 	alarm[3] = image_number/image_speed;
 }

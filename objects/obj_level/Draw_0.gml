@@ -54,7 +54,7 @@ if (_level_room() == true)
 		{
 			// Determine shade based on placement among all visible tiles
 			if (visible_range > 0)
-				rel = _center_pull((tile.elevation - min_visible)/visible_range, 0.75);
+				rel = (tile.elevation - min_visible)/visible_range;
 			else
 				rel = 0.5;
 			var col = make_color_hsv(0, 0, (1-rel)*c_visible_max + rel*c_visible_min);
