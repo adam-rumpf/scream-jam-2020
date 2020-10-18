@@ -23,6 +23,7 @@
   "eventList": [
     {"isDnD":false,"eventNum":1,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"obj_button_parent","path":"objects/obj_button_parent/obj_button_parent.yy",},"parent":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":4,"collisionObjectId":{"name":"obj_button_neighbor","path":"objects/obj_button_neighbor/obj_button_neighbor.yy",},"parent":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
