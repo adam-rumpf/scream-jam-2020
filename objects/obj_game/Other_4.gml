@@ -7,7 +7,7 @@ if (_level_room() == true)
 	player = instance_create_layer(room_width/2, room_height/2, "Player", obj_player);
 	
 	// Create GUI elements
-	instance_create_layer(room_width - 32, 32, "Buttons", obj_menu_button);
+	instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
 	
 	// Create invisible buttons around the player to listen for mouse clicks
 	var unit = global.tile_size*global.tile_scale;
@@ -29,7 +29,10 @@ if (_level_room() == true)
 if (room == rm_menu)
 {
 	// Create menu buttons
-	instance_create_layer(room_width - 64, 32, "Buttons", obj_back_button);
+	//###
+	instance_create_layer(room_width - 48, 32, "Buttons", obj_back_button);
+	instance_create_layer(room_width - 48, 96, "Buttons", obj_quit_button);
+	instance_create_layer(room_width - 128, 160, "Buttons", obj_reset_button);
 }
 
 // Determine whether to generate a new level
