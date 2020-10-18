@@ -32,7 +32,7 @@
 
 // Define colors used to indicate various elevations (as a color value for HSV)
 c_visible_max = 120; // most extreme colors among all visible tiles (higher is colred darker)
-c_visible_min = 2;
+c_visible_min = 0;
 c_neighborhood_max = 230; // most extreme colors among all neighboring tiles (higher is colred darker)
 c_neighborhood_min = 60;
 
@@ -458,5 +458,3 @@ for (var i = -rad; i <= rad; i++)
 	}
 }
 update_visible();
-
-//### Determine the global optimum

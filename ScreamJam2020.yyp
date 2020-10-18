@@ -62,6 +62,7 @@
     {"id":{"name":"spr_player_uphill_s","path":"sprites/spr_player_uphill_s/spr_player_uphill_s.yy",},"order":2,},
     {"id":{"name":"_vector_distance","path":"scripts/_vector_distance/_vector_distance.yy",},"order":0,},
     {"id":{"name":"spr_player_downhill_e","path":"sprites/spr_player_downhill_e/spr_player_downhill_e.yy",},"order":1,},
+    {"id":{"name":"obj_button_neighbor","path":"objects/obj_button_neighbor/obj_button_neighbor.yy",},"order":4,},
     {"id":{"name":"spr_player_downhill_w","path":"sprites/spr_player_downhill_w/spr_player_downhill_w.yy",},"order":3,},
     {"id":{"name":"_integer_to_natural","path":"scripts/_integer_to_natural/_integer_to_natural.yy",},"order":0,},
     {"id":{"name":"_load_game","path":"scripts/_load_game/_load_game.yy",},"order":1,},

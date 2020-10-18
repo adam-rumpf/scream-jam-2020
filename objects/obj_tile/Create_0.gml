@@ -21,6 +21,10 @@ image_yscale = global.tile_scale; // scaling and vertical mirroring
 image_angle = 0; // image rotation
 image_alpha = 0; // image opacity (automatically increments to allow new tiles to fade in)
 
+// Initialize fog attributes (used to fade fog in and out for SA levels)
+suboptimal = false; // whether the move is suboptimal
+fog = 0; // opacity of fog
+
 /// @func screen_coordinates([dx[, dy]])
 /// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.
 /// @param {int} [dx=0] x-direction offset (to compensate for intermediate movement).

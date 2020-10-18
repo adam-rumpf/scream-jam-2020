@@ -80,31 +80,33 @@ if (_level_room() == true)
 		if (finish == true)
 			draw_sprite_ext(spr_goal, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
 		
-		// Handle SA enemy (if intensity is positive and tile is worse)
-		if ((global.intensity > 0) && (tile.elevation < global.player_elevation) && (finish == false))
+		// Handle SA enemy
+		if ((_sa_room() == true) && (global.intensity > 0) && (finish == false))
 		{
-			// Find elevation difference and draw fog sprite
-			var diff, spr, frames;
-			diff = abs(tile.elevation - global.player_elevation);
+			// Determine whether tile is suboptimal
+			if (tile.elevation < global.player_elevation)
+				tile.suboptimal = true;
+			else
+				tile.suboptimal = false;
+			
+			// Draw fog sprite
+			var spr, frames;
 			switch global.intensity
 			{
 				case 1:
 					spr = spr_mist_01;
-					alpha = 0.125;
 					break;
 				case 2:
 					spr = spr_mist_02;
-					alpha = 0.125;
 					break;
 				case 3:
 					spr = spr_mist_03;
-					alpha = 0.125;
 					break;
 			}
 			frames = sprite_get_number(spr);
 			
 			// Draw fog
-			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, alpha);
+			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, tile.fog);
 		}
 	
 		// Go to next tile

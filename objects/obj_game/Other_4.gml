@@ -1,10 +1,28 @@
 /// @desc Continue the current level or start a new one.
 
-// If a level room, spawn a player object and a GUI elements
+// Spawn level objects in a level room
 if (_level_room() == true)
 {
+	// Spawn the player object
 	player = instance_create_layer(room_width/2, room_height/2, "Player", obj_player);
+	
+	// Create GUI elements
 	instance_create_layer(room_width - 32, 32, "Buttons", obj_menu_button);
+	
+	// Create invisible buttons around the player to listen for mouse clicks
+	var unit = global.tile_size*global.tile_scale;
+	for (var i = -1; i <= 1; i++)
+	{
+		for (var j = -1; j <= 1; j++)
+		{
+			if ((i == 0) && (j == 0))
+				continue;
+			var button = instance_create_layer(room_width/2 + unit*i, room_height/2 + unit*j, "Buttons", obj_button_neighbor);
+			button.game = self;
+			button.dx = i;
+			button.dy = j;
+		}
+	}
 }
 
 // If the menu room, spawn GUI elements

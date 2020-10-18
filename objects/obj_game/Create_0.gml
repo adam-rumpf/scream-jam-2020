@@ -46,3 +46,53 @@ global.moves = 0; // number of moves made so far
 
 //### Temporarily move directly to the test room.
 room_goto(rm_level);
+
+// Define movement methods
+
+/// @func move_player(x, y)
+/// @desc Moves the player and updates the level.
+/// @param {int} x x-component of movement (-1, 0, or 1).
+/// @param {int} y y-component of movement (-1, 0, or 1).
+
+move_player = function(xx, yy)
+{
+	// Find the difference in objective value
+	var diff = global.player_elevation - level.get_tile(global.player_x + xx, global.player_y + yy).elevation;
+	
+	// Call one of the player's movement methods depending on the direction of movement
+	if ((xx == 0) || (yy == 0))
+	{
+		// Cardinal direction
+		if (xx < 0)
+			player.move_w(diff);
+		else if (xx > 0)
+			player.move_e(diff);
+		else if (yy < 0)
+			player.move_n(diff);
+		else if (yy > 0)
+			player.move_s(diff);
+	}
+	else
+	{
+		// Diagonal direction
+		if (xx < 0)
+		{
+			if (yy < 0)
+				player.move_nw(diff);
+			else if (yy > 0)
+				player.move_sw(diff);
+		}
+		else if (xx > 0)
+		{
+			if (yy < 0)
+				player.move_ne(diff);
+			else
+				player.move_se(diff);
+		}
+	}
+	
+	// Update the level display
+	level.update_player_elevation();
+	level.update_visible(0, -1);
+	level.explore_neighborhood();
+}
