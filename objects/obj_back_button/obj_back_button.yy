@@ -1,15 +1,15 @@
 {
   "spriteId": {
-    "name": "spr_back_button",
-    "path": "sprites/spr_back_button/spr_back_button.yy",
+    "name": "spr_square",
+    "path": "sprites/spr_square/spr_square.yy",
   },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_button_parent",
-    "path": "objects/obj_button_parent/obj_button_parent.yy",
+    "name": "obj_text_button",
+    "path": "objects/obj_text_button/obj_text_button.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -25,12 +25,13 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_back_button","path":"objects/obj_back_button/obj_back_button.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_back_button","path":"objects/obj_back_button/obj_back_button.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "button",
-    "path": "folders/Objects/button.yy",
+    "name": "menu",
+    "path": "folders/Objects/button/menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_back_button",

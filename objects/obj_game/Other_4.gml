@@ -28,7 +28,8 @@ if (_level_room() == true)
 // If the menu room, spawn GUI elements
 if (room == rm_menu)
 {
-	instance_create_layer(room_width - 32, 32, "Buttons", obj_back_button);
+	// Create menu buttons
+	instance_create_layer(room_width - 64, 32, "Buttons", obj_back_button);
 }
 
 // Determine whether to generate a new level
