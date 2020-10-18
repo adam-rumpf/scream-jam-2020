@@ -14,3 +14,6 @@ image_alpha = 0;
 game = undefined; // game object
 dx = 0; // movement in x-direction (-1, 0, or 1)
 dy = 0; // movement in y-direction (-1, 0, or 1)
+
+// Set pointer opacity
+pointer_alpha = 0;

@@ -12,4 +12,9 @@ if (selected == true)
 		// Call game object's movement method
 		game.move_player(dx, dy);
 	}
+	
+	// Set pointer opacity
+	pointer_alpha = 0.9;
 }
+else
+	pointer_alpha = 0;
