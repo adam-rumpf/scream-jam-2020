@@ -9,7 +9,7 @@ var credits = @"Gradient Descent
 Copyright (c) 2020 Adam Rumpf
 adam-rumpf.github.io
 
-For Scream Jam 2020
+Created for Scream Jam 2020
 Hosted by Caveware Digital
 itch.io/jam/scream-jam-2020
 

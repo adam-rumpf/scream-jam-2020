@@ -43,9 +43,7 @@ player = undefined; // player object which handles some player-specific actions
 global.player_elevation = 0; // elevation of player's current tile
 global.victory = false; // whether the level has been won
 global.moves = 0; // number of moves made so far
-
-//### Temporarily move directly to the test room.
-room_goto(rm_level);
+global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
 
 // Define movement methods
 
@@ -96,3 +94,6 @@ move_player = function(xx, yy)
 	level.update_visible(0, -1);
 	level.explore_neighborhood();
 }
+
+// Spawn the title screen object
+instance_create_layer(0, 0, "Instances", obj_title);

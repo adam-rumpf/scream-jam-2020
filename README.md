@@ -1,6 +1,6 @@
 # Gradient Descent
 
-A game about stumbling around in the darkness. My horror game submission for [Scream Jam 2020](https://itch.io/jam/scream-jam-2020).
+A game about descending through the darkness (created for Scream Jam 2020).
 
 For downloads, please see this game's [itch.io page](https://adam-rumpf.itch.io/gradient-descent).
 
@@ -20,7 +20,7 @@ Gradient Descent
 Copyright (c) 2020 Adam Rumpf  
 [adam-rumpf.github.io](https://adam-rumpf.github.io/)
 
-Made for Scream Jam 2020  
+Created for Scream Jam 2020  
 Hosted by [Caveware Digital](https://caveware.itch.io/)  
 [itch.io/jam/scream-jam-2020](https://itch.io/jam/scream-jam-2020)
 

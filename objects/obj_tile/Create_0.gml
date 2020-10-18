@@ -8,6 +8,7 @@
  * In-story and graphically, however, we treat larger height values as representing lower elevations, with the goal of going lower.
  *
  * The tile object also includes a method to determine its own sprite's coordinates on the screen, which depend on the player's position.
+ * It is also used for positioning the SA and TS enemies, and includes an internal tabu tenure for use in TS.
  *
  * Note that the tile's x and y attributes indicate its coordinates in the grid, and have nothing to do with where it is displayed.
  */

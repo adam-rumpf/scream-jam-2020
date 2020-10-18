@@ -8,12 +8,19 @@
 // Listen for level victory
 if (global.victory == true)
 {
+	// Set up to go to a new level
 	global.victory = false;
-	
-	// Go to the next level
 	global.new_level = true;
-	room_restart();//###
-	//###
+	
+	// Determine next room
+	global.next_room = rm_level;//### Switch based on level progression
+	global.level = 0;//### Also update.
+	
+	// Save progress
+	_save_game();
+	
+	// Go to next room (through transition room)
+	room_goto(rm_static);
 }
 
 // Listen for player health to reach zero
