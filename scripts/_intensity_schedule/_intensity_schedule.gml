@@ -4,8 +4,13 @@
 function _intensity_schedule()
 {
 	// Determine intensity depending on room
-	switch room
+	switch global.level
 	{
+		// Intro (no intensity)
+		case 0:
+			global.intensity = 0;
+			break;
+		
 		//### Customize other rooms.
 		default:
 			if (global.moves < 10)

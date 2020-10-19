@@ -1,6 +1,7 @@
 /// @desc Draw health display within level rooms.
 
-if (_level_room() == false)
+// Draw nothing outside of level rooms, or in the intro room
+if ((_level_room() == false) || (room = rm_level_intro))
 	exit;
 
 //### Redo display later.
