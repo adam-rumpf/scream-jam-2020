@@ -1,4 +1,4 @@
-/// @desc Go to menu on mouse click.
+/// @desc Go to specified room on mouse click.
 
 // Determine behavior depending on whether the button is selected
 if (selected == true)

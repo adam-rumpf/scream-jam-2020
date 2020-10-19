@@ -8,7 +8,7 @@ if (selected == true)
 	// If selected, listen for mouse clicks
 	if (mouse_check_button_pressed(mb_left) == true)
 	{
-		// Go to save deletion room
-		room_goto(rm_reset);
+		// Go to credits screen
+		room_goto(rm_credits);
 	}
 }

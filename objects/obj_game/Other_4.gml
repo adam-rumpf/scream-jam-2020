@@ -29,10 +29,14 @@ if (_level_room() == true)
 if (room == rm_menu)
 {
 	// Create menu buttons
-	//###
-	instance_create_layer(room_width - 48, 32, "Buttons", obj_back_button);
-	instance_create_layer(room_width - 48, 96, "Buttons", obj_quit_button);
-	instance_create_layer(room_width - 128, 160, "Buttons", obj_reset_button);
+	var space = 48;
+	instance_create_layer(3*room_width/4 - 32, room_height/2 - 4*space, "Buttons", obj_sound_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 - 3*space, "Buttons", obj_music_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 - space, "Buttons", obj_fullscreen_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + space, "Buttons", obj_credits_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + 2*space, "Buttons", obj_reset_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + 3*space, "Buttons", obj_quit_button);
+	instance_create_layer(room_width - 48, room_height - 32, "Buttons", obj_back_button);
 }
 
 // Determine whether to generate a new level

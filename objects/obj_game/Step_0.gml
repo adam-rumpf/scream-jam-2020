@@ -5,6 +5,10 @@
 //### Listen for selecting the menu screen, in which case we move to that room but do not set new_level to true.
 //### Also update the global.level variable and save when we complete a room.
 
+// Listen for escape key press
+if (keyboard_check_pressed(vk_escape))
+	game_end();
+
 // Listen for level victory
 if (global.victory == true)
 {
@@ -12,9 +16,9 @@ if (global.victory == true)
 	global.victory = false;
 	global.new_level = true;
 	
-	// Determine next room
-	global.next_room = rm_level;//### Switch based on level progression
-	global.level = 0;//### Also update.
+	// Go to next room in sequence (unless at end)
+	global.level = min(global.level + 1, array_length(global.level_rooms) - 1);
+	global.next_room = global.level_rooms[global.level];
 	
 	// Save progress
 	_save_game();

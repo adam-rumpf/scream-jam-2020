@@ -7,10 +7,16 @@ function _load_settings()
 	// Proceed only if the file exists
 	if (file_exists(global.settings_file) == true)
 	{
-		// Get level progress and version number
+		// Get sound and music values
 		ini_open(global.settings_file);
 		global.sound = ini_read_real("audio", "sound", global.sound);
-		global.music = ini_read_real("audio", "sound", global.music);
+		global.music = ini_read_real("audio", "music", global.music);
+		
+		// Get screen values
+		global.fullscreen = bool(ini_read_real("video", "fullscreen", global.fullscreen));
+		if (window_get_fullscreen() != global.fullscreen)
+			window_set_fullscreen(global.fullscreen);
+		
 		ini_close();
 
 		return true;

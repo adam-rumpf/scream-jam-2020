@@ -12,6 +12,10 @@ function _save_settings()
 	ini_open(global.settings_file);
 	ini_write_real("audio", "sound", global.sound);
 	ini_write_real("audio", "music", global.music);
+	
+	// Set screen values
+	ini_write_real("video", "fullscreen", global.fullscreen);
+	
 	ini_close();
 	
 	return true;
