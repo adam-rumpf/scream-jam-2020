@@ -9,7 +9,7 @@ global.tile_size = 32; // tile dimension (px)
 global.tile_scale = 2; // tile scaling
 
 // Define array of rooms in level sequence
-global.level_rooms = [rm_level]; //###
+global.level_rooms = [rm_level_intro, rm_level_sa, rm_level_ts, rm_level_hybrid, rm_level_final]; //###
 
 // Initialize cursor tacker
 instance_create_layer(mouse_x, mouse_y, "Instances", obj_cursor);
@@ -39,6 +39,7 @@ global.intensity = 0; // metaheuristic intensity (reset on level restart; contro
 health = 100.0; // player's current health
 global.dead = false; // whether the player is dead (restart level if true)
 global.new_level = true; // whether to generate a new level on entering the room
+global.first_time = true; // whether this is the player's first time seeing a level during the current play session
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
 global.player_elevation = 0; // elevation of player's current tile
@@ -96,5 +97,5 @@ move_player = function(xx, yy)
 	level.explore_neighborhood();
 }
 
-// Spawn the title screen object
-instance_create_layer(0, 0, "Instances", obj_title);
+// Go to title screen
+room_goto(rm_title);

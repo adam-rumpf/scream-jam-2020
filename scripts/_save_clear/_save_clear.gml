@@ -7,7 +7,9 @@ function _save_clear()
 	if (file_exists(global.save_file) == true)
 		file_delete(global.save_file);
 	
-	// Reset game
-	//### Possibly transition through static
-	game_restart();
+	// Reset progress and return to title screen
+	global.level = 0;
+	_save_game();
+	global.next_room = global.level_rooms[0];
+	room_goto(rm_static);
 }

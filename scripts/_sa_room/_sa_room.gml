@@ -8,6 +8,8 @@ function _sa_room()
 	switch room
 	{
 		case rm_level:
+		case rm_level_sa:
+		case rm_level_hybrid:
 		//###
 			return true;
 		default:

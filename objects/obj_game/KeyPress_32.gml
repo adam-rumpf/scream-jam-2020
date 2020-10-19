@@ -2,6 +2,7 @@
 
 //level._explore_area(20, 15);
 //room_goto(rm_message);
+global.victory = true;
 
 /*var rad = 30;
 var lst = array_create(2*rad+1, array_create(2*rad+1));

@@ -1,3 +1,3 @@
-/// @desc Go to next room.
+/// @desc Go to static room again.
 
-room_goto(global.next_room);
+room_goto(rm_static);

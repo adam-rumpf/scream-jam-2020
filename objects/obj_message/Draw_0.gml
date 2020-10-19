@@ -9,6 +9,26 @@ switch global.level
 	case 0:
 		str = "Better get down from here.\nNight is coming.";
 		break;
+	
+	// SA
+	case 1:
+		str = "The fog in these mountains\nis dangerous.";
+		break;
+	
+	// TS
+	case 2:
+		str = "Horrid creatures come\nout at night.";
+		break;
+	
+	// Hybrid
+	case 3:
+		str = "What are you searching for?";
+		break;
+	
+	// Final
+	case 4:
+		str = "Be careful what you wish for.";
+		break;
 }
 
 // Display the message

@@ -15,9 +15,12 @@ if (global.victory == true)
 	// Set up to go to a new level
 	global.victory = false;
 	global.new_level = true;
+	global.first_time = true;
 	
 	// Go to next room in sequence (unless at end)
-	global.level = min(global.level + 1, array_length(global.level_rooms) - 1);
+	//### Replace this with a game reset if we don't get around to the random levels.
+	//###global.level = min(global.level + 1, array_length(global.level_rooms) - 1);
+	global.level = (global.level + 1) % array_length(global.level_rooms); //### Placeholder for looping
 	global.next_room = global.level_rooms[global.level];
 	
 	// Save progress
