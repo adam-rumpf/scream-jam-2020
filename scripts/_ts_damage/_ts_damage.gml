@@ -27,4 +27,5 @@ function _ts_damage()
 	flash.col = make_color_hsv(0, 255, 191);
 	
 	//### Play a sound
+	show_message("TS damage.");
 }

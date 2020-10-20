@@ -26,6 +26,9 @@ image_alpha = 0; // image opacity (automatically increments to allow new tiles t
 suboptimal = false; // whether the move is suboptimal
 fog = 0; // opacity of fog
 
+// Initialize stalker attributes (used to handle tabu tenures and to control how the stalker is facing)
+tabu_move = 0; // move number on which the tile's tenure is meant to expire
+
 /// @func screen_coordinates([dx[, dy]])
 /// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.
 /// @param {int} [dx=0] x-direction offset (to compensate for intermediate movement).
@@ -43,4 +46,43 @@ screen_coordinates = function()
 	var yy = (y - global.player_y)*global.tile_size*global.tile_scale + (room_height/2) + dy;
 	
 	return [round(xx), round(yy)];
+}
+
+/// @func is_tabu()
+/// @desc Determines whether this tile is tabu based on when its tenure started, the tenure lengths, and the current move number.
+/// @return {bool} True if tabu, false otherwise.
+
+is_tabu = function()
+{
+	// The tile is tabu if and only if its tenure end falls later than the current move
+	return (tabu_move - global.moves) > 0;
+}
+
+/// @func face_player()
+/// @desc Returns the direction that an enemy on this tile would need to turn to face the player.
+/// @return {int} Integer ID of facing direction, as an increment of 90 degrees.
+
+face_player = function()
+{
+	// Find relative difference in coordinates
+	var dx = x - global.player_x;
+	var dy = y - global.player_y;
+	
+	// Determine whether the horizontal difference or the vertical difference is greater
+	if (abs(dx) >= abs(dy))
+	{
+		// Determine whether to face East or West
+		if (dx > 0)
+			return 2;
+		else
+			return 0;
+	}
+	else
+	{
+		// Determine whether to face North or South
+		if (dy > 0)
+			return 1;
+		else
+			return 3;
+	}
 }

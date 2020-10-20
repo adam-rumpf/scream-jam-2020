@@ -57,20 +57,33 @@ global.next_room = global.level_rooms[global.level]; // next room to go to (for 
 move_player = function(xx, yy)
 {
 	// Find the difference in objective value
-	var diff = global.player_elevation - level.get_tile(global.player_x + xx, global.player_y + yy).elevation;
+	var next = level.get_tile(global.player_x + xx, global.player_y + yy); // next tile
+	var diff = global.player_elevation - next.elevation;
+	
+	// If this is a TS room, handle the tabu tenures
+	var tabu = false; // whether the move is tabu
+	if ((_ts_room() == true) && (global.intensity > 0))
+	{
+		// Make the player's previous tile tabu
+		level.get_tile(global.player_x, global.player_y).tabu_move = global.moves + _ts_tenure() + 1;
+		
+		// Determine whether the player is moving into a tabu tile
+		if (next.is_tabu() == true)
+			tabu = true;
+	}
 	
 	// Call one of the player's movement methods depending on the direction of movement
 	if ((xx == 0) || (yy == 0))
 	{
 		// Cardinal direction
 		if (xx < 0)
-			player.move_w(diff);
+			player.move_w(diff, tabu);
 		else if (xx > 0)
-			player.move_e(diff);
+			player.move_e(diff, tabu);
 		else if (yy < 0)
-			player.move_n(diff);
+			player.move_n(diff, tabu);
 		else if (yy > 0)
-			player.move_s(diff);
+			player.move_s(diff, tabu);
 	}
 	else
 	{
@@ -78,16 +91,16 @@ move_player = function(xx, yy)
 		if (xx < 0)
 		{
 			if (yy < 0)
-				player.move_nw(diff);
+				player.move_nw(diff, tabu);
 			else if (yy > 0)
-				player.move_sw(diff);
+				player.move_sw(diff, tabu);
 		}
 		else if (xx > 0)
 		{
 			if (yy < 0)
-				player.move_ne(diff);
+				player.move_ne(diff, tabu);
 			else
-				player.move_se(diff);
+				player.move_se(diff, tabu);
 		}
 	}
 	

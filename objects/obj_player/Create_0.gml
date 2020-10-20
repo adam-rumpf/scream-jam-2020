@@ -45,18 +45,24 @@ alarm[0] = irandom_range(room_speed*6, room_speed*18);
 
 // Player methods
 
-/// @func move_actions([delta])
+/// @func move_actions([delta[, tabu]])
 /// @desc Standard actions that are part of every move.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_actions = function()
 {
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// If the move is uphill and this is an SA room, take damage
 	if ((delta > 0) && (_sa_room() == true))
-		_sa_damage(delta);
+		_sa_damage();
+	
+	// If the move is tabu, take damage
+	if (tabu == true)
+		_ts_damage();
 	
 	// Increment move count and update intensity schedule
 	global.moves++;
@@ -67,9 +73,10 @@ move_actions = function()
 	convex = 0.0;
 }
 
-/// @func move_n([delta])
+/// @func move_n([delta[, tabu]])
 /// @desc Moves the player north.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_n = function()
 {
@@ -77,8 +84,9 @@ move_n = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -105,12 +113,13 @@ move_n = function()
 	// Set movement parameters and begin moving
 	dir_x = 0;
 	dir_y = -1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_e([delta])
+/// @func move_e([delta[, tabu]])
 /// @desc Moves the player east.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_e = function()
 {
@@ -118,8 +127,9 @@ move_e = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -146,12 +156,13 @@ move_e = function()
 	// Set movement parameters and begin moving
 	dir_x = 1;
 	dir_y = 0;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_s([delta])
+/// @func move_s([delta[, tabu]])
 /// @desc Moves the player south.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_s = function()
 {
@@ -159,8 +170,9 @@ move_s = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -187,12 +199,13 @@ move_s = function()
 	// Set movement parameters and begin moving
 	dir_x = 0;
 	dir_y = 1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_w([delta])
+/// @func move_w([delta[, tabu]])
 /// @desc Moves the player west.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_w = function()
 {
@@ -200,8 +213,9 @@ move_w = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -228,12 +242,13 @@ move_w = function()
 	// Set movement parameters and begin moving
 	dir_x = -1;
 	dir_y = 0;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_ne([delta])
+/// @func move_ne([delta[, tabu]])
 /// @desc Moves the player northeast.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_ne = function()
 {
@@ -241,8 +256,9 @@ move_ne = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -273,12 +289,13 @@ move_ne = function()
 	// Set movement parameters and begin moving
 	dir_x = 1;
 	dir_y = -1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_se([delta])
+/// @func move_se([delta[, tabu]])
 /// @desc Moves the player southeast.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_se = function()
 {
@@ -286,8 +303,9 @@ move_se = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -318,12 +336,13 @@ move_se = function()
 	// Set movement parameters and begin moving
 	dir_x = 1;
 	dir_y = 1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_sw([delta])
+/// @func move_sw([delta[, tabu]])
 /// @desc Moves the player southwest.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_sw = function()
 {
@@ -331,8 +350,9 @@ move_sw = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -363,12 +383,13 @@ move_sw = function()
 	// Set movement parameters and begin moving
 	dir_x = -1;
 	dir_y = 1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
-/// @func move_nw([delta])
+/// @func move_nw([delta[, tabu]])
 /// @desc Moves the player northwest.
 /// @param {int} [delta=0] Elevation change.
+/// @param {bool} [tabu=false] Whether the move is tabu.
 
 move_nw = function()
 {
@@ -376,8 +397,9 @@ move_nw = function()
 	if ((locked == true) || (dying == true) || (exiting == true))
 		exit;
 	
-	// Get optional elevation change argument
+	// Get optional arguments
 	var delta = (argument_count > 0 ? argument[0] : 0);
+	var tabu = (argument_count > 1 ? argument[1] : false);
 	
 	// Set movement speed and sprite based on elevation difference
 	if (delta < -level_margin)
@@ -408,7 +430,7 @@ move_nw = function()
 	// Set movement parameters and begin moving
 	dir_x = -1;
 	dir_y = -1;
-	move_actions(delta);
+	move_actions(delta, tabu);
 }
 
 /// @func win()
