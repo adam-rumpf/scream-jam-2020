@@ -7,5 +7,7 @@ factor = 1; // acceleration factor (bigger after the user clicks)
 init = true; // whether the object has just been initialized
 alarm[0] = 2.0*room_speed; // time until fade-in begins
 
+//### Play sound
+
 //### TEMP
 room_goto(rm_static);

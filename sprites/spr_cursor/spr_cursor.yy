@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"63e49307-b569-4e58-9467-dd041ea84fef","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "button",
-    "path": "folders/Sprites/button.yy",
+    "name": "gui",
+    "path": "folders/Sprites/gui.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_cursor",

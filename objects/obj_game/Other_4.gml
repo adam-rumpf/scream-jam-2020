@@ -54,6 +54,7 @@ level = instance_create_layer(0, 0, "Instances", obj_level);
 
 // Reset new level variables
 global.new_level = false;
+global.wake_up = true;
 global.victory = false;
 global.sa_intensity = 0;
 global.ts_intensity = 0;

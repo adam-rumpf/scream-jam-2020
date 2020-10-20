@@ -17,6 +17,7 @@ if (global.victory == true)
 	global.victory = false;
 	global.new_level = true;
 	global.first_time = true;
+	global.wake_up = true;
 	
 	// Go to next room in sequence (unless at end)
 	//### Replace this with a game reset if we don't get around to the random levels.
@@ -36,6 +37,6 @@ if (global.dead == true)
 {
 	// Restart with a newly-generated level
 	global.new_level = true;
-	room_restart();//###
-	//###
+	global.wake_up = true;
+	room_restart();
 }

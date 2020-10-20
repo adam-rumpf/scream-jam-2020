@@ -13,9 +13,10 @@
 // Initialize image attributes
 image_xscale = global.tile_scale;
 image_yscale = global.tile_scale;
-image_speed = 0.1; //###
-if (global.new_level == true)
+image_speed = 0.2;
+if (global.wake_up == true)
 {
+	global.wake_up = false;
 	sprite_index = spr_player_wake;
 	alarm[1] = image_number/image_speed; // set timer to switch to idle animation
 }
@@ -38,10 +39,7 @@ if (global.new_level == false)
 	locked = false;
 dying = false; // whether the player's death animation is playing
 exiting = false; // whetehr the player's level exit animation is playing
-
-// Set timer for switching idle animation
-randomize();
-alarm[0] = irandom_range(room_speed*6, room_speed*18);
+idle_loops = 0; // number of consecutive loops of default idle animation
 
 // Player methods
 

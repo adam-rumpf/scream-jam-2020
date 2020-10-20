@@ -32,14 +32,13 @@ global.player_y = 0;
 global.player_dx = 0.0; // player's position relative to their starting position during intermediate movement (between -1 and 1)
 global.player_dy = 0.0;
 
-//### Use level progress to decide how to begin the game
-
 // Level-dependent variables
 global.sa_intensity = 0; // metaheuristic intensities (reset on level restart; controls various game mechanics)
 global.ts_intensity = 0;
 health = 100.0; // player's current health
 global.dead = false; // whether the player is dead (restart level if true)
 global.new_level = true; // whether to generate a new level on entering the room
+global.wake_up = true; // whether to begin the level with the player waking up
 global.first_time = true; // whether this is the player's first time seeing a level during the current play session
 level = undefined; // level object which defines the current level's terrain
 player = undefined; // player object which handles some player-specific actions
