@@ -19,14 +19,15 @@ Made in GameMaker Studio 2
 Source code released under MIT License
 github.com/adam-rumpf/scream-jam-2020
 
-~ Music ~
+--- Music ---
 
 ...
 
-~ Sound ~
+--- Sound ---
 
 This game uses the following sounds from freesound:
-Wind Through Trees 1 by spoonbender (freesound.org/people/spoonbender)";
+Wind Through Trees 1 by spoonbender
+(freesound.org/people/spoonbender)";
 
 return credits;
 }

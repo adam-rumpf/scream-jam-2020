@@ -81,7 +81,7 @@ if (_level_room() == true)
 			draw_sprite_ext(spr_goal, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
 		
 		// Handle SA enemy
-		if ((_sa_room() == true) && (global.intensity > 0) && (finish == false))
+		if ((_sa_room() == true) && (global.sa_intensity > 0) && (finish == false))
 		{
 			// Determine whether tile is suboptimal
 			if (tile.elevation < global.player_elevation)
@@ -91,7 +91,7 @@ if (_level_room() == true)
 			
 			// Draw fog sprite
 			var spr, frames;
-			switch global.intensity
+			switch global.sa_intensity
 			{
 				case 1:
 					spr = spr_mist_01;
@@ -105,8 +105,12 @@ if (_level_room() == true)
 			}
 			frames = sprite_get_number(spr);
 			
+			// Determine frame number to vary slightly by tile coordinate
+			var multi = 1 + (tile_seed(tile.x, tile.y) % 100)/100;
+			var frame = round((0.2*multi*current_time)/room_speed) % frames;
+			
 			// Draw fog
-			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, tile.fog);
+			draw_sprite_ext(spr, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, tile.fog);
 		}
 		
 		// Handle TS enemy
@@ -117,8 +121,12 @@ if (_level_room() == true)
 			spr = tile.tabu_sprite();
 			frames = sprite_get_number(spr);
 			
+			// Determine frame number to vary slightly by tile coordinate
+			var multi = 1 + (tile_seed(tile.x+50, tile.y+50) % 100)/100;
+			var frame = round((0.1*multi*current_time)/room_speed) % frames;
+			
 			// Draw enemy
-			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, tile.stalker);
+			draw_sprite_ext(spr, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, tile.stalker);
 		}
 	
 		// Go to next tile

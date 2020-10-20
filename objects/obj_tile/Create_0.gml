@@ -56,7 +56,7 @@ screen_coordinates = function()
 is_tabu = function()
 {
 	// Preliminary test for intensity level
-	if (global.intensity == 0)
+	if (global.ts_intensity == 0)
 		return false;
 	
 	// The tile is tabu if and only if its tenure end falls later than the current move
@@ -81,7 +81,7 @@ tabu_sprite = function()
 	
 	// Determine whether the horizontal difference or the vertical difference is greater
 	var dir; // direction ID, as an increment of 90 degrees
-	if (abs(dx) >= abs(dy))
+	if (abs(dx) > abs(dy))
 	{
 		// Determine whether to face East or West
 		if (dx > 0)
@@ -99,7 +99,7 @@ tabu_sprite = function()
 	}
 	
 	// Determine sprite to output based on intensity and direction
-	switch global.intensity
+	switch global.ts_intensity
 	{
 		case 1:
 			

@@ -4,11 +4,11 @@
 function _ts_damage()
 {
 	// Do nothing if not active
-	if (global.intensity == 0)
+	if (global.ts_intensity == 0)
 		exit;
 	
 	// Determine damage depending on intensity
-	switch global.intensity
+	switch global.ts_intensity
 	{
 		case 1:
 			health -= 25;//###

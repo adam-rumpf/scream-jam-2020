@@ -4,12 +4,12 @@
 function _ts_tenure()
 {
 	// Do nothing if not active
-	if (global.intensity == 0)
+	if (global.ts_intensity == 0)
 		exit;
 	
 	// Determine tenure depending on intensity
 	var tenure;
-	switch global.intensity
+	switch global.ts_intensity
 	{
 		case 1:
 			tenure = 3;//###

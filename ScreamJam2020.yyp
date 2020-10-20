@@ -104,6 +104,7 @@
     {"id":{"name":"_ts_room","path":"scripts/_ts_room/_ts_room.yy",},"order":4,},
     {"id":{"name":"spr_mist_03","path":"sprites/spr_mist_03/spr_mist_03.yy",},"order":2,},
     {"id":{"name":"obj_menu_button","path":"objects/obj_menu_button/obj_menu_button.yy",},"order":1,},
+    {"id":{"name":"fnt_small","path":"fonts/fnt_small/fnt_small.yy",},"order":1,},
     {"id":{"name":"obj_reset","path":"objects/obj_reset/obj_reset.yy",},"order":6,},
     {"id":{"name":"_level_room","path":"scripts/_level_room/_level_room.yy",},"order":0,},
     {"id":{"name":"spr_stalker_02_idle_s","path":"sprites/spr_stalker_02_idle_s/spr_stalker_02_idle_s.yy",},"order":6,},

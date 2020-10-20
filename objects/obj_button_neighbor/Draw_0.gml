@@ -41,9 +41,10 @@ else
 }
 
 // Determine total position offset
-var xx, yy;
-xx = x + wave*cos(angle) + 1.5*irandom_range(-global.intensity, global.intensity);
-yy = y + wave*sin(-angle) + 1.5*irandom_range(-global.intensity, global.intensity);
+var xx, yy, scale;
+scale = max(global.sa_intensity, global.ts_intensity);
+xx = x + wave*cos(angle) + 1.5*irandom_range(-scale, scale);
+yy = y + wave*sin(-angle) + 1.5*irandom_range(-scale, scale);
 
 // Draw pointer in correct orientation and scale
 draw_sprite_ext(spr_pointer, 0, xx, yy, global.tile_scale, global.tile_scale, radtodeg(angle), c_white, pointer_alpha);

@@ -5,11 +5,11 @@
 function _sa_damage()
 {
 	// Do nothing if not active
-	if (global.intensity == 0)
+	if (global.sa_intensity == 0)
 		exit;
 	
 	// Determine damage depending on intensity
-	switch global.intensity
+	switch global.sa_intensity
 	{
 		case 1:
 			health -= 5;//###2*d;

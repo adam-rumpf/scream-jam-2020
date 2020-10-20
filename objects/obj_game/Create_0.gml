@@ -35,7 +35,8 @@ global.player_dy = 0.0;
 //### Use level progress to decide how to begin the game
 
 // Level-dependent variables
-global.intensity = 0; // metaheuristic intensity (reset on level restart; controls various game mechanics)
+global.sa_intensity = 0; // metaheuristic intensities (reset on level restart; controls various game mechanics)
+global.ts_intensity = 0;
 health = 100.0; // player's current health
 global.dead = false; // whether the player is dead (restart level if true)
 global.new_level = true; // whether to generate a new level on entering the room
@@ -46,6 +47,10 @@ global.player_elevation = 0; // elevation of player's current tile
 global.victory = false; // whether the level has been won
 global.moves = 0; // number of moves made so far
 global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
+
+// Display variables
+health_alpha = 0; // opacity of health bar
+health_display = health; // amount of health to display on the bar
 
 // Define movement methods
 
@@ -62,7 +67,7 @@ move_player = function(xx, yy)
 	
 	// If this is a TS room, handle the tabu tenures
 	var tabu = false; // whether the move is tabu
-	if ((_ts_room() == true) && (global.intensity > 0))
+	if ((_ts_room() == true) && (global.ts_intensity > 0))
 	{
 		// Make the player's previous tile tabu
 		level.get_tile(global.player_x, global.player_y).tabu_move = global.moves + _ts_tenure() + 1;

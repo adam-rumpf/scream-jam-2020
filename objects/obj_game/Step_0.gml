@@ -1,9 +1,10 @@
 /// @desc Listen for in-game events.
 
-//### When level is complete, move to the next room (or an intermediate room) and set new_level to true.
-//### Listen for player actions.
-//### Listen for selecting the menu screen, in which case we move to that room but do not set new_level to true.
-//### Also update the global.level variable and save when we complete a room.
+// Move health display towards player health
+if (health < health_display)
+	health_display = max(health_display - 1, health);
+else if (health > health_display)
+	health_display = min(health_display + 1, health);
 
 // Listen for escape key press
 if (keyboard_check_pressed(vk_escape))
@@ -28,13 +29,6 @@ if (global.victory == true)
 	
 	// Go to next room (through transition room)
 	room_goto(rm_static);
-}
-
-// Listen for player health to reach zero
-if (health <= 0)
-{
-	// Show player's death animation
-	player.die();
 }
 
 // Listen for player death
