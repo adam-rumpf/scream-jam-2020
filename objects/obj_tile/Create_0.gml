@@ -28,6 +28,7 @@ fog = 0; // opacity of fog
 
 // Initialize stalker attributes (used to handle tabu tenures and to control how the stalker is facing)
 tabu_move = 0; // move number on which the tile's tenure is meant to expire
+stalker = 0; // opacity of stalker
 
 /// @func screen_coordinates([dx[, dy]])
 /// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.
@@ -54,35 +55,92 @@ screen_coordinates = function()
 
 is_tabu = function()
 {
+	// Preliminary test for intensity level
+	if (global.intensity == 0)
+		return false;
+	
 	// The tile is tabu if and only if its tenure end falls later than the current move
 	return (tabu_move - global.moves) > 0;
 }
 
-/// @func face_player()
-/// @desc Returns the direction that an enemy on this tile would need to turn to face the player.
-/// @return {int} Integer ID of facing direction, as an increment of 90 degrees.
+/// @func tabu_sprite([x[, y]])
+/// @desc Returns the sprite required for an enemy to face the player, depending on the intensity and the relative position.
+/// @param {int} [x=global.player_x] x-coordinate of tile to face.
+/// @param {int} [y=global.player_y] y-coordinate of tile to face.
+/// @return {int} Sprite ID for enemy (to be drawn by the level object).
 
-face_player = function()
+tabu_sprite = function()
 {
+	// Get optional arguments
+	var xx = (argument_count > 0 ? argument[0] : global.player_x);
+	var yy = (argument_count > 1 ? argument[1] : global.player_y);
+	
 	// Find relative difference in coordinates
-	var dx = x - global.player_x;
-	var dy = y - global.player_y;
+	var dx = x - xx;
+	var dy = y - yy;
 	
 	// Determine whether the horizontal difference or the vertical difference is greater
+	var dir; // direction ID, as an increment of 90 degrees
 	if (abs(dx) >= abs(dy))
 	{
 		// Determine whether to face East or West
 		if (dx > 0)
-			return 2;
+			dir = 2;
 		else
-			return 0;
+			dir = 0;
 	}
 	else
 	{
 		// Determine whether to face North or South
 		if (dy > 0)
-			return 1;
+			dir = 1;
 		else
-			return 3;
+			dir = 3;
+	}
+	
+	// Determine sprite to output based on intensity and direction
+	switch global.intensity
+	{
+		case 1:
+			
+			switch dir
+			{
+				case 0:
+					return spr_stalker_01_idle_e;
+				case 1:
+					return spr_stalker_01_idle_n;
+				case 2:
+					return spr_stalker_01_idle_w;
+				case 3:
+					return spr_stalker_01_idle_s;
+			}
+		
+		case 2:
+			
+			switch dir
+			{
+				case 0:
+					return spr_stalker_02_idle_e;
+				case 1:
+					return spr_stalker_02_idle_n;
+				case 2:
+					return spr_stalker_02_idle_w;
+				case 3:
+					return spr_stalker_02_idle_s;
+			}
+		
+		case 3:
+			
+			switch dir
+			{
+				case 0:
+					return spr_stalker_03_idle_e;
+				case 1:
+					return spr_stalker_03_idle_n;
+				case 2:
+					return spr_stalker_03_idle_w;
+				case 3:
+					return spr_stalker_03_idle_s;
+			}
 	}
 }

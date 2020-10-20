@@ -25,7 +25,4 @@ function _ts_damage()
 	var flash = instance_create_layer(0, 0, "Instances", obj_screen_flash);
 	flash.timer = 0.075*room_speed;
 	flash.col = make_color_hsv(0, 255, 191);
-	
-	//### Play a sound
-	show_message("TS damage.");
 }

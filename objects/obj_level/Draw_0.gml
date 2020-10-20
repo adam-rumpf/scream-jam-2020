@@ -108,6 +108,18 @@ if (_level_room() == true)
 			// Draw fog
 			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_red, tile.fog);
 		}
+		
+		// Handle TS enemy
+		if ((_ts_room() == true) && (tile.stalker > 0) && (finish == false))
+		{
+			// Get sprite and number of subimages
+			var spr, frames;
+			spr = tile.tabu_sprite();
+			frames = sprite_get_number(spr);
+			
+			// Draw enemy
+			draw_sprite_ext(spr, round((0.25*current_time)/room_speed) % frames, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, tile.stalker);
+		}
 	
 		// Go to next tile
 		key = ds_map_find_next(visible_tiles, key);
