@@ -69,7 +69,13 @@ move_player = function(xx, yy)
 		
 		// Determine whether the player is moving into a tabu tile
 		if (next.is_tabu() == true)
+		{
 			tabu = true;
+			
+			// Make tile non-tabu and remove enemy sprite
+			next.tabu_move = global.moves;
+			next.stalker = 0;
+		}
 	}
 	
 	// Call one of the player's movement methods depending on the direction of movement

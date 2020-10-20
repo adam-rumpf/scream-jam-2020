@@ -1,5 +1,5 @@
-/// @desc Set timer until room transitions.
+/// @desc Set timer until room transitions and play static sound.
 
 alarm[0] = 0.75*room_speed;
-
-//### Also begin a static sound.
+noise = audio_play_sound(snd_static, 10, true);
+audio_sound_gain(noise, global.sound, 0);

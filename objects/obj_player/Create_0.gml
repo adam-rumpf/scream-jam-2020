@@ -56,6 +56,9 @@ move_actions = function()
 	var delta = (argument_count > 0 ? argument[0] : 0);
 	var tabu = (argument_count > 1 ? argument[1] : false);
 	
+	// Heal slightly
+	health = min(health + 5, 100);
+	
 	// If the move is uphill and this is an SA room, take damage
 	if ((delta > 0) && (_sa_room() == true))
 		_sa_damage();
