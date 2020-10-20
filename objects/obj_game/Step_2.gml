@@ -16,3 +16,7 @@ if ((moving == false) && (health <= 0))
 	// Show player's death animation
 	player.die();
 }
+
+// Delete stalker sprite (if it exists)
+if ((moving == false) && (stalker != undefined))
+	instance_destroy(stalker);

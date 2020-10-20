@@ -16,11 +16,23 @@ if (_sa_room() == true)
 		fog = max(fog - 0.0015, 0);
 }
 
-// Fade in or out TS enemy
+// Fade out TS enemy
 if (_ts_room() == true)
 {
+	// Appear as soon as player movement ends (stalker object shows walking animation in the meantime)
 	if (is_tabu() == true)
-		stalker = min(stalker + 0.015, 1);
+	{
+		if (stalker_show == true)
+		{
+			if ((global.player_dx == 0.0) && (global.player_dy == 0.0))
+				stalker = 1;
+		}
+		else
+			stalker_show = true;
+	}
 	else
+	{
 		stalker = max(stalker - 0.015, 0);
+		stalker_show = false;
+	}
 }

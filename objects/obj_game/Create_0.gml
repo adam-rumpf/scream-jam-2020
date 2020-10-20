@@ -47,6 +47,7 @@ global.player_elevation = 0; // elevation of player's current tile
 global.victory = false; // whether the level has been won
 global.moves = 0; // number of moves made so far
 global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
+stalker = undefined; // stalker animation object
 
 // Display variables
 health_alpha = 0; // opacity of health bar
@@ -81,6 +82,15 @@ move_player = function(xx, yy)
 			next.tabu_move = global.moves;
 			next.stalker = 0;
 		}
+		
+		// Initialize a stalker walking animation to occupy the previous square
+		if (stalker != undefined)
+			instance_destroy(stalker); // delete previous sprite if it is still present
+		var nx, ny; // next coordinates
+		nx = (room_width/2) - xx*global.tile_size*global.tile_scale;
+		ny = (room_height/2) - yy*global.tile_size*global.tile_scale;
+		stalker = instance_create_layer(nx, ny, "Instances", obj_stalker);
+		stalker.set_sprite(xx, yy);
 	}
 	
 	// Call one of the player's movement methods depending on the direction of movement

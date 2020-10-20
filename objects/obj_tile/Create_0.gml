@@ -29,6 +29,7 @@ fog = 0; // opacity of fog
 // Initialize stalker attributes (used to handle tabu tenures and to control how the stalker is facing)
 tabu_move = 0; // move number on which the tile's tenure is meant to expire
 stalker = 0; // opacity of stalker
+stalker_show = false; // flag use to turn stalker sprite on at correct time
 
 /// @func screen_coordinates([dx[, dy]])
 /// @desc Returns the tile sprite's screen coordinates, which depend on the player's (x,y)-coordinates and the movement parameter.

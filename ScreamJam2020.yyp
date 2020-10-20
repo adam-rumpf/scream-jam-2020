@@ -124,6 +124,7 @@
     {"id":{"name":"spr_player_downhill_w","path":"sprites/spr_player_downhill_w/spr_player_downhill_w.yy",},"order":3,},
     {"id":{"name":"_integer_to_natural","path":"scripts/_integer_to_natural/_integer_to_natural.yy",},"order":0,},
     {"id":{"name":"obj_music_up","path":"objects/obj_music_up/obj_music_up.yy",},"order":9,},
+    {"id":{"name":"obj_stalker","path":"objects/obj_stalker/obj_stalker.yy",},"order":6,},
     {"id":{"name":"_load_game","path":"scripts/_load_game/_load_game.yy",},"order":1,},
     {"id":{"name":"_save_settings","path":"scripts/_save_settings/_save_settings.yy",},"order":3,},
     {"id":{"name":"obj_music_down","path":"objects/obj_music_down/obj_music_down.yy",},"order":8,},
