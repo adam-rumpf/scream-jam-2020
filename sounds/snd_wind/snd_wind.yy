@@ -1,6 +1,6 @@
 {
   "compression": 1,
-  "volume": 0.5,
+  "volume": 1.0,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
@@ -10,14 +10,14 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "snd_static.wav",
-  "duration": 1.005,
+  "soundFile": "snd_wind.wav",
+  "duration": 9.614604,
   "parent": {
     "name": "transition",
     "path": "folders/Sounds/transition.yy",
   },
   "resourceVersion": "1.0",
-  "name": "snd_static",
+  "name": "snd_wind",
   "tags": [],
   "resourceType": "GMSound",
 }

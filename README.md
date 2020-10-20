@@ -36,4 +36,5 @@ Source code released under MIT License
 
 ### Sound
 
-(desc)
+This game uses the following sounds from freesound:
+[Wind Through Trees 1](https://freesound.org/people/spoonbender/sounds/244939/) by spoonbender (https://freesound.org/people/spoonbender/)
