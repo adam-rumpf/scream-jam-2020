@@ -172,7 +172,7 @@ get_tile = function(xx, yy)
 		// Create tile
 		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
 		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation (also automatically seeds RNG for this tile)
-		tile.image_index = _random_weighted_index([10, 10, 10, 1]); // set random image index // ### UPDATE WHEN TILES ARE REDONE
+		tile.image_index = _random_weighted_index([15, 15, 15, 15, 15, 15, 2, 2, 0.01, 0.0005]); // set random image index
 		tile.image_yscale *= choose(1, -1); // randomize horizontal sprite mirroring
 		tile.image_xscale *= choose(1, -1); // randomize vertical sprite mirroring
 		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation
