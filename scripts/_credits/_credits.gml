@@ -5,7 +5,7 @@
 function _credits()
 {
 //### Update, and add the Scream Jam and Caveware links to the README.
-var credits = @"Gradient Descent
+var credits = @"Steepest Descent
 Copyright (c) 2020 Adam Rumpf
 adam-rumpf.github.io
 

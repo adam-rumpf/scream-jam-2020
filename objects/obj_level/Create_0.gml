@@ -42,6 +42,12 @@ global.seed = randomize();
 // Determine whether to mirror the level (to add variety to presets)
 hmirror = choose(true, false); // whether to horizontally mirror
 vmirror = choose(true, false); // whether to vertically mirror
+if (room = rm_level_final)
+{
+	// Final level should not be mirrored
+	hmirror = false;
+	vmirror = false;
+}
 
 // Initialize most extreme explored coordinates
 max_y = -infinity;

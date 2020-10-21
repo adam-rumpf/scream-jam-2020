@@ -1,10 +1,12 @@
-# Gradient Descent
+# Steepest Descent
 
-A game about descending through the darkness (created for Scream Jam 2020).
+A horror game about mathematical optimization, made for [Scream Jam 2020](https://itch.io/jam/scream-jam-2020).
 
-For downloads, please see this game's [itch.io page](https://adam-rumpf.itch.io/gradient-descent).
+For downloads, please see this game's [itch.io page](https://adam-rumpf.itch.io/steepest-descent).
 
-For mathematical background and design notes, please see the [author's page](https://adam-rumpf.github.io/games/gradient_descent.html).
+For mathematical background and design notes, please see the [author's page](https://adam-rumpf.github.io/games/steepest_descent.html).
+
+_Content Warning: This game contains some minor pixelated blood effects, which can be deactivated from the in-game menu._
 
 (desc)
 
@@ -16,7 +18,7 @@ Progress is saved automatically.
 
 ## Credits
 
-Gradient Descent  
+Steepest Descent  
 Copyright (c) 2020 Adam Rumpf  
 [adam-rumpf.github.io](https://adam-rumpf.github.io/)
 
