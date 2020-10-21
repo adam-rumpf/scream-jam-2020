@@ -14,7 +14,7 @@ _Content Warning: This game contains some minor pixelated blood effects, which c
 
 Point and click to move and access menus.
 
-Progress is saved automatically.
+Progress is saved automatically between levels.
 
 ## Credits
 

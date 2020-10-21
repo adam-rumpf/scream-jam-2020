@@ -123,7 +123,7 @@ if (_level_room() == true)
 			
 			// Determine frame number to vary slightly by tile coordinate
 			var multi = 1 + (tile_seed(tile.x+50, tile.y+50) % 100)/100;
-			var frame = round((0.1*multi*current_time)/room_speed) % frames;
+			var frame = round((0.05*multi*current_time)/room_speed) % frames;
 			
 			// Draw enemy
 			draw_sprite_ext(spr, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, tile.stalker);

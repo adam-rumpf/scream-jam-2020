@@ -89,7 +89,7 @@ move_player = function(xx, yy)
 		var nx, ny; // next coordinates
 		nx = (room_width/2) - xx*global.tile_size*global.tile_scale;
 		ny = (room_height/2) - yy*global.tile_size*global.tile_scale;
-		stalker = instance_create_layer(nx, ny, "Instances", obj_stalker);
+		stalker = instance_create_layer(nx, ny, "Player", obj_stalker);
 		stalker.set_sprite(xx, yy);
 	}
 	

@@ -8,7 +8,7 @@
 
 image_xscale = global.tile_scale;
 image_yscale = global.tile_scale;
-image_speed = 0.1;//###
+image_speed = 0.4;
 image_alpha = 0; // begin invisible
 
 /// @func set_sprite(dx, dy)
@@ -80,20 +80,41 @@ set_sprite = function(dx, dy)
 		
 		case 3:
 			
-			switch dir
+			if (global.bloodless == false)
 			{
-				case 0:
-					sprite_index = spr_stalker_03_walk_e;
-					break;
-				case 1:
-					sprite_index = spr_stalker_03_walk_n;
-					break;
-				case 2:
-					sprite_index = spr_stalker_03_walk_w;
-					break;
-				case 3:
-					sprite_index = spr_stalker_03_walk_s;
-					break;
+				switch dir
+				{
+					case 0:
+						sprite_index = spr_stalker_03_walk_e;
+						break;
+					case 1:
+						sprite_index = spr_stalker_03_walk_n;
+						break;
+					case 2:
+						sprite_index = spr_stalker_03_walk_w;
+						break;
+					case 3:
+						sprite_index = spr_stalker_03_walk_s;
+						break;
+				}
+			}
+			else
+			{
+				switch dir
+				{
+					case 0:
+						sprite_index = spr_stalker_03_alt_walk_e;
+						break;
+					case 1:
+						sprite_index = spr_stalker_03_alt_walk_n;
+						break;
+					case 2:
+						sprite_index = spr_stalker_03_alt_walk_w;
+						break;
+					case 3:
+						sprite_index = spr_stalker_03_alt_walk_s;
+						break;
+				}
 			}
 			break;
 	}

@@ -132,16 +132,33 @@ tabu_sprite = function()
 		
 		case 3:
 			
-			switch dir
+			if (global.bloodless == false)
 			{
-				case 0:
-					return spr_stalker_03_idle_e;
-				case 1:
-					return spr_stalker_03_idle_n;
-				case 2:
-					return spr_stalker_03_idle_w;
-				case 3:
-					return spr_stalker_03_idle_s;
+				switch dir
+				{
+					case 0:
+						return spr_stalker_03_idle_e;
+					case 1:
+						return spr_stalker_03_idle_n;
+					case 2:
+						return spr_stalker_03_idle_w;
+					case 3:
+						return spr_stalker_03_idle_s;
+				}
+			}
+			else
+			{
+				switch dir
+				{
+					case 0:
+						return spr_stalker_03_alt_idle_e;
+					case 1:
+						return spr_stalker_03_alt_idle_n;
+					case 2:
+						return spr_stalker_03_alt_idle_w;
+					case 3:
+						return spr_stalker_03_alt_idle_s;
+				}
 			}
 	}
 }
