@@ -1,7 +1,7 @@
 /// @desc Fade self or fog in or out.
 
 // Fade self in
-image_alpha = min(image_alpha + 0.01, 0.75);
+image_alpha = min(image_alpha + 0.02, 0.7);
 
 // Consider enemy drawing only when required
 if ((global.sa_intensity == 0) && (global.ts_intensity))

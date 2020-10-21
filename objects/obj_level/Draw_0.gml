@@ -45,6 +45,8 @@ if (_level_room() == true)
 			else
 				rel = 0.5;
 			var col = make_color_hsv(47, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+			if ((tile.stalker > 0) || (tile.fog > 0))
+				col = make_color_hsv(0, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
 			
 			// Override in case this is the goal tile
 			if (finish == true)
@@ -66,12 +68,15 @@ if (_level_room() == true)
 	
 		// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
 		var alpha = tile.image_alpha*edge_fade(coords[0] - (global.tile_size*global.tile_scale)/2, coords[1] - (global.tile_size*global.tile_scale)/2);
+		var tile_alpha = alpha; // separte alpha value to make neighbor tiles slightly transluscent
+		if (is_neighbor(tile.x, tile.y) == true)
+			tile_alpha = min(tile_alpha, 0.5);
 	
 		// Draw a background texture, shaded to indicate elevation
-		draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, col, alpha);
+		draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, col, tile_alpha);
 	
 		// Draw the tile's sprite
-		draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, c_white, alpha);
+		draw_sprite_ext(spr_tile, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, c_white, tile_alpha);
 	
 		// Draw tile outline
 		draw_sprite_ext(spr_outline, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
