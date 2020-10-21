@@ -38,5 +38,5 @@ if (global.dead == true)
 	// Restart with a newly-generated level
 	global.new_level = true;
 	global.wake_up = true;
-	room_restart();
+	room_goto(rm_static);
 }

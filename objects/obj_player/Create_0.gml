@@ -10,25 +10,6 @@
  * While the player moves from one tile to the next, a global player_move variable increments from 0.0 to 1.0 to indicate the fraction of the way to the next tile.
  */
 
-// Initialize image attributes
-image_xscale = global.tile_scale;
-image_yscale = global.tile_scale;
-image_speed = 0.2;
-if (global.wake_up == true)
-{
-	global.wake_up = false;
-	sprite_index = spr_player_wake;
-	alarm[1] = image_number/image_speed; // set timer to switch to idle animation
-}
-else
-	sprite_index = spr_player_idle_01;
-
-// Define player attributes
-ascend_speed = 0.03; // tile-to-tile movement speed for ascending (fraction of tile per step)
-level_speed = 0.05; // tile-to-tile movement speed for remaining level (fraction of tile per step)
-descend_speed = 0.06; // tile-to-tile movement speed for descending (fraction of tile per step)
-level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
-
 // Define player variables
 movement_speed = 0.0; // rate of incrementing movement parameter
 convex = 0.0; // convex parameter for position between previous and next tile
@@ -40,6 +21,25 @@ if (global.new_level == false)
 dying = false; // whether the player's death animation is playing
 exiting = false; // whetehr the player's level exit animation is playing
 idle_loops = 0; // number of consecutive loops of default idle animation
+
+// Initialize image attributes
+image_xscale = global.tile_scale;
+image_yscale = global.tile_scale;
+image_speed = 0.2;
+if (global.wake_up == true)
+{
+	global.wake_up = false;
+	locked = true;
+	sprite_index = spr_player_wake;
+}
+else
+	sprite_index = spr_player_idle_01;
+
+// Define player attributes
+ascend_speed = 0.03; // tile-to-tile movement speed for ascending (fraction of tile per step)
+level_speed = 0.05; // tile-to-tile movement speed for remaining level (fraction of tile per step)
+descend_speed = 0.06; // tile-to-tile movement speed for descending (fraction of tile per step)
+level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
 
 // Player methods
 
@@ -450,8 +450,6 @@ win = function()
 	sprite_index = spr_player_exit;
 	locked = true;
 	exiting = true;
-	alarm[0] = 1000;
-	alarm[2] = image_number/image_speed;
 }
 
 /// @func die()
@@ -467,6 +465,4 @@ die = function()
 	sprite_index = choose(spr_player_death_01, spr_player_death_02);
 	locked = true;
 	dying = true;
-	alarm[0] = 1000;
-	alarm[3] = image_number/image_speed;
 }
