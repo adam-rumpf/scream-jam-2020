@@ -462,7 +462,10 @@ die = function()
 		exit;
 	
 	// Change sprite and set a timer to restart the level
-	sprite_index = choose(spr_player_death_01, spr_player_death_02);
+	if (global.bloodless == true)
+		sprite_index = spr_player_death_02;
+	else
+		sprite_index = spr_player_death_01;
 	locked = true;
 	dying = true;
 }

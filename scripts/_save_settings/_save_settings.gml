@@ -7,14 +7,17 @@ function _save_settings()
 	// Clear file
 	if (file_exists(global.settings_file) == true)
 		file_delete(global.settings_file);
-
-	// Set sound and music values
+	
+	// Open file
 	ini_open(global.settings_file);
+
+	// Set audio values
 	ini_write_real("audio", "sound", global.sound);
 	ini_write_real("audio", "music", global.music);
 	
-	// Set screen values
+	// Set graphics values
 	ini_write_real("video", "fullscreen", global.fullscreen);
+	ini_write_real("video", "bloodless", global.bloodless);
 	
 	ini_close();
 	

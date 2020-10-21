@@ -32,10 +32,11 @@ if (room == rm_menu)
 	var space = 48;
 	instance_create_layer(3*room_width/4 - 32, room_height/2 - 4*space, "Buttons", obj_sound_button);
 	instance_create_layer(3*room_width/4 - 32, room_height/2 - 3*space, "Buttons", obj_music_button);
-	instance_create_layer(3*room_width/4 - 32, room_height/2 - space, "Buttons", obj_fullscreen_button);
-	instance_create_layer(3*room_width/4 - 32, room_height/2 + space, "Buttons", obj_credits_button);
-	instance_create_layer(3*room_width/4 - 32, room_height/2 + 2*space, "Buttons", obj_reset_button);
-	instance_create_layer(3*room_width/4 - 32, room_height/2 + 3*space, "Buttons", obj_quit_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 - 1*space, "Buttons", obj_fullscreen_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 - 0*space, "Buttons", obj_blood_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + 2*space, "Buttons", obj_credits_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + 3*space, "Buttons", obj_reset_button);
+	instance_create_layer(3*room_width/4 - 32, room_height/2 + 4*space, "Buttons", obj_quit_button);
 	instance_create_layer(room_width - 48, room_height - 32, "Buttons", obj_back_button);
 }
 

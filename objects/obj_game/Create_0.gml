@@ -18,6 +18,7 @@ instance_create_layer(mouse_x, mouse_y, "Instances", obj_cursor);
 global.sound = 0.5; // sound volume (0.0 to 1.0)
 global.music = 0.5; // music volume (0.0 to 1.0)
 global.fullscreen = true; // whether the game is in fullscreen
+global.bloodless = false; // whether to show blood
 _load_settings(); // attempt to load settings
 _save_settings(); // overwrite settings file
 
