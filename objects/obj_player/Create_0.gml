@@ -21,6 +21,7 @@ if (global.new_level == false)
 dying = false; // whether the player's death animation is playing
 exiting = false; // whetehr the player's level exit animation is playing
 idle_loops = 0; // number of consecutive loops of default idle animation
+footsteps = undefined; // current footstep sound
 
 // Initialize image attributes
 image_xscale = global.tile_scale;
@@ -36,9 +37,9 @@ else
 	sprite_index = spr_player_idle_01;
 
 // Define player attributes
-ascend_speed = 0.03; // tile-to-tile movement speed for ascending (fraction of tile per step)
-level_speed = 0.04; // tile-to-tile movement speed for remaining level (fraction of tile per step)
-descend_speed = 0.05; // tile-to-tile movement speed for descending (fraction of tile per step)
+ascend_speed = 0.025; // tile-to-tile movement speed for ascending (fraction of tile per step)
+level_speed = 0.03; // tile-to-tile movement speed for remaining level (fraction of tile per step)
+descend_speed = 0.04; // tile-to-tile movement speed for descending (fraction of tile per step)
 level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
 
 // Player methods
@@ -71,6 +72,16 @@ move_actions = function()
 	// Increment move count and update intensity schedule
 	global.moves++;
 	_intensity_schedule();
+	
+	// Start sound depending on uphill/downhill
+	if (delta > level_margin)
+		footsteps = audio_play_sound(snd_walk_slow, 10, false);
+	else if (delta < -level_margin)
+		footsteps = audio_play_sound(snd_walk_fast, 10, false);
+	else
+		footsteps = audio_play_sound(snd_walk_normal, 10, false);
+	audio_sound_gain(footsteps, global.sound, 0);
+	audio_sound_pitch(footsteps, random_range(0.8, 1.2));
 	
 	// Set movement parameters and begin moving
 	locked = true;

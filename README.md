@@ -39,4 +39,5 @@ Source code released under MIT License
 ### Sound
 
 This game uses the following sounds from freesound:  
+[Footsteps_Landing_Leaves](https://freesound.org/people/Nox_Sound/sounds/496420/) by Nox_Sound (https://freesound.org/people/Nox_Sound/)  
 [Wind Through Trees 1](https://freesound.org/people/spoonbender/sounds/244939/) by spoonbender (https://freesound.org/people/spoonbender/)

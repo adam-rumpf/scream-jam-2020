@@ -7,7 +7,10 @@ factor = 1; // acceleration factor (bigger after the user clicks)
 init = true; // whether the object has just been initialized
 alarm[0] = 2.0*room_speed; // time until fade-in begins
 
-//### Play sound
+// Play sound
+sound = audio_play_sound(snd_wind, 50, false);
+audio_sound_gain(sound, 0, 0);
+audio_sound_gain(sound, global.sound, 2000);
 
 //### TEMP
 room_goto(rm_static);

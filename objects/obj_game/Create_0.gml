@@ -49,6 +49,10 @@ global.moves = 0; // number of moves made so far
 global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
 stalker = undefined; // stalker animation object
 
+// Begin music (persistent, but fades to silent when not needed)
+global.song = audio_play_sound(mus_dread, 8, true);
+audio_sound_gain(global.song, 0, 0);
+
 // Display variables
 health_alpha = 0; // opacity of health bar
 health_display = health; // amount of health to display on the bar

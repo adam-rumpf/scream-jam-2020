@@ -11,6 +11,7 @@ if (selected == true)
 	{
 		// Perform action (depends on button)
 		global.music = max(global.music - 0.05, 0);
+		audio_sound_gain(global.song, global.music, 50);
 	}
 }
 else

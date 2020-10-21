@@ -1,10 +1,21 @@
 /// @desc Continue the current level or start a new one.
 
+// Restart song (except for transition rooms and final room)
+if ((room != rm_static) && (room != rm_message) && (room != rm_level_final))
+	audio_sound_gain(global.song, global.music, 500);
+
 // Spawn level objects in a level room
 if (_level_room() == true)
 {
 	// Spawn the player object
 	player = instance_create_layer(room_width/2, room_height/2, "Player", obj_player);
+	
+	// Spawn sound object (except in final room)
+	if (room != rm_level_final)
+	{
+		instance_create_layer(0, 0, "Instances", obj_forest_sounds);
+		//### Also use a different song
+	}
 	
 	// Create GUI elements
 	instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
