@@ -34,6 +34,10 @@ if (_level_room() == true)
 	
 		// Get screen coordinates from tile
 		var coords = tile.screen_coordinates(dx, dy);
+		
+		// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
+		var alpha = tile.image_alpha*edge_fade(coords[0] - (global.tile_size*global.tile_scale)/2, coords[1] - (global.tile_size*global.tile_scale)/2);
+		var tile_alpha = alpha; // separte alpha value to make neighbor tiles slightly transluscent
 	
 		// Determine shading depending on whether the tile is a neighbor
 		var rel; // fraction of way between most extreme visible tiles
@@ -45,8 +49,13 @@ if (_level_room() == true)
 			else
 				rel = 0.5;
 			var col = make_color_hsv(47, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
-			if ((tile.stalker > 0) || (tile.fog > 0))
-				col = make_color_hsv(0, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+			
+			// Make red and more transluscent to more clearly show fog
+			if (tile.fog > 0)
+			{
+				col = make_color_hsv(23, 127, (1-rel)*c_neighborhood_max + rel*c_neighborhood_min);
+				tile_alpha = min(tile_alpha, 0.6);
+			}
 			
 			// Override in case this is the goal tile
 			if (finish == true)
@@ -65,12 +74,6 @@ if (_level_room() == true)
 			if (finish == true)
 				col = c_black;
 		}
-	
-		// Determine opacity of tile (depends on internal alpha value and fading near screen edge)
-		var alpha = tile.image_alpha*edge_fade(coords[0] - (global.tile_size*global.tile_scale)/2, coords[1] - (global.tile_size*global.tile_scale)/2);
-		var tile_alpha = alpha; // separte alpha value to make neighbor tiles slightly transluscent
-		if (is_neighbor(tile.x, tile.y) == true)
-			tile_alpha = min(tile_alpha, 0.5);
 	
 		// Draw a background texture, shaded to indicate elevation
 		draw_sprite_ext(spr_square, tile.image_index, coords[0], coords[1], tile.image_xscale, tile.image_yscale, tile.image_angle, col, tile_alpha);
