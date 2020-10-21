@@ -86,7 +86,11 @@ if (_level_room() == true)
 		
 		// In case of goal, draw goal sprite
 		if (finish == true)
-			draw_sprite_ext(spr_goal, 0, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
+		{
+			var frames = sprite_get_number(spr_goal);
+			var frame = round((0.2*current_time)/room_speed) % frames;
+			draw_sprite_ext(spr_goal, frame, coords[0], coords[1], tile.image_xscale, tile.image_yscale, 0, c_white, alpha);
+		}
 		
 		// Handle SA enemy
 		if ((_sa_room() == true) && (global.sa_intensity > 0) && (finish == false))

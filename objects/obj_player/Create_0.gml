@@ -448,6 +448,7 @@ win = function()
 	
 	// Change sprite and set a timer to exit the level
 	sprite_index = spr_player_exit;
+	image_speed *= 0.75;
 	locked = true;
 	exiting = true;
 }

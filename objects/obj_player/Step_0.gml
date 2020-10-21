@@ -1,5 +1,9 @@
 /// @desc Increment movement parameter.
 
+// Fade out while exiting
+if (exiting == true)
+	image_alpha = 1 - (image_index/image_number);
+
 // Do nothing if not moving
 if (movement_speed == 0.0)
 	exit;
