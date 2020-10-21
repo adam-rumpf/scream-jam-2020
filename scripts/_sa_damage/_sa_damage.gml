@@ -24,7 +24,7 @@ function _sa_damage()
 	
 	// Show a red flash
 	var flash = instance_create_layer(0, 0, "Instances", obj_screen_flash);
-	flash.timer = 0.075*room_speed;
+	flash.timer = 0.1*room_speed;
 	flash.col = make_color_hsv(0, 255, 191);
 	
 	//### Play a sound

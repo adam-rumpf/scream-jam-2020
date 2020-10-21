@@ -49,19 +49,28 @@ yy = y + wave*sin(-angle) + 1.5*irandom_range(-scale, scale);
 // Draw pointer in correct orientation and scale
 draw_sprite_ext(spr_pointer, 0, xx, yy, global.tile_scale, global.tile_scale, radtodeg(angle), c_white, pointer_alpha);
 
-/*// Draw text to indicate whether the step is an ascent
+// Draw text to indicate whether the step is an ascent
 var diff = global.player_elevation - game.level.get_tile(global.player_x + dx, global.player_y + dy).elevation;
 
 // Display text
-var tx, ty, str, col;
-tx = x + 1.25*dx*global.tile_size*global.tile_scale;
-ty = y + 1.25*dy*global.tile_size*global.tile_scale;
-col = make_color_hsv(47, 127, 255);
+var str, wave, xx, yy, col;
+wave = 2*sin(0.00567*current_time);
+xx = room_width/2 + 0.5*irandom_range(-scale, scale);
+yy = 45 + wave + 0.5*irandom_range(-scale, scale);
 if (diff < 0)
+{
 	str = "Descend";
+	col = make_color_hsv(47, 127, 191);
+}
 else if (diff > 0)
+{
 	str = "Ascend";
+	col = make_color_hsv(47, 127, 255);
+}
 else
+{
 	str = "Walk";
-draw_text_color(tx+2, ty+2, str, c_black, c_black, c_black, c_black, 0.25);
-draw_text_color(tx, ty, str, col, col, col, col, 0.9);*/
+	col = make_color_hsv(47, 127, 227);
+}
+//###draw_text_color(room_width/2, 33, str, c_black, c_black, c_black, c_black, 0.25);
+draw_text_color(xx, yy, str, col, col, col, col, 0.9);
