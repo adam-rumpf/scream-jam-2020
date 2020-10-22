@@ -7,3 +7,4 @@ timer = 1; // steps until screen disappears
 // Play sound
 var sound = audio_play_sound(snd_damage, 30, false);
 audio_sound_gain(sound, global.sound, 0);
+audio_sound_pitch(sound, random_range(0.8, 1.2));

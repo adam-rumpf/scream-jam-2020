@@ -34,10 +34,14 @@ Source code released under MIT License
 
 ### Music
 
-(desc)
+The Dread by Kevin MacLeod  
+Link: https://incompetech.filmmusic.io/song/4491-the-dread  
+License: http://creativecommons.org/licenses/by/4.0/
 
 ### Sound
 
 This game uses the following sounds from freesound:  
-[Footsteps_Landing_Leaves](https://freesound.org/people/Nox_Sound/sounds/496420/) by Nox_Sound (https://freesound.org/people/Nox_Sound/)  
+[Gunshot, Distant, A.wav](https://freesound.org/people/InspectorJ/sounds/417345/), [Snapping, Wooden Fence, O.wav](https://freesound.org/people/InspectorJ/sounds/352201/), [Tearing, Newspaper, B.wav](https://freesound.org/people/InspectorJ/sounds/415766/) by InspectorJ (https://www.jshaw.co.uk/)  
+[Bass_Drum_Hit_single.wav](https://freesound.org/people/jcdecha/sounds/235453/) by jcdecha (https://freesound.org/people/jcdecha/)  
+[Footsteps_Landing_Leaves.wav](https://freesound.org/people/Nox_Sound/sounds/496420/) by Nox_Sound (https://freesound.org/people/Nox_Sound/)  
 [Wind Through Trees 1](https://freesound.org/people/spoonbender/sounds/244939/) by spoonbender (https://freesound.org/people/spoonbender/)

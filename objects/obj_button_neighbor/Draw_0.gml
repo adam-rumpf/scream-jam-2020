@@ -72,5 +72,4 @@ else
 	str = "Walk";
 	col = make_color_hsv(47, 127, 227);
 }
-//###draw_text_color(room_width/2, 33, str, c_black, c_black, c_black, c_black, 0.25);
 draw_text_color(xx, yy, str, col, col, col, col, 0.9);

@@ -73,3 +73,7 @@ global.ts_intensity = 0;
 health = 100.0;
 global.dead = false;
 global.moves = 0;
+
+// Reset health bar display in intro sequence
+if ((room == rm_level_intro) || (room == rm_level_sa))
+	health_alpha = 0;

@@ -1,22 +1,41 @@
-/// @func _peak_parameters(seed[, rm])
+/// @func _peak_parameters(seed)
 /// @desc Generates arrays of parameters for defining the peak functions for a given seed.
 /// @param {int} seed Random seed for the current level.
-/// @param {room} [rm=room] Level room to generate noise for (defaults to current room).
 /// @return {real[][]} Array of parameter arrays, respectively including: magnitudes, x-centers, y-centers, x-scaling, y-scaling, goal.
 
 function _peak_parameters(seed)
 {
-	// Get optional room argument
-	var rm = (argument_count > 1 ? argument[1] : room);
-	
 	// Seed RNG
 	random_set_seed(seed);
 	
 	// Generate parameters depending on the room
 	var mag, xc, yc, xscale, yscale, goal;
-	switch rm
+	switch global.level
 	{
 		//### Add more cases for specific rooms.
+		
+		// Intro level
+		case 0:
+			
+			// One peak location
+			mag = [2.0, 2.0];
+			xc = [15, 15];
+			yc = [12, 12];
+			xscale = [0.0005, 0.05];
+			yscale = [0.0005, 0.05];
+			goal = [xc[0], yc[0]];
+			
+			// Randomization
+			var rand = irandom_range(-3, 3);
+			xc[0] += rand;
+			xc[1] += rand;
+			goal[0] += rand;
+			rand = irandom_range(-2, 2);
+			yc[0] += rand;
+			yc[1] += rand;
+			goal[1] += rand;
+			
+			break;
 		
 		// Random level
 		default:
