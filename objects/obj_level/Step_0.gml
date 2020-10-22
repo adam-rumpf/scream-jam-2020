@@ -7,6 +7,12 @@ if (_level_room() == false)
 	exit;
 }
 
+// Move intermediate intensity variable towards current intensity
+if (dts < global.ts_intensity)
+	dts = min(dts + 0.05, global.ts_intensity);
+else if (dts > global.ts_intensity)
+	dts = max(dts - 0.05, global.ts_intensity);
+
 // Separate procedure for finale room
 if (room == rm_level_final)
 {

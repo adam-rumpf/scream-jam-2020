@@ -128,17 +128,20 @@ if (_level_room() == true)
 		// Handle TS enemy
 		if ((_ts_room() == true) && (tile.stalker > 0) && (finish == false))
 		{
-			// Get sprite and number of subimages
-			var spr, frames;
-			spr = tile.tabu_sprite();
-			frames = sprite_get_number(spr);
+			// Get sprites and number of subimages (the two sprites are blended for intensity transitions)
+			var spr1, spr2, rel, frames;
+			spr1 = tile.tabu_sprite(global.player_x, global.player_y, floor(dts)); // old sprite
+			spr2 = tile.tabu_sprite(global.player_x, global.player_y, ceil(dts)); // new sprite
+			rel = dts - floor(dts); // fraction of way between old and new sprites
+			frames = sprite_get_number(spr1);
 			
 			// Determine frame number to vary slightly by tile coordinate
 			var multi = 1 + (tile_seed(tile.x+50, tile.y+50) % 100)/100;
 			var frame = round((0.05*multi*current_time)/room_speed) % frames;
 			
 			// Draw enemy
-			draw_sprite_ext(spr, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, tile.stalker);
+			draw_sprite_ext(spr1, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, (1-rel)*tile.stalker);
+			draw_sprite_ext(spr2, frame, coords[0], coords[1], global.tile_scale, global.tile_scale, 0, c_white, rel*tile.stalker);
 		}
 	
 		// Go to next tile

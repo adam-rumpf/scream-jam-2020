@@ -93,6 +93,9 @@ goal = param[5]; // goal tile (should be global maximum)
 goal_sound = audio_play_sound(snd_shepard_tone, 4, true);
 audio_sound_gain(goal_sound, 0, 0);
 
+// Set variable to track transitions between intensities
+dts = global.ts_intensity;
+
 // Define level methods
 
 /// @func transform_coords(x, y)
