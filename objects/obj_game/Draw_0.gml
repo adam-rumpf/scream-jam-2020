@@ -31,7 +31,7 @@ if (room != rm_level_intro)
 else
 {
 	// Display a hint message if the player has been wandering for too long in the intro room
-	if (global.moves <= 20)
+	if (global.moves <= 30)
 		exit;
 	
 	// Fade in message

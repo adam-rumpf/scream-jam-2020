@@ -98,6 +98,7 @@
     {"id":{"name":"obj_button_parent","path":"objects/obj_button_parent/obj_button_parent.yy",},"order":1,},
     {"id":{"name":"spr_stalker_02_walk_w","path":"sprites/spr_stalker_02_walk_w/spr_stalker_02_walk_w.yy",},"order":7,},
     {"id":{"name":"spr_player_exit","path":"sprites/spr_player_exit/spr_player_exit.yy",},"order":3,},
+    {"id":{"name":"snd_shepard_tone","path":"sounds/snd_shepard_tone/snd_shepard_tone.yy",},"order":0,},
     {"id":{"name":"obj_quit_no_button","path":"objects/obj_quit_no_button/obj_quit_no_button.yy",},"order":5,},
     {"id":{"name":"mus_dread","path":"sounds/mus_dread/mus_dread.yy",},"order":0,},
     {"id":{"name":"spr_player_downhill_n","path":"sprites/spr_player_downhill_n/spr_player_downhill_n.yy",},"order":1,},
@@ -226,6 +227,7 @@
     {"folderPath":"folders/Sounds/player.yy","order":2,"resourceVersion":"1.0","name":"player","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sounds/forest.yy","order":3,"resourceVersion":"1.0","name":"forest","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sounds/music.yy","order":4,"resourceVersion":"1.0","name":"music","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sounds/object.yy","order":5,"resourceVersion":"1.0","name":"object","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},

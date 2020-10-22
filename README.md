@@ -41,6 +41,7 @@ License: http://creativecommons.org/licenses/by/4.0/
 ### Sound
 
 This game uses the following sounds from freesound:  
+[shepard_tone_seamless.wav](https://freesound.org/people/1urker/sounds/456929/) by 1urker (https://freesound.org/people/1urker/sounds/456929/)  
 [Gunshot, Distant, A.wav](https://freesound.org/people/InspectorJ/sounds/417345/), [Snapping, Wooden Fence, O.wav](https://freesound.org/people/InspectorJ/sounds/352201/), [Tearing, Newspaper, B.wav](https://freesound.org/people/InspectorJ/sounds/415766/) by InspectorJ (https://www.jshaw.co.uk/)  
 [Bass_Drum_Hit_single.wav](https://freesound.org/people/jcdecha/sounds/235453/) by jcdecha (https://freesound.org/people/jcdecha/)  
 [Footsteps_Landing_Leaves.wav](https://freesound.org/people/Nox_Sound/sounds/496420/) by Nox_Sound (https://freesound.org/people/Nox_Sound/)  

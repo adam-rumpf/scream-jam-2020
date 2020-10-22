@@ -89,6 +89,10 @@ peak_xscale = param[3]; // x-direction scaling of peak functions (smaller is wid
 peak_yscale = param[4]; // y-direction scaling of peak functions (smaller is wider)
 goal = param[5]; // goal tile (should be global maximum)
 
+// Sound handle for goal proximity sound
+goal_sound = audio_play_sound(snd_shepard_tone, 4, true);
+audio_sound_gain(goal_sound, 0, 0);
+
 // Define level methods
 
 /// @func transform_coords(x, y)
