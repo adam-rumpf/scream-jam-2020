@@ -11,13 +11,13 @@ function _ts_damage()
 	switch global.ts_intensity
 	{
 		case 1:
-			health -= 25;//###
+			health -= 25;
 			break;
 		case 2:
-			health -= 50;//###
+			health -= 50;
 			break;
 		case 3:
-			health -= 100;//###
+			health -= 100;
 			break;
 	}
 	

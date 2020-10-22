@@ -12,17 +12,16 @@ function _ts_tenure()
 	switch global.ts_intensity
 	{
 		case 1:
-			tenure = 3;//###
+			tenure = 4;
 			break;
 		case 2:
-			tenure = 6;//###
+			tenure = 8;
 			break;
 		case 3:
-			tenure = 9;//###
+			tenure = 12;
 			break;
 		default:
 			tenure = 0;
-			break;
 	}
 	
 	return tenure;

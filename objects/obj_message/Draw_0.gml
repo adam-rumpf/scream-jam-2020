@@ -12,7 +12,7 @@ switch global.level
 	
 	// SA
 	case 1:
-		str = "The fog in these mountains\nis dangerous.";
+		str = "A dangerous fog rolls in\nfrom the mountains.";
 		break;
 	
 	// TS
@@ -22,12 +22,12 @@ switch global.level
 	
 	// Hybrid
 	case 3:
-		str = "What are you searching for?";
+		str = "You need to get down from here.";
 		break;
 	
 	// Final
 	case 4:
-		str = "Be careful what you wish for.";
+		str = "Be careful. You just might find\nwhat you've been searching for.";
 		break;
 }
 

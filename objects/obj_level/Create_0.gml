@@ -312,7 +312,7 @@ calculate_elevation = function(xx, yy)
 	else
 	{
 		// Final room is a tilted sigmoid
-		return floor(30*(0.5*yy)*(arctan(0.1*yy) + 2) + 0.5*random_noise(xx, yy));
+		return floor(30*(0.5*yy)*(arctan(0.1*yy) + 2) + random_noise(xx, yy));
 	}
 }
 
