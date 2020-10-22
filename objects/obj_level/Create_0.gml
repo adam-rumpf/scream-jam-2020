@@ -42,7 +42,7 @@ global.seed = randomize();
 // Determine whether to mirror the level (to add variety to presets)
 hmirror = choose(true, false); // whether to horizontally mirror
 vmirror = choose(true, false); // whether to vertically mirror
-if (room = rm_level_final)
+if (global.level == 4)
 {
 	// Final level should not be mirrored
 	hmirror = false;
@@ -179,7 +179,7 @@ get_tile = function(xx, yy)
 		// Create tile
 		var tile = instance_create_layer(xx, yy, "Instances", obj_tile); // create a new tile object
 		tile.elevation = calculate_elevation(xx, yy); // set tile's elevation (also automatically seeds RNG for this tile)
-		tile.image_index = _random_weighted_index([15, 15, 15, 15, 15, 15, 2, 2, 0.01, 0.0005]); // set random image index
+		tile.image_index = _random_weighted_index([15, 15, 15, 15, 15, 15, 2, 2, 0.02, 0.001]); // set random image index
 		tile.image_yscale *= choose(1, -1); // randomize horizontal sprite mirroring
 		tile.image_xscale *= choose(1, -1); // randomize vertical sprite mirroring
 		tile.image_angle = choose(0, 90, 180, 270); // randomize sprite rotation
@@ -303,8 +303,17 @@ random_noise = function(xx, yy)
 
 calculate_elevation = function(xx, yy)
 {
-	// Evaluate and then round a weightd sum of the deterministic part and the random parts
-	return floor(peak_weight*base_terrain(xx, yy) + wave_weight*wave_noise(xx,yy) + random_noise(xx, yy));
+	// Special procedure for final room
+	if (global.level != 4)
+	{
+		// Evaluate and then round a weightd sum of the deterministic part and the random parts
+		return floor(peak_weight*base_terrain(xx, yy) + wave_weight*wave_noise(xx,yy) + random_noise(xx, yy));
+	}
+	else
+	{
+		// Final room is a tilted sigmoid
+		return floor(30*(0.5*yy)*(arctan(0.1*yy) + 2) + 0.5*random_noise(xx, yy));
+	}
 }
 
 /// @func update_visible()

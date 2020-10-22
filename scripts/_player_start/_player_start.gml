@@ -14,19 +14,10 @@ function _player_start(seed)
 	// Seed RNG
 	random_set_seed(seed);
 	
-	// Generate coordinates depending on the room
+	// Generate coordinates
 	var _x, _y;
-	switch global.level
-	{
-		//### Add more cases for specific rooms.
-		
-		// Random level
-		default:
-			//### Temporary generation (replace with a random process).
-			_x = irandom_range(-1, 1);
-			_y = irandom_range(-1, 1);
-			break;
-	}
+	_x = irandom_range(-2, 2);
+	_y = irandom_range(-2, 2);
 	
 	// Remap coordinates according to transformations
 	var xx = _x;

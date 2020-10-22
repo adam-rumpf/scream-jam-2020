@@ -13,10 +13,12 @@ if (dts < global.ts_intensity)
 else if (dts > global.ts_intensity)
 	dts = max(dts - 0.05, global.ts_intensity);
 
-// Separate procedure for finale room
-if (room == rm_level_final)
+// Separate procedure for final room
+if (global.level == 4)
 {
-	//###
+	// Set sound level depending on y-coordinate
+	var gain = clamp(max(global.player_y - 5, 0)/30, 0, 0.6);
+	audio_sound_gain(goal_sound, global.sound*gain, 50);
 }
 else
 {

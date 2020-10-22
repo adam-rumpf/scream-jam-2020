@@ -1,7 +1,7 @@
 /// @desc Continue the current level or start a new one.
 
 // Restart song (except for transition rooms and final room)
-if ((room != rm_static) && (room != rm_message) && (room != rm_level_final))
+if ((room != rm_static) && (room != rm_message) && (global.level != 4))
 	audio_sound_gain(global.song, global.music, 500);
 
 // Spawn level objects in a level room
