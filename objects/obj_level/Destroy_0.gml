@@ -1,4 +1,4 @@
-/// @desc Destroy tile objects when the level is destroyed.
+/// @desc Destroy tile and sound objects when the level is destroyed.
 
 audio_stop_sound(goal_sound);
 

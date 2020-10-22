@@ -11,6 +11,9 @@ image_yscale = global.tile_scale;
 image_speed = 0.4;
 image_alpha = 0; // begin invisible
 
+// Set an alarm to play a sound after a slight delay
+alarm[0] = irandom_range(10, 15);
+
 /// @func set_sprite(dx, dy)
 /// @desc Sets sprite (called by game object).
 /// @param {int} dx x-component of player movement (-1, 0, or 1).

@@ -64,10 +64,11 @@ is_tabu = function()
 	return (tabu_move - global.moves) > 0;
 }
 
-/// @func tabu_sprite([x[, y]])
+/// @func tabu_sprite([x[, y[, intensity]]])
 /// @desc Returns the sprite required for an enemy to face the player, depending on the intensity and the relative position.
 /// @param {int} [x=global.player_x] x-coordinate of tile to face.
 /// @param {int} [y=global.player_y] y-coordinate of tile to face.
+/// @param {int} [intensity=global.ts_intensity] TS intensity level.
 /// @return {int} Sprite ID for enemy (to be drawn by the level object).
 
 tabu_sprite = function()
@@ -75,6 +76,7 @@ tabu_sprite = function()
 	// Get optional arguments
 	var xx = (argument_count > 0 ? argument[0] : global.player_x);
 	var yy = (argument_count > 1 ? argument[1] : global.player_y);
+	var intensity = (argument_count > 2 ? argument[2] : global.ts_intensity);
 	
 	// Find relative difference in coordinates
 	var dx = x - xx;
@@ -100,7 +102,7 @@ tabu_sprite = function()
 	}
 	
 	// Determine sprite to output based on intensity and direction
-	switch global.ts_intensity
+	switch intensity
 	{
 		case 1:
 			
