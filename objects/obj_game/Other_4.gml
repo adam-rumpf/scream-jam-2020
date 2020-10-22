@@ -1,8 +1,19 @@
 /// @desc Continue the current level or start a new one.
 
-// Restart song (except for transition rooms and final room)
-if ((room != rm_static) && (room != rm_message) && (global.level != 4))
+// Restart song (except for transition rooms and final rooms)
+if ((room != rm_static) && (room != rm_message) && (room != rm_level_final) && (room != rm_ending))
 	audio_sound_gain(global.song, global.music, 500);
+
+// Final credits procedures
+if (room == rm_ending)
+{
+	ending = false;
+	audio_sound_gain(descent_sound, global.sound, 2000);
+	instance_create_layer(0, 0, "Grid", obj_grid);
+	instance_create_layer(room_width/2, -32, "Instances", obj_player_falling);
+	instance_create_layer(0, 0, "Overlays", obj_screen_fade);
+	instance_create_layer(0, 0, "Credits", obj_credits_ending);
+}
 
 // Spawn level objects in a level room
 if (_level_room() == true)
@@ -73,6 +84,7 @@ global.ts_intensity = 0;
 health = 100.0;
 global.dead = false;
 global.moves = 0;
+ending = false;
 
 // Reset health bar display in intro sequence
 if ((room == rm_level_intro) || (room == rm_level_sa))

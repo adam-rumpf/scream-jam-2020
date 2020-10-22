@@ -90,7 +90,7 @@ peak_yscale = param[4]; // y-direction scaling of peak functions (smaller is wid
 goal = param[5]; // goal tile (should be global maximum)
 
 // Sound handle for goal proximity sound
-goal_sound = audio_play_sound(snd_shepard_tone, 4, true);
+goal_sound = audio_play_sound(snd_shepard_tone, 8, true);
 audio_sound_gain(goal_sound, 0, 0);
 
 // Set variable to track transitions between intensities
@@ -312,7 +312,7 @@ calculate_elevation = function(xx, yy)
 	else
 	{
 		// Final room is a tilted sigmoid
-		return floor(30*(0.5*yy)*(arctan(0.1*yy) + 2) + random_noise(xx, yy));
+		return floor(30*(0.5*yy)*(arctan(0.1*yy) + 2) + 10*random_noise(xx, yy));
 	}
 }
 

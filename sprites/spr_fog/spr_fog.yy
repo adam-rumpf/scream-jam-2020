@@ -88,8 +88,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"dc53b390-fcf0-4b64-9555-d97879a1fe45","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "terrain",
-    "path": "folders/Sprites/terrain.yy",
+    "name": "bg",
+    "path": "folders/Sprites/bg.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_fog",

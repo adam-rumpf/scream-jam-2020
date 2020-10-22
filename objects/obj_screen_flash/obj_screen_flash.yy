@@ -25,8 +25,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "screen",
-    "path": "folders/Objects/screen.yy",
+    "name": "display",
+    "path": "folders/Objects/display.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_screen_flash",

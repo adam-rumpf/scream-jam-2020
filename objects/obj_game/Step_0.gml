@@ -1,5 +1,20 @@
 /// @desc Listen for in-game events.
 
+// Final level procedures
+if (room == rm_level_final)
+{
+	// Initialize finale animation when player moves far enough
+	if (global.player_y >= 30)
+	{
+		ending = true;
+		room_goto(rm_ending);//###
+	}
+	
+	// Set sound level depending on y-coordinate
+	var gain = clamp(max(global.player_y - 5, 0)/30, 0, 0.75);
+	audio_sound_gain(descent_sound, global.sound*gain, 50);
+}
+
 // Move health display towards player health
 if (health < health_display)
 	health_display = max(health_display - 1, health);

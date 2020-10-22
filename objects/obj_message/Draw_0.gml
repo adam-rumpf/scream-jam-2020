@@ -27,7 +27,7 @@ switch global.level
 	
 	// Final
 	case 4:
-		str = "Be careful. You just might find\nwhat you've been searching for.";
+		str = "Be careful. You might find what\nyou've been searching for.";
 		break;
 }
 
