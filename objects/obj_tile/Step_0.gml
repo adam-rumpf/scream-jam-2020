@@ -4,7 +4,7 @@
 image_alpha = min(image_alpha + 0.02, 0.6);
 
 // Consider enemy drawing only when required
-if ((global.sa_intensity == 0) && (global.ts_intensity))
+if ((global.sa_intensity == 0) && (global.ts_intensity == 0))
 	exit;
 
 // Fade in of if suboptimal or out otherwise

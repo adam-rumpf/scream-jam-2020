@@ -89,6 +89,62 @@ function _peak_parameters(seed)
 			
 			break;
 		
+		// TS
+		case 2:
+			
+			// Set goal and slightly randomize
+			goal = [35, 20];
+			goal[0] += irandom_range(-5, 5);
+			goal[1] += irandom_range(-10, 10);
+			
+			// Initialize peaks
+			mag = array_create(6);
+			xc = array_create(6);
+			yc = array_create(6);
+			xscale = array_create(6);
+			yscale = array_create(6);
+			
+			// Define first two peaks to correspond to goal
+			mag[0] = 3.0;
+			mag[1] = 3.0;
+			xc[0] = goal[0];
+			xc[1] = goal[0];
+			yc[0] = goal[1];
+			yc[1] = goal[1];
+			xscale[0] = 0.0005;
+			xscale[1] = 0.05;
+			yscale[0] = 0.0005;
+			yscale[1] = 0.05;
+			
+			// Define a few intermediate peaks
+			for (var i = 2; i < 6; i++)
+			{
+				mag[i] = 0.5;
+				xscale[i] = 0.05;
+				yscale[i] = 0.05;
+			}
+			mag[2] = 0.75;
+			xc[2] = 15 + irandom_range(-4, 4);
+			yc[2] = 15 + irandom_range(-6, 6);
+			xc[3] = goal[0] + 2;
+			yc[3] = goal[1] - 10;
+			xc[4] = goal[0] - 8;
+			yc[4] = goal[1] - 6;
+			xc[5] = goal[0] - 6;
+			yc[5] = goal[1] + 4;
+			
+			// Slightly randomize coordinates
+			for (var i = 3; i < 6; i++)
+			{
+				mag[i] += random_range(-0.05, 0.05);
+				xc[i] += irandom_range(-3, 3);
+				yc[i] += irandom_range(-3, 3);
+				xscale[i] += random_range(-0.01, 0.03);
+				yscale[i] += random_range(-0.01, 0.03);
+			}
+			
+			break;
+		
 		// Random level
 		default:
 			//### Temporary generation (replace with a random process).

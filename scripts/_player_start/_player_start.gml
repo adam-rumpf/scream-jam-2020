@@ -16,8 +16,8 @@ function _player_start(seed)
 	
 	// Generate coordinates
 	var _x, _y;
-	_x = irandom_range(-2, 2);
-	_y = irandom_range(-2, 2);
+	_x = irandom_range(-3, 3);
+	_y = irandom_range(-3, 3);
 	
 	// Remap coordinates according to transformations
 	var xx = _x;
