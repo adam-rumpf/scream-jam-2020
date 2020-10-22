@@ -38,11 +38,11 @@ function _intensity_schedule()
 			global.sa_intensity = 0;
 			
 			// TS increases over time
-			if (global.moves < 10)
+			if (global.moves < 7)
 				global.ts_intensity = 0;
-			else if (global.moves < 20)
+			else if (global.moves < 28)
 				global.ts_intensity = 1;
-			else if (global.moves < 30)
+			else if (global.moves < 42)
 				global.ts_intensity = 2;
 			else
 				global.ts_intensity = 3;
@@ -69,11 +69,11 @@ function _intensity_schedule()
 				global.sa_intensity = 1;
 			
 			// TS increases over time
-			if (global.moves < 10)
+			if (global.moves < 15)
 				global.ts_intensity = 0;
-			else if (global.moves < 20)
-				global.ts_intensity = 1;
 			else if (global.moves < 30)
+				global.ts_intensity = 1;
+			else if (global.moves < 45)
 				global.ts_intensity = 2;
 			else
 				global.ts_intensity = 3;

@@ -23,7 +23,11 @@ if (global.level == 4)
 else
 {
 	// Set sound level depending on distance to goal
-	var dist = max(abs(global.player_x - goal[0]), abs(global.player_y - goal[1]));
-	var gain = clamp(1 - sqrt(sqrt(dist/10)), 0, 0.6);
+	var dist, gain;
+	dist = max(abs(global.player_x - goal[0]), abs(global.player_y - goal[1]));
+	if (global.level == 3)
+		gain = clamp(1 - sqrt(dist/10), 0, 0.6);
+	else
+		gain = clamp(1 - sqrt(sqrt(dist/20)), 0, 0.6);
 	audio_sound_gain(goal_sound, global.sound*gain, 50);
 }

@@ -15,10 +15,10 @@ function _ts_tenure()
 			tenure = 4;
 			break;
 		case 2:
-			tenure = 8;
+			tenure = 9;
 			break;
 		case 3:
-			tenure = 12;
+			tenure = 15;
 			break;
 		default:
 			tenure = 0;
