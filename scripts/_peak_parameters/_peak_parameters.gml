@@ -17,23 +17,17 @@ function _peak_parameters(seed)
 		// Intro level
 		case 0:
 			
-			// One peak location
+			// Set goal and slightly randomize
+			goal = [15, 12];
+			goal[0] += irandom_range(-3, 3);
+			goal[1] += irandom_range(-2, 2);
+			
+			// Define peaks corresponding to goal
 			mag = [2.0, 2.0];
-			xc = [15, 15];
-			yc = [12, 12];
+			xc = [goal[0], goal[0]];
+			yc = [goal[1], goal[1]];
 			xscale = [0.0005, 0.05];
 			yscale = [0.0005, 0.05];
-			goal = [xc[0], yc[0]];
-			
-			// Randomization
-			var rand = irandom_range(-3, 3);
-			xc[0] += rand;
-			xc[1] += rand;
-			goal[0] += rand;
-			rand = irandom_range(-2, 2);
-			yc[0] += rand;
-			yc[1] += rand;
-			goal[1] += rand;
 			
 			break;
 		
