@@ -28,23 +28,23 @@ License: http://creativecommons.org/licenses/by/4.0/
 
 This game uses the following sounds from freesound:
 
-shepard_tone_seamless.wav by 1urker
+“shepard_tone_seamless.wav” by 1urker
 (https://freesound.org/people/1urker/sounds/456929/)
 
-Long Splash and squishy sound by aarrnnoo
+“Long Splash and squishy sound” by aarrnnoo
 (https://freesound.org/people/aarrnnoo/)
 
-Gunshot, Distant, A.wav, Snapping, Wooden Fence, O.wav,
-Tearing, Newspaper, B.wav by InspectorJ
+“Gunshot, Distant, A.wav”, “Snapping, Wooden Fence, O.wav”,
+“Tearing, Newspaper, B.wav” by InspectorJ
 (https://www.jshaw.co.uk/)
 
-Bass_Drum_Hit_single.wav by jcdecha
+“Bass_Drum_Hit_single.wav” by jcdecha
 (https://freesound.org/people/jcdecha/)
 
-Footsteps_Landing_Leaves.wav by Nox_Sound
+“Footsteps_Landing_Leaves.wav” by Nox_Sound
 (https://freesound.org/people/Nox_Sound/) 
 
-Wind Through Trees 1 by spoonbender
+“Wind Through Trees 1” by spoonbender
 (freesound.org/people/spoonbender)";
 
 return credits;
