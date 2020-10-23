@@ -11,9 +11,9 @@ if ((global.sa_intensity == 0) && (global.ts_intensity == 0))
 if (_sa_room() == true)
 {
 	if (suboptimal == true)
-		fog = min(fog + 0.0015, 0.125);
+		fog = min(fog + 0.004, 0.125);
 	else
-		fog = max(fog - 0.0015, 0);
+		fog = max(fog - 0.004, 0);
 }
 
 // Fade out TS enemy

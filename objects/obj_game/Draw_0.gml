@@ -29,7 +29,7 @@ if (room != rm_level_intro)
 	if (health_alpha < 1)
 	{
 		// If partiall visible, fade in and draw transluscent version
-		health_alpha = min(health_alpha + 0.025, 1);
+		health_alpha = min(health_alpha + 0.01, 1);
 		
 		// Draw health bar
 		if (health_display > 0)
@@ -42,11 +42,11 @@ if (room != rm_level_intro)
 			draw_primitive_end();
 		}
 		draw_primitive_begin(pr_linelist);
-		draw_vertex_color(x1, y1, border1, health_alpha);
-		draw_vertex_color(x2, y1, border1, health_alpha);
-		draw_vertex_color(x2, y2, border2, health_alpha);
-		draw_vertex_color(x1, y2, border2, health_alpha);
-		draw_vertex_color(x1, y1, border1, health_alpha);
+		draw_vertex_color(x2, y2, border1, health_alpha);
+		draw_vertex_color(x1, y2, border1, health_alpha);
+		draw_vertex_color(x1, y1, border2, health_alpha);
+		draw_vertex_color(x2, y1, border2, health_alpha);
+		draw_vertex_color(x2, y2, border1, health_alpha);
 		draw_primitive_end();
 	}
 	else

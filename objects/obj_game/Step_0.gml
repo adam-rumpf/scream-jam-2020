@@ -32,10 +32,6 @@ if (health < health_display)
 else if (health > health_display)
 	health_display = min(health_display + 1, health);
 
-// Listen for escape key press
-if (keyboard_check_pressed(vk_escape))
-	game_end();
-
 // Listen for level victory
 if (global.victory == true)
 {
@@ -71,7 +67,7 @@ if ((room == rm_level_sa) && (sa_intro == true))
 	// As soon as the intensity increases for the first time, display the health bar
 	if (global.sa_intensity > 0)
 	{
-		health_alpha = 0.025;
+		health_alpha = 0.01;
 		sa_intro = false;
 	}
 }

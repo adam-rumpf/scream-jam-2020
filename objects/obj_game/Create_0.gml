@@ -22,6 +22,10 @@ global.bloodless = false; // whether to show blood
 _load_settings(); // attempt to load settings
 _save_settings(); // overwrite settings file
 
+// Set screen size if it differs from the save file
+if (window_get_fullscreen() != global.fullscreen)
+	window_set_fullscreen(global.fullscreen);
+
 // Load progress
 global.level = 0; // level progress
 _load_game(); // attempt to load progress
@@ -50,6 +54,8 @@ global.next_room = global.level_rooms[global.level]; // next room to go to (for 
 stalker = undefined; // stalker animation object
 global.ending = false; // whether we are going through the game ending sequence
 sa_intro = true; // whether to show the SA intro effect
+if (global.level > 1)
+	sa_intro = false;
 ts_intro = true; // whether to show the TS intro effect
 
 // Begin music (persistent, but fades to silent when not needed)

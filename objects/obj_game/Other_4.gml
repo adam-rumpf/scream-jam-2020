@@ -86,5 +86,5 @@ global.ending = false;
 health_alpha = 1;
 
 // Reset health bar display in intro sequence
-if ((room == rm_level_intro) || (room == rm_level_sa))
+if (sa_intro == true)
 	health_alpha = 0;
