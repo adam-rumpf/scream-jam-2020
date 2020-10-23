@@ -21,3 +21,7 @@ if (selected == true)
 }
 else
 	pointer_alpha = 0;
+
+// Delete self on game ending
+if (global.ending == true)
+	instance_destroy();

@@ -26,6 +26,6 @@ if (convex >= 1.0)
 	dir_y = 0;
 	global.player_dx = 0.0;
 	global.player_dy = 0.0;
-	if ((dying == false) && (exiting == false))
+	if ((dying == false) && (exiting == false) && (global.ending == false))
 		sprite_index = spr_player_idle_01;
 }

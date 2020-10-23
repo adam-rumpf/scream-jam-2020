@@ -7,7 +7,7 @@ if ((room != rm_static) && (room != rm_message) && (room != rm_level_final) && (
 // Final credits procedures
 if (room == rm_ending)
 {
-	ending = false;
+	global.ending = false;
 	audio_sound_gain(descent_sound, global.sound, 2000);
 	instance_create_layer(0, 0, "Grid", obj_grid);
 	instance_create_layer(room_width/2, -32, "Instances", obj_player_falling);
@@ -29,7 +29,7 @@ if (_level_room() == true)
 	}
 	
 	// Create GUI elements
-	instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
+	menu_button = instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
 	
 	// Create invisible buttons around the player to listen for mouse clicks
 	var unit = global.tile_size*global.tile_scale;
@@ -84,7 +84,7 @@ global.ts_intensity = 0;
 health = 100.0;
 global.dead = false;
 global.moves = 0;
-ending = false;
+global.ending = false;
 
 // Reset health bar display in intro sequence
 if ((room == rm_level_intro) || (room == rm_level_sa))

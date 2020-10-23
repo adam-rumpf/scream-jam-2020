@@ -41,7 +41,7 @@ if (_level_room() == true)
 	
 		// Determine shading depending on whether the tile is a neighbor
 		var rel; // fraction of way between most extreme visible tiles
-		if ((is_neighbor(tile.x, tile.y) == true) && (global.player_dx == 0.0) && (global.player_dy == 0.0))
+		if ((is_neighbor(tile.x, tile.y) == true) && (global.player_dx == 0.0) && (global.player_dy == 0.0) && (global.ending == false))
 		{
 			// Determine shade based on placement among all neighboring tiles
 			if (neighborhood_range > 0)

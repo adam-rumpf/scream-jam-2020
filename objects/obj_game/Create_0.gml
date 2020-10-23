@@ -48,7 +48,7 @@ global.victory = false; // whether the level has been won
 global.moves = 0; // number of moves made so far
 global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
 stalker = undefined; // stalker animation object
-ending = false; // whether we are going through the game ending sequence
+global.ending = false; // whether we are going through the game ending sequence
 
 // Begin music (persistent, but fades to silent when not needed)
 global.song = audio_play_sound(mus_dread, 8, true);

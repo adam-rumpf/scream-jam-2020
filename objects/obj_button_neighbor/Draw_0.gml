@@ -1,5 +1,12 @@
 /// @desc Draw pointer and text.
 
+// Become invisible if game is ending
+if (global.ending == true)
+{
+	pointer_alpha = 0;
+	exit;
+}
+
 // Do nothing if invisible or player is moving
 if ((pointer_alpha <= 0) || (global.player_dx != 0.0) || (global.player_dy != 0.0))
 	exit;

@@ -40,6 +40,7 @@ else
 ascend_speed = 0.025; // tile-to-tile movement speed for ascending (fraction of tile per step)
 level_speed = 0.03; // tile-to-tile movement speed for remaining level (fraction of tile per step)
 descend_speed = 0.04; // tile-to-tile movement speed for descending (fraction of tile per step)
+slip_speed = 0.04; // movement speed for final cutscene
 level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
 
 // Player methods
@@ -480,4 +481,39 @@ die = function()
 		sprite_index = spr_player_death_01;
 	locked = true;
 	dying = true;
+}
+
+/// @func slip_s()
+/// @desc Slips south during the ending cutscene.
+
+slip_s = function()
+{
+	if (locked == true)
+		exit;
+	
+	// Set movement speed and sprite
+	movement_speed = slip_speed;
+	sprite_index = spr_player_slip_s;
+	image_speed = 0.1;
+	
+	// Update global coordinates
+	global.player_y++;
+	global.player_dx = 0.0;
+	global.player_dy = 0.0;
+	
+	// Start sound
+	footsteps = audio_play_sound(snd_footstep_single, 10, false);
+	audio_sound_gain(footsteps, global.sound*clamp(30/(abs(global.player_y)+1), 0, 1), 0);
+	audio_sound_pitch(footsteps, random_range(0.8, 1.2));
+	
+	// Set movement parameters and begin moving
+	convex = 0.0;
+	dir_x = 0;
+	dir_y = 1;
+	slip_speed += 0.005;
+	locked = true;
+	
+	// Also begin changing actual y-coordinate on screen
+	if (global.player_y >= 50)
+		y += floor((global.player_y - 50)/2);
 }

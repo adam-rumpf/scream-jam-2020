@@ -6,8 +6,23 @@ if (room == rm_level_final)
 	// Initialize finale animation when player moves far enough
 	if (global.player_y >= 30)
 	{
-		ending = true;
-		room_goto(rm_ending);//###
+		global.ending = true;
+		
+		// Delete menu button
+		if (menu_button != undefined)
+			instance_destroy(menu_button);
+
+		// Force player to move south
+		if ((global.player_dx == 0.0) || (global.player_dy == 0.0))
+		{
+			player.slip_s();
+			level.update_visible(0, 1);
+			level.explore_neighborhood();
+		}
+		
+		// After going far enough south, change rooms
+		if (global.player_y >= 80)
+			room_goto(rm_ending);
 	}
 	
 	// Set sound level depending on y-coordinate
