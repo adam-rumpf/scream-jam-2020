@@ -64,3 +64,14 @@ if (global.dead == true)
 	global.wake_up = true;
 	room_goto(rm_static);
 }
+
+// Handle initial introduction to SA fog
+if ((room == rm_level_sa) && (sa_intro == true))
+{
+	// As soon as the intensity increases for the first time, display the health bar
+	if (global.sa_intensity > 0)
+	{
+		health_alpha = 0.025;
+		sa_intro = false;
+	}
+}

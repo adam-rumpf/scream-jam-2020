@@ -11,7 +11,7 @@ switch global.level
 	
 	// SA
 	case 1:
-		str = "A dangerous fog rolls in\nfrom the mountains.";
+		str = "A deadly fog rolls in\nfrom the mountains.";
 		break;
 	
 	// TS

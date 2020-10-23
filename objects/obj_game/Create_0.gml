@@ -49,6 +49,8 @@ global.moves = 0; // number of moves made so far
 global.next_room = global.level_rooms[global.level]; // next room to go to (for use in screen transitions)
 stalker = undefined; // stalker animation object
 global.ending = false; // whether we are going through the game ending sequence
+sa_intro = true; // whether to show the SA intro effect
+ts_intro = true; // whether to show the TS intro effect
 
 // Begin music (persistent, but fades to silent when not needed)
 global.song = audio_play_sound(mus_dread, 8, true);
