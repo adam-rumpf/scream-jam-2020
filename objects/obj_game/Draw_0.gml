@@ -4,8 +4,6 @@
 if (_level_room() == false)
 	exit;
 
-//### Redo display later.
-
 // Draw a health bar (except for the intro room)
 if (room != rm_level_intro)
 {

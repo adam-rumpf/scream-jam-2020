@@ -49,8 +49,9 @@ function _intensity_schedule()
 			
 			break;
 		
-		// Hybrid
+		// Hybrid/Endless
 		case 3:
+		case 5:
 			
 			// SA comes and goes in waves
 			var offset = 10;

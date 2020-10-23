@@ -7,10 +7,6 @@ if (room == rm_level_final)
 	if (global.player_y >= 30)
 	{
 		global.ending = true;
-		
-		// Delete menu button
-		if (menu_button != undefined)
-			instance_destroy(menu_button);
 
 		// Force player to move south
 		if ((global.player_dx == 0.0) || (global.player_dy == 0.0))
@@ -50,9 +46,7 @@ if (global.victory == true)
 	global.wake_up = true;
 	
 	// Go to next room in sequence (unless at end)
-	//### Replace this with a game reset if we don't get around to the random levels.
-	//###global.level = min(global.level + 1, array_length(global.level_rooms) - 1);
-	global.level = (global.level + 1) % array_length(global.level_rooms); //### Placeholder for looping
+	global.level = min(global.level + 1, array_length(global.level_rooms) - 1);
 	global.next_room = global.level_rooms[global.level];
 	
 	// Save progress

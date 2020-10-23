@@ -29,6 +29,11 @@ switch global.level
 	case 4:
 		str = "Be careful. You might find what\nyou've been searching for.";
 		break;
+	
+	// Endless move
+	case 5:
+		str = "ENDLESS MODE";
+		break;
 }
 
 // Display the message

@@ -1,13 +1,14 @@
 /// @desc Continue the current level or start a new one.
 
-// Restart song (except for transition rooms and final rooms)
-if ((room != rm_static) && (room != rm_message) && (room != rm_level_final) && (room != rm_ending))
+// Restart song (if in a room that requires it)
+if (_music_room() == true)
 	audio_sound_gain(global.song, global.music, 500);
 
 // Final credits procedures
 if (room == rm_ending)
 {
 	global.ending = false;
+	global.level = 5;
 	audio_sound_gain(descent_sound, global.sound, 2000);
 	instance_create_layer(0, 0, "Grid", obj_grid);
 	instance_create_layer(room_width/2, -32, "Instances", obj_player_falling);
@@ -29,7 +30,7 @@ if (_level_room() == true)
 	}
 	
 	// Create GUI elements
-	menu_button = instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
+	instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);
 	
 	// Create invisible buttons around the player to listen for mouse clicks
 	var unit = global.tile_size*global.tile_scale;

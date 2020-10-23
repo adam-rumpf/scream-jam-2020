@@ -93,6 +93,7 @@
     {"id":{"name":"spr_stalker_02_idle_n","path":"sprites/spr_stalker_02_idle_n/spr_stalker_02_idle_n.yy",},"order":5,},
     {"id":{"name":"spr_stalker_03_alt_walk_s","path":"sprites/spr_stalker_03_alt_walk_s/spr_stalker_03_alt_walk_s.yy",},"order":14,},
     {"id":{"name":"snd_static","path":"sounds/snd_static/snd_static.yy",},"order":0,},
+    {"id":{"name":"_music_room","path":"scripts/_music_room/_music_room.yy",},"order":5,},
     {"id":{"name":"obj_sound_button","path":"objects/obj_sound_button/obj_sound_button.yy",},"order":9,},
     {"id":{"name":"spr_player_idle_01","path":"sprites/spr_player_idle_01/spr_player_idle_01.yy",},"order":0,},
     {"id":{"name":"spr_player_level_n","path":"sprites/spr_player_level_n/spr_player_level_n.yy",},"order":4,},

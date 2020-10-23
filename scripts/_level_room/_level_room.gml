@@ -13,7 +13,6 @@ function _level_room()
 		case rm_level_ts:
 		case rm_level_hybrid:
 		case rm_level_final:
-		//###
 			return true;
 		default:
 			return false;

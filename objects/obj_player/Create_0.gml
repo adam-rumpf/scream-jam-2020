@@ -37,9 +37,9 @@ else
 	sprite_index = spr_player_idle_01;
 
 // Define player attributes
-ascend_speed = 0.025; // tile-to-tile movement speed for ascending (fraction of tile per step)
-level_speed = 0.03; // tile-to-tile movement speed for remaining level (fraction of tile per step)
-descend_speed = 0.04; // tile-to-tile movement speed for descending (fraction of tile per step)
+ascend_speed = 0.0225; // tile-to-tile movement speed for ascending (fraction of tile per step)
+level_speed = 0.025; // tile-to-tile movement speed for remaining level (fraction of tile per step)
+descend_speed = 0.0325; // tile-to-tile movement speed for descending (fraction of tile per step)
 slip_speed = 0.04; // movement speed for final cutscene
 level_margin = 2; // elevation changes within this margin are considered "level" for the purposes of animation
 
@@ -68,7 +68,7 @@ move_actions = function()
 	
 	// Heal slightly if no damage was taken
 	if (health == start_health)
-		health = min(health + 2.5, 100);
+		health = min(health + 1, 100);
 	
 	// Increment move count and update intensity schedule
 	global.moves++;
@@ -493,8 +493,13 @@ slip_s = function()
 	
 	// Set movement speed and sprite
 	movement_speed = slip_speed;
-	sprite_index = spr_player_slip_s;
-	image_speed = 0.1;
+	if (global.player_y >= 50)
+	{
+		sprite_index = spr_player_slip_s;
+		image_speed = 0.1;
+	}
+	else
+		sprite_index = spr_player_downhill_s;
 	
 	// Update global coordinates
 	global.player_y++;

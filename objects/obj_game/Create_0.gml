@@ -8,8 +8,8 @@ global.settings_file = "settings.ini"; // settings file name
 global.tile_size = 32; // tile dimension (px)
 global.tile_scale = 2; // tile scaling
 
-// Define array of rooms in level sequence
-global.level_rooms = [rm_level_intro, rm_level_sa, rm_level_ts, rm_level_hybrid, rm_level_final]; //###
+// Define array of rooms in level sequence (ending with the random level room)
+global.level_rooms = [rm_level_intro, rm_level_sa, rm_level_ts, rm_level_hybrid, rm_level_final, rm_level];
 
 // Initialize cursor tacker
 instance_create_layer(mouse_x, mouse_y, "Instances", obj_cursor);

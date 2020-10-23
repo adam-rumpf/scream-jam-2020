@@ -14,10 +14,10 @@ function _sa_damage()
 			health -= 5;
 			break;
 		case 2:
-			health -= 10;
+			health -= 15;
 			break;
 		case 3:
-			health -= 20;
+			health -= 25;
 			break;
 	}
 	

@@ -11,6 +11,3 @@ alarm[0] = 2.0*room_speed; // time until fade-in begins
 sound = audio_play_sound(snd_wind, 50, false);
 audio_sound_gain(sound, 0, 0);
 audio_sound_gain(sound, global.sound, 2000);
-
-//### TEMP
-room_goto(rm_static);

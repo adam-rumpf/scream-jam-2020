@@ -9,10 +9,14 @@ else
 	// If not, go to the level room
 	if (global.next_room >= 0)
 		room_goto(global.next_room);
+	else if (global.next_room == -1)
+	{
+		// If next room is set to -1 (at end of game), end
+		game_end();
+	}
 	else
 	{
-		// If next room is set to -1 (at end of game), reset
-		_save_clear();
-		game_end();
+		// If next room is set to -2 (on save clear), reset
+		game_restart();
 	}
 }

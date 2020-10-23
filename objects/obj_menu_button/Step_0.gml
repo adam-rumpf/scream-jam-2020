@@ -1,5 +1,12 @@
 /// @desc Go to menu on mouse click.
 
+// Do nothing as game is ending
+if (global.ending == true)
+{
+	selected = false;
+	exit;
+}
+
 // Determine behavior depending on whether the button is selected
 if (selected == true)
 {

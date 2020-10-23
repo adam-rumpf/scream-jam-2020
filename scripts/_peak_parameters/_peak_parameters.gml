@@ -12,8 +12,6 @@ function _peak_parameters(seed)
 	var mag, xc, yc, xscale, yscale, goal;
 	switch global.level
 	{
-		//### Add more cases for specific rooms.
-		
 		// Intro level
 		case 0:
 			
@@ -147,8 +145,9 @@ function _peak_parameters(seed)
 			
 			break;
 		
-		// Hybrid
+		// Hybrid/Endless
 		case 3:
+		case 5:
 			
 			// Set goal and slightly randomize
 			goal = [75, 60];
@@ -156,7 +155,7 @@ function _peak_parameters(seed)
 			goal[1] += irandom_range(-15, 15);
 			
 			// Initialize 
-			var num = 12;
+			var num = 16;
 			mag = array_create(num);
 			xc = array_create(num);
 			yc = array_create(num);
@@ -165,15 +164,15 @@ function _peak_parameters(seed)
 			
 			// Define first two peaks to correspond to goal
 			mag[0] = 4.0;
-			mag[1] = 3.0;
+			mag[1] = 4.0;
 			xc[0] = goal[0];
 			xc[1] = goal[0];
 			yc[0] = goal[1];
 			yc[1] = goal[1];
 			xscale[0] = 0.00005;
-			xscale[1] = 0.005;
+			xscale[1] = 0.01;
 			yscale[0] = 0.00005;
-			yscale[1] = 0.005;
+			yscale[1] = 0.01;
 			
 			// Define a few intermediate peaks
 			for (var i = 2; i < num; i++)
@@ -185,6 +184,10 @@ function _peak_parameters(seed)
 			mag[2] = 0.5;
 			mag[3] = 0.5;
 			mag[8] = 0.5;
+			mag[12] = 0.15;
+			mag[13] = 0.15;
+			mag[14] = 0.3;
+			mag[15] = 0.3;
 			xc[2] = 12;
 			yc[2] = 15;
 			xc[3] = 20;
@@ -205,6 +208,14 @@ function _peak_parameters(seed)
 			yc[10] = 70;
 			xc[11] = 45;
 			yc[11] = 45;
+			xc[12] = xc[0] + 10;
+			yc[12] = yc[0] + 10;
+			xc[13] = xc[0] + 10;
+			yc[13] = yc[0] + 10;
+			xc[14] = 10;
+			yc[14] = 5;
+			xc[15] = 5;
+			yc[15] = 10;
 			
 			// Slightly randomize coordinates
 			for (var i = 3; i < num; i++)
