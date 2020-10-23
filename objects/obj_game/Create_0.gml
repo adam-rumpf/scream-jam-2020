@@ -2,7 +2,7 @@
 
 // Define global constants and variables
 global.seed = randomize(); // random seed for current level (reset on level restart)
-global.version = 0.1; // game version number (encoded in save files)
+global.version = 1.0; // game version number (encoded in save files)
 global.save_file = "save.dat"; // save file name
 global.settings_file = "settings.ini"; // settings file name
 global.tile_size = 32; // tile dimension (px)
