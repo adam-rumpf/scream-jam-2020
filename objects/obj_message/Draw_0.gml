@@ -1,7 +1,6 @@
 /// @desc Draw a message depending on the current game state.
 
 // Determine message depending on level
-//###
 var str;
 switch global.level
 {

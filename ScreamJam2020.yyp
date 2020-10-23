@@ -6,6 +6,7 @@
     {"id":{"name":"rm_message","path":"rooms/rm_message/rm_message.yy",},"order":2,},
     {"id":{"name":"_load_settings","path":"scripts/_load_settings/_load_settings.yy",},"order":4,},
     {"id":{"name":"spr_player_falling","path":"sprites/spr_player_falling/spr_player_falling.yy",},"order":5,},
+    {"id":{"name":"snd_squish","path":"sounds/snd_squish/snd_squish.yy",},"order":5,},
     {"id":{"name":"rm_level_hybrid","path":"rooms/rm_level_hybrid/rm_level_hybrid.yy",},"order":4,},
     {"id":{"name":"obj_message","path":"objects/obj_message/obj_message.yy",},"order":3,},
     {"id":{"name":"spr_pit_mesh","path":"sprites/spr_pit_mesh/spr_pit_mesh.yy",},"order":2,},

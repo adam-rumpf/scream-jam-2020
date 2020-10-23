@@ -40,7 +40,7 @@ switch sprite_index
 		
 		break;
 	
-	case spr_player_death_01://### Make sure to add all death animations here.
+	case spr_player_death_01:
 	case spr_player_death_02:
 	
 		// Game object listens for death status and handles level restart

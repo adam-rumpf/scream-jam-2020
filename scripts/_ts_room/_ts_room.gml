@@ -10,7 +10,6 @@ function _ts_room()
 		case rm_level:
 		case rm_level_ts:
 		case rm_level_hybrid:
-		//###
 			return true;
 		default:
 			return false;

@@ -24,10 +24,7 @@ if (_level_room() == true)
 	
 	// Spawn sound object (except in final room)
 	if (room != rm_level_final)
-	{
 		instance_create_layer(0, 0, "Instances", obj_forest_sounds);
-		//### Also use a different song
-	}
 	
 	// Create GUI elements
 	instance_create_layer(room_width - 48, 32, "Buttons", obj_menu_button);

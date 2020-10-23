@@ -7,7 +7,5 @@ if (selected == true)
 	
 	// If selected, listen for mouse clicks
 	if (mouse_check_button_pressed(mb_left) == true)
-	{
-		game_end();//###
-	}
+		game_end();
 }

@@ -4,7 +4,6 @@
 
 function _credits()
 {
-//### Update
 var credits = @"Steepest Descent
 Copyright (c) 2020 Adam Rumpf
 adam-rumpf.github.io
@@ -28,6 +27,9 @@ License: http://creativecommons.org/licenses/by/4.0/
 --- Sound ---
 
 This game uses the following sounds from freesound:
+
+Long Splash and squishy sound by aarrnnoo
+(https://freesound.org/people/aarrnnoo/)
 
 shepard_tone_seamless.wav by 1urker
 (https://freesound.org/people/1urker/sounds/456929/)

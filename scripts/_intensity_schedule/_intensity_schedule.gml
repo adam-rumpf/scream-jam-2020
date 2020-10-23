@@ -50,8 +50,9 @@ function _intensity_schedule()
 			break;
 		
 		// Hybrid/Endless
-		case 3:
-		case 5:
+		//case 3:
+		//case 5:
+		default:
 			
 			// SA comes and goes in waves
 			var offset = 10;
@@ -79,30 +80,6 @@ function _intensity_schedule()
 			else
 				global.ts_intensity = 3;
 			
-			break;
-		
-		//### Customize other rooms.
-		default:
-			if (global.moves < 10)
-			{
-				global.sa_intensity = 0;
-				global.ts_intensity = 0;
-			}
-			else if (global.moves < 20)
-			{
-				global.sa_intensity = 1;
-				global.ts_intensity = 1;
-			}
-			else if (global.moves < 30)
-			{
-				global.sa_intensity = 2;
-				global.ts_intensity = 2;
-			}
-			else
-			{
-				global.sa_intensity = 3;
-				global.ts_intensity = 3;
-			}
 			break;
 	}
 }

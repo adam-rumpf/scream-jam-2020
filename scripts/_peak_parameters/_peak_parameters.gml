@@ -146,8 +146,9 @@ function _peak_parameters(seed)
 			break;
 		
 		// Hybrid/Endless
-		case 3:
-		case 5:
+		//case 3:
+		//case 5:
+		default:
 			
 			// Set goal and slightly randomize
 			goal = [75, 60];
@@ -227,17 +228,6 @@ function _peak_parameters(seed)
 				yscale[i] += random_range(-0.01, 0.05);
 			}
 			
-			break;
-		
-		// Random level
-		default:
-			//### Temporary generation (replace with a random process).
-			mag = [1.0];
-			xc = [6];
-			yc = [3];
-			xscale = [0.05];
-			yscale = [0.05];
-			goal = [xc[0], yc[0]];
 			break;
 	}
 	

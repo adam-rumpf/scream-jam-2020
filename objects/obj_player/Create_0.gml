@@ -481,6 +481,10 @@ die = function()
 		sprite_index = spr_player_death_01;
 	locked = true;
 	dying = true;
+	
+	// Play a sound
+	var sound = audio_play_sound(snd_squish, 20, false);
+	audio_sound_gain(sound, global.sound, 0);
 }
 
 /// @func slip_s()
