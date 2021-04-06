@@ -1,5 +1,7 @@
 # Steepest Descent
 
+<a href="https://adam-rumpf.itch.io/steepest-descent"><img src="https://img.shields.io/badge/download-itch.io-fa5c5c?style=plastic&logo=itch.io&logoColor=white" alt="itch.io page"/></a> <a href="https://github.com/adam-rumpf/scream-jam-2020/search?l=game-maker-language"><img src="https://img.shields.io/badge/language-gml-blue?style=plastic"/></a> <a href="https://github.com/adam-rumpf/scream-jam-2020/releases"><img src="https://img.shields.io/github/v/release/adam-rumpf/scream-jam-2020?style=plastic"/></a> <a href="https://github.com/adam-rumpf/scream-jam-2020/blob/master/LICENSE"><img src="https://img.shields.io/github/license/adam-rumpf/scream-jam-2020?style=plastic"/></a> <a href="https://github.com/adam-rumpf/scream-jam-2020/commits/master"><img src="https://img.shields.io/maintenance/no/2020?style=plastic"/></a>
+
 A horror game about mathematical optimization, made for [Scream Jam 2020](https://itch.io/jam/scream-jam-2020).
 
 For downloads, please see this game's [itch.io page](https://adam-rumpf.itch.io/steepest-descent).
